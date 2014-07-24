@@ -1,0 +1,4 @@
+C:/Users/Milo/Documents/PSoC\ Creator/DPI_Desktop_Tester/Desktop_Tool_Emulator.cydsn/CortexM0/ARM_GCC_473/Release/CyBootAsmGnu.o : C:/Users/Milo/Documents/PSoC\ Creator/DPI_Desktop_Tester/Desktop_Tool_Emulator.cydsn/Generated_Source/PSoC4/CyBootAsmGnu.s 
+
+C:/Users/Milo/Documents/PSoC\ Creator/DPI_Desktop_Tester/Desktop_Tool_Emulator.cydsn/Generated_Source/PSoC4/CyBootAsmGnu.s : 
+

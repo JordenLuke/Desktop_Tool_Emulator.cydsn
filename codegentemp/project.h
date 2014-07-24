@@ -28,6 +28,16 @@
 #include <UART_1_PINS.h>
 #include <UART_1_SPI_UART_PVT.h>
 #include <UART_1_PVT.h>
+#include <SPIM_1.h>
+#include <SPIM_1_PVT.h>
+#include <miso.h>
+#include <miso_aliases.h>
+#include <mosi.h>
+#include <mosi_aliases.h>
+#include <sclk.h>
+#include <sclk_aliases.h>
+#include <Pin_4.h>
+#include <Pin_4_aliases.h>
 #include <I2C_1_sda.h>
 #include <I2C_1_sda_aliases.h>
 #include <I2C_1_scl.h>
@@ -36,6 +46,7 @@
 #include <UART_1_tx_aliases.h>
 #include <UART_1_rx.h>
 #include <UART_1_rx_aliases.h>
+#include <SPIM_1_IntClock.h>
 #include <core_cm0_psoc4.h>
 #include <core_cm0.h>
 #include <CyFlash.h>

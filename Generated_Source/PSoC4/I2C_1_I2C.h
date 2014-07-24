@@ -33,7 +33,7 @@
 #define I2C_1_I2C_SLAVE_ADDRESS_MASK     (254u)
 #define I2C_1_I2C_ACCEPT_ADDRESS         (0u)
 #define I2C_1_I2C_WAKE_ENABLE            (0u)
-#define I2C_1_I2C_DATA_RATE              (100u)
+#define I2C_1_I2C_DATA_RATE              (50u)
 #define I2C_1_I2C_EXTERN_INTR_HANDLER    (0u)
 
 

@@ -1,11 +1,23 @@
---------------- Build Started: 07/21/2014 15:39:18 Project: Desktop_Tool_Emulator, Configuration: ARM GCC 4.7.3 Debug ---------------
+--------------- Build Started: 07/23/2014 15:32:25 Project: Desktop_Tool_Emulator, Configuration: ARM GCC 4.7.3 Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC4 -Wno-main -mcpu=cortex-m0 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM0\ARM_GCC_473\Debug\main.lst -ffunction-sections -c .\main.c -o .\CortexM0\ARM_GCC_473\Debug\main.o
-arm-none-eabi-ar.exe -rs .\CortexM0\ARM_GCC_473\Debug\Desktop_Tool_Emulator.a .\CortexM0\ARM_GCC_473\Debug\cyfitter_cfg.o .\CortexM0\ARM_GCC_473\Debug\I2C_1.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_I2C_INT.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_I2C.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_I2C_BOOT.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_I2C_MASTER.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_PM.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_BOOT.o .\CortexM0\ARM_GCC_473\Debug\UART_1.o .\CortexM0\ARM_GCC_473\Debug\UART_1_SPI_UART.o .\CortexM0\ARM_GCC_473\Debug\UART_1_SPI_UART_INT.o .\CortexM0\ARM_GCC_473\Debug\UART_1_PM.o .\CortexM0\ARM_GCC_473\Debug\UART_1_UART.o .\CortexM0\ARM_GCC_473\Debug\UART_1_BOOT.o .\CortexM0\ARM_GCC_473\Debug\UART_1_UART_BOOT.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_sda.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_scl.o .\CortexM0\ARM_GCC_473\Debug\UART_1_tx.o .\CortexM0\ARM_GCC_473\Debug\UART_1_rx.o .\CortexM0\ARM_GCC_473\Debug\CyBootAsmGnu.o .\CortexM0\ARM_GCC_473\Debug\CyFlash.o .\CortexM0\ARM_GCC_473\Debug\CyLib.o .\CortexM0\ARM_GCC_473\Debug\cyPm.o .\CortexM0\ARM_GCC_473\Debug\cyutils.o
+.\main.c: In function 'main':
+.\main.c:60:3: warning: pointer targets in passing argument 1 of 'UART_1_SpiUartPutArray' differ in signedness [-Wpointer-sign]
+In file included from ./Generated_Source/PSoC4/project.h:27:0,
+                 from .\main.c:12:
+./Generated_Source/PSoC4/UART_1_SPI_UART.h:316:12: note: expected 'const uint8 *' but argument is of type 'char *'
+.\main.c:29:8: warning: variable 'z' set but not used [-Wunused-but-set-variable]
+.\main.c:28:8: warning: variable 'y' set but not used [-Wunused-but-set-variable]
+.\main.c:27:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+.\main.c: In function 'i2c_read':
+.\main.c:107:6: warning: variable 'i' set but not used [-Wunused-but-set-variable]
+.\main.c: In function 'main':
+.\main.c:59:4: warning: 'buffer' is used uninitialized in this function [-Wuninitialized]
+arm-none-eabi-ar.exe -rs .\CortexM0\ARM_GCC_473\Debug\Desktop_Tool_Emulator.a .\CortexM0\ARM_GCC_473\Debug\cyfitter_cfg.o .\CortexM0\ARM_GCC_473\Debug\I2C_1.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_I2C_INT.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_I2C.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_I2C_BOOT.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_I2C_MASTER.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_PM.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_BOOT.o .\CortexM0\ARM_GCC_473\Debug\UART_1.o .\CortexM0\ARM_GCC_473\Debug\UART_1_SPI_UART.o .\CortexM0\ARM_GCC_473\Debug\UART_1_SPI_UART_INT.o .\CortexM0\ARM_GCC_473\Debug\UART_1_PM.o .\CortexM0\ARM_GCC_473\Debug\UART_1_UART.o .\CortexM0\ARM_GCC_473\Debug\UART_1_BOOT.o .\CortexM0\ARM_GCC_473\Debug\UART_1_UART_BOOT.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_sda.o .\CortexM0\ARM_GCC_473\Debug\I2C_1_scl.o .\CortexM0\ARM_GCC_473\Debug\UART_1_tx.o .\CortexM0\ARM_GCC_473\Debug\UART_1_rx.o .\CortexM0\ARM_GCC_473\Debug\CyBootAsmGnu.o .\CortexM0\ARM_GCC_473\Debug\CyFlash.o .\CortexM0\ARM_GCC_473\Debug\CyLib.o .\CortexM0\ARM_GCC_473\Debug\cyPm.o .\CortexM0\ARM_GCC_473\Debug\cyutils.o .\CortexM0\ARM_GCC_473\Debug\SPIM_1.o .\CortexM0\ARM_GCC_473\Debug\SPIM_1_PM.o .\CortexM0\ARM_GCC_473\Debug\SPIM_1_INT.o .\CortexM0\ARM_GCC_473\Debug\Pin_4.o .\CortexM0\ARM_GCC_473\Debug\SPIM_1_IntClock.o .\CortexM0\ARM_GCC_473\Debug\miso.o .\CortexM0\ARM_GCC_473\Debug\mosi.o .\CortexM0\ARM_GCC_473\Debug\sclk.o
 arm-none-eabi-ar.exe: creating .\CortexM0\ARM_GCC_473\Debug\Desktop_Tool_Emulator.a
 arm-none-eabi-gcc.exe -mthumb -march=armv6-m -T .\Generated_Source\PSoC4\cm0gcc.ld -g -Wl,-Map,.\CortexM0\ARM_GCC_473\Debug\Desktop_Tool_Emulator.map -specs=nano.specs -Wl,--gc-sections -Wl,--start-group -o .\CortexM0\ARM_GCC_473\Debug\Desktop_Tool_Emulator.elf .\CortexM0\ARM_GCC_473\Debug\main.o .\CortexM0\ARM_GCC_473\Debug\cymetadata.o .\CortexM0\ARM_GCC_473\Debug\Cm0Start.o .\CortexM0\ARM_GCC_473\Debug\Desktop_Tool_Emulator.a "C:\Program Files (x86)\Cypress\PSoC Creator\3.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_473\Debug\CyComponentLibrary.a" -Wl,--end-group
 cyelftool.exe -C "C:\Users\Milo\Documents\PSoC Creator\DPI_Desktop_Tester\Desktop_Tool_Emulator.cydsn\CortexM0\ARM_GCC_473\Debug\Desktop_Tool_Emulator.elf" --flash_size 32768 --flash_row_size 128
 cyelftool.exe -S "C:\Users\Milo\Documents\PSoC Creator\DPI_Desktop_Tester\Desktop_Tool_Emulator.cydsn\CortexM0\ARM_GCC_473\Debug\Desktop_Tool_Emulator.elf"
-Flash used: 7056 of 32768 bytes (21.5 %).
-SRAM used: 1700 of 4096 bytes (41.5 %).
---------------- Build Succeeded: 07/21/2014 15:39:19 ---------------
+Flash used: 5704 of 32768 bytes (17.4 %).
+SRAM used: 1652 of 4096 bytes (40.3 %).
+--------------- Build Succeeded: 07/23/2014 15:32:26 ---------------

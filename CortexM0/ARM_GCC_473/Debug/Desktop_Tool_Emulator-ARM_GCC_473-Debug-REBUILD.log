@@ -1,0 +1,12 @@
+--------------- Rebuild Started: 07/23/2014 15:12:54 Project: main.c, Configuration: ARM GCC 4.7.3 Debug ---------------
+arm-none-eabi-gcc.exe -I. -I./Generated_Source/PSoC4 -Wno-main -mcpu=cortex-m0 -mthumb -Wall -g -D DEBUG -Wa,-alh=.\CortexM0\ARM_GCC_473\Debug\main.lst -ffunction-sections -c .\main.c -o .\CortexM0\ARM_GCC_473\Debug\main.o
+.\main.c: In function 'main':
+.\main.c:35:6: warning: variable 'n' set but not used [-Wunused-but-set-variable]
+.\main.c:32:8: warning: variable 'az' set but not used [-Wunused-but-set-variable]
+.\main.c:31:8: warning: variable 'ay' set but not used [-Wunused-but-set-variable]
+.\main.c:30:8: warning: variable 'ax' set but not used [-Wunused-but-set-variable]
+.\main.c: In function 'i2c_read':
+.\main.c:107:6: warning: variable 'i' set but not used [-Wunused-but-set-variable]
+.\main.c: In function 'main':
+.\main.c:56:4: warning: 'buffer' is used uninitialized in this function [-Wuninitialized]
+--------------- Rebuild Succeeded: 07/23/2014 15:12:55 ---------------

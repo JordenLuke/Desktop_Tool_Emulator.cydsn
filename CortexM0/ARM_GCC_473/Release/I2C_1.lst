@@ -1,0 +1,1575 @@
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"I2C_1.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.I2C_1_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	I2C_1_Init
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	I2C_1_Init, %function
+  23              	I2C_1_Init:
+  24              	.LFB0:
+  25              		.file 1 ".\\Generated_Source\\PSoC4\\I2C_1.c"
+   1:.\Generated_Source\PSoC4/I2C_1.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/I2C_1.c **** * File Name: I2C_1.c
+   3:.\Generated_Source\PSoC4/I2C_1.c **** * Version 1.20
+   4:.\Generated_Source\PSoC4/I2C_1.c **** *
+   5:.\Generated_Source\PSoC4/I2C_1.c **** * Description:
+   6:.\Generated_Source\PSoC4/I2C_1.c **** *  This file provides the source code to the API for the SCB Component.
+   7:.\Generated_Source\PSoC4/I2C_1.c **** *
+   8:.\Generated_Source\PSoC4/I2C_1.c **** * Note:
+   9:.\Generated_Source\PSoC4/I2C_1.c **** *
+  10:.\Generated_Source\PSoC4/I2C_1.c **** *******************************************************************************
+  11:.\Generated_Source\PSoC4/I2C_1.c **** * Copyright 2013-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC4/I2C_1.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:.\Generated_Source\PSoC4/I2C_1.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  14:.\Generated_Source\PSoC4/I2C_1.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC4/I2C_1.c **** *******************************************************************************/
+  16:.\Generated_Source\PSoC4/I2C_1.c **** 
+  17:.\Generated_Source\PSoC4/I2C_1.c **** #include "I2C_1_PVT.h"
+  18:.\Generated_Source\PSoC4/I2C_1.c **** 
+  19:.\Generated_Source\PSoC4/I2C_1.c **** #if(I2C_1_SCB_MODE_I2C_INC)
+  20:.\Generated_Source\PSoC4/I2C_1.c ****     #include "I2C_1_I2C_PVT.h"
+  21:.\Generated_Source\PSoC4/I2C_1.c **** #endif /* (I2C_1_SCB_MODE_I2C_INC) */
+  22:.\Generated_Source\PSoC4/I2C_1.c **** 
+  23:.\Generated_Source\PSoC4/I2C_1.c **** #if(I2C_1_SCB_MODE_EZI2C_INC)
+  24:.\Generated_Source\PSoC4/I2C_1.c ****     #include "I2C_1_EZI2C_PVT.h"
+  25:.\Generated_Source\PSoC4/I2C_1.c **** #endif /* (I2C_1_SCB_MODE_EZI2C_INC) */
+  26:.\Generated_Source\PSoC4/I2C_1.c **** 
+  27:.\Generated_Source\PSoC4/I2C_1.c **** #if(I2C_1_SCB_MODE_SPI_INC || I2C_1_SCB_MODE_UART_INC)
+  28:.\Generated_Source\PSoC4/I2C_1.c ****     #include "I2C_1_SPI_UART_PVT.h"
+  29:.\Generated_Source\PSoC4/I2C_1.c **** #endif /* (I2C_1_SCB_MODE_SPI_INC || I2C_1_SCB_MODE_UART_INC) */
+  30:.\Generated_Source\PSoC4/I2C_1.c **** 
+  31:.\Generated_Source\PSoC4/I2C_1.c **** 
+  32:.\Generated_Source\PSoC4/I2C_1.c **** /***************************************
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 2
+
+
+  33:.\Generated_Source\PSoC4/I2C_1.c **** *    Run Time Configuration Vars
+  34:.\Generated_Source\PSoC4/I2C_1.c **** ***************************************/
+  35:.\Generated_Source\PSoC4/I2C_1.c **** 
+  36:.\Generated_Source\PSoC4/I2C_1.c **** /* Stores internal component configuration for unconfigured mode */
+  37:.\Generated_Source\PSoC4/I2C_1.c **** #if(I2C_1_SCB_MODE_UNCONFIG_CONST_CFG)
+  38:.\Generated_Source\PSoC4/I2C_1.c ****     /* Common config vars */
+  39:.\Generated_Source\PSoC4/I2C_1.c ****     uint8 I2C_1_scbMode = I2C_1_SCB_MODE_UNCONFIG;
+  40:.\Generated_Source\PSoC4/I2C_1.c ****     uint8 I2C_1_scbEnableWake;
+  41:.\Generated_Source\PSoC4/I2C_1.c ****     uint8 I2C_1_scbEnableIntr;
+  42:.\Generated_Source\PSoC4/I2C_1.c **** 
+  43:.\Generated_Source\PSoC4/I2C_1.c ****     /* I2C config vars */
+  44:.\Generated_Source\PSoC4/I2C_1.c ****     uint8 I2C_1_mode;
+  45:.\Generated_Source\PSoC4/I2C_1.c ****     uint8 I2C_1_acceptAddr;
+  46:.\Generated_Source\PSoC4/I2C_1.c **** 
+  47:.\Generated_Source\PSoC4/I2C_1.c ****     /* SPI/UART config vars */
+  48:.\Generated_Source\PSoC4/I2C_1.c ****     volatile uint8 * I2C_1_rxBuffer;
+  49:.\Generated_Source\PSoC4/I2C_1.c ****     uint8  I2C_1_rxDataBits;
+  50:.\Generated_Source\PSoC4/I2C_1.c ****     uint32 I2C_1_rxBufferSize;
+  51:.\Generated_Source\PSoC4/I2C_1.c **** 
+  52:.\Generated_Source\PSoC4/I2C_1.c ****     volatile uint8 * I2C_1_txBuffer;
+  53:.\Generated_Source\PSoC4/I2C_1.c ****     uint8  I2C_1_txDataBits;
+  54:.\Generated_Source\PSoC4/I2C_1.c ****     uint32 I2C_1_txBufferSize;
+  55:.\Generated_Source\PSoC4/I2C_1.c **** 
+  56:.\Generated_Source\PSoC4/I2C_1.c ****     /* EZI2C config vars */
+  57:.\Generated_Source\PSoC4/I2C_1.c ****     uint8 I2C_1_numberOfAddr;
+  58:.\Generated_Source\PSoC4/I2C_1.c ****     uint8 I2C_1_subAddrSize;
+  59:.\Generated_Source\PSoC4/I2C_1.c **** #endif /* (I2C_1_SCB_MODE_UNCONFIG_CONST_CFG) */
+  60:.\Generated_Source\PSoC4/I2C_1.c **** 
+  61:.\Generated_Source\PSoC4/I2C_1.c **** 
+  62:.\Generated_Source\PSoC4/I2C_1.c **** /***************************************
+  63:.\Generated_Source\PSoC4/I2C_1.c **** *     Common SCB Vars
+  64:.\Generated_Source\PSoC4/I2C_1.c **** ***************************************/
+  65:.\Generated_Source\PSoC4/I2C_1.c **** 
+  66:.\Generated_Source\PSoC4/I2C_1.c **** uint8 I2C_1_initVar = 0u;
+  67:.\Generated_Source\PSoC4/I2C_1.c **** 
+  68:.\Generated_Source\PSoC4/I2C_1.c **** #if !defined (CY_REMOVE_I2C_1_CUSTOM_INTR_HANDLER)
+  69:.\Generated_Source\PSoC4/I2C_1.c ****     cyisraddress I2C_1_customIntrHandler = NULL;
+  70:.\Generated_Source\PSoC4/I2C_1.c **** #endif /* !defined (CY_REMOVE_I2C_1_CUSTOM_INTR_HANDLER) */
+  71:.\Generated_Source\PSoC4/I2C_1.c **** 
+  72:.\Generated_Source\PSoC4/I2C_1.c **** 
+  73:.\Generated_Source\PSoC4/I2C_1.c **** /***************************************
+  74:.\Generated_Source\PSoC4/I2C_1.c **** *    Private Function Prototypes
+  75:.\Generated_Source\PSoC4/I2C_1.c **** ***************************************/
+  76:.\Generated_Source\PSoC4/I2C_1.c **** 
+  77:.\Generated_Source\PSoC4/I2C_1.c **** static void I2C_1_ScbEnableIntr(void);
+  78:.\Generated_Source\PSoC4/I2C_1.c **** static void I2C_1_ScbModeStop(void);
+  79:.\Generated_Source\PSoC4/I2C_1.c **** 
+  80:.\Generated_Source\PSoC4/I2C_1.c **** 
+  81:.\Generated_Source\PSoC4/I2C_1.c **** /*******************************************************************************
+  82:.\Generated_Source\PSoC4/I2C_1.c **** * Function Name: I2C_1_Init
+  83:.\Generated_Source\PSoC4/I2C_1.c **** ********************************************************************************
+  84:.\Generated_Source\PSoC4/I2C_1.c **** *
+  85:.\Generated_Source\PSoC4/I2C_1.c **** * Summary:
+  86:.\Generated_Source\PSoC4/I2C_1.c **** *  Initializes the SCB component to operate in one of the selected configurations:
+  87:.\Generated_Source\PSoC4/I2C_1.c **** *  I2C, SPI, UART or EZ I2C.
+  88:.\Generated_Source\PSoC4/I2C_1.c **** *  When the configuration is set to “Unconfigured SCB”, this function does
+  89:.\Generated_Source\PSoC4/I2C_1.c **** *  not do any initialization. Use mode-specific initialization APIs instead:
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 3
+
+
+  90:.\Generated_Source\PSoC4/I2C_1.c **** *  SCB_I2CInit, SCB_SpiInit, SCB_UartInit or SCB_EzI2CInit.
+  91:.\Generated_Source\PSoC4/I2C_1.c **** *
+  92:.\Generated_Source\PSoC4/I2C_1.c **** * Parameters:
+  93:.\Generated_Source\PSoC4/I2C_1.c **** *  None
+  94:.\Generated_Source\PSoC4/I2C_1.c **** *
+  95:.\Generated_Source\PSoC4/I2C_1.c **** * Return:
+  96:.\Generated_Source\PSoC4/I2C_1.c **** *  None
+  97:.\Generated_Source\PSoC4/I2C_1.c **** *
+  98:.\Generated_Source\PSoC4/I2C_1.c **** *******************************************************************************/
+  99:.\Generated_Source\PSoC4/I2C_1.c **** void I2C_1_Init(void)
+ 100:.\Generated_Source\PSoC4/I2C_1.c **** {
+  26              		.loc 1 100 0
+  27              		.cfi_startproc
+  28 0000 08B5     		push	{r3, lr}
+  29              	.LCFI0:
+  30              		.cfi_def_cfa_offset 8
+  31              		.cfi_offset 3, -8
+  32              		.cfi_offset 14, -4
+ 101:.\Generated_Source\PSoC4/I2C_1.c **** #if(I2C_1_SCB_MODE_UNCONFIG_CONST_CFG)
+ 102:.\Generated_Source\PSoC4/I2C_1.c ****     if(I2C_1_SCB_MODE_UNCONFIG_RUNTM_CFG)
+ 103:.\Generated_Source\PSoC4/I2C_1.c ****     {
+ 104:.\Generated_Source\PSoC4/I2C_1.c ****         I2C_1_initVar = 0u; /* Clear init var */
+ 105:.\Generated_Source\PSoC4/I2C_1.c ****     }
+ 106:.\Generated_Source\PSoC4/I2C_1.c ****     else
+ 107:.\Generated_Source\PSoC4/I2C_1.c ****     {
+ 108:.\Generated_Source\PSoC4/I2C_1.c ****         /* Initialization was done before call */
+ 109:.\Generated_Source\PSoC4/I2C_1.c ****     }
+ 110:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 111:.\Generated_Source\PSoC4/I2C_1.c **** #elif(I2C_1_SCB_MODE_I2C_CONST_CFG)
+ 112:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_I2CInit();
+  33              		.loc 1 112 0
+  34 0002 FFF7FEFF 		bl	I2C_1_I2CInit
+  35              	.LVL0:
+ 113:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 114:.\Generated_Source\PSoC4/I2C_1.c **** #elif(I2C_1_SCB_MODE_SPI_CONST_CFG)
+ 115:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_SpiInit();
+ 116:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 117:.\Generated_Source\PSoC4/I2C_1.c **** #elif(I2C_1_SCB_MODE_UART_CONST_CFG)
+ 118:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_UartInit();
+ 119:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 120:.\Generated_Source\PSoC4/I2C_1.c **** #elif(I2C_1_SCB_MODE_EZI2C_CONST_CFG)
+ 121:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_EzI2CInit();
+ 122:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 123:.\Generated_Source\PSoC4/I2C_1.c **** #endif /* (I2C_1_SCB_MODE_UNCONFIG_CONST_CFG) */
+ 124:.\Generated_Source\PSoC4/I2C_1.c **** }
+  36              		.loc 1 124 0
+  37              		@ sp needed for prologue
+  38 0006 08BD     		pop	{r3, pc}
+  39              		.cfi_endproc
+  40              	.LFE0:
+  41              		.size	I2C_1_Init, .-I2C_1_Init
+  42              		.section	.text.I2C_1_Enable,"ax",%progbits
+  43              		.align	1
+  44              		.global	I2C_1_Enable
+  45              		.code	16
+  46              		.thumb_func
+  47              		.type	I2C_1_Enable, %function
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 4
+
+
+  48              	I2C_1_Enable:
+  49              	.LFB1:
+ 125:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 126:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 127:.\Generated_Source\PSoC4/I2C_1.c **** /*******************************************************************************
+ 128:.\Generated_Source\PSoC4/I2C_1.c **** * Function Name: I2C_1_Enable
+ 129:.\Generated_Source\PSoC4/I2C_1.c **** ********************************************************************************
+ 130:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 131:.\Generated_Source\PSoC4/I2C_1.c **** * Summary:
+ 132:.\Generated_Source\PSoC4/I2C_1.c **** *  Enables the SCB component operation.
+ 133:.\Generated_Source\PSoC4/I2C_1.c **** *  The SCB configuration should be not changed when the component is enabled.
+ 134:.\Generated_Source\PSoC4/I2C_1.c **** *  Any configuration changes should be made after disabling the component.
+ 135:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 136:.\Generated_Source\PSoC4/I2C_1.c **** * Parameters:
+ 137:.\Generated_Source\PSoC4/I2C_1.c **** *  None
+ 138:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 139:.\Generated_Source\PSoC4/I2C_1.c **** * Return:
+ 140:.\Generated_Source\PSoC4/I2C_1.c **** *  None
+ 141:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 142:.\Generated_Source\PSoC4/I2C_1.c **** *******************************************************************************/
+ 143:.\Generated_Source\PSoC4/I2C_1.c **** void I2C_1_Enable(void)
+ 144:.\Generated_Source\PSoC4/I2C_1.c **** {
+  50              		.loc 1 144 0
+  51              		.cfi_startproc
+  52 0000 08B5     		push	{r3, lr}
+  53              	.LCFI1:
+  54              		.cfi_def_cfa_offset 8
+  55              		.cfi_offset 3, -8
+  56              		.cfi_offset 14, -4
+ 145:.\Generated_Source\PSoC4/I2C_1.c **** #if(I2C_1_SCB_MODE_UNCONFIG_CONST_CFG)
+ 146:.\Generated_Source\PSoC4/I2C_1.c ****     /* Enable SCB block, only if it is already configured */
+ 147:.\Generated_Source\PSoC4/I2C_1.c ****     if(!I2C_1_SCB_MODE_UNCONFIG_RUNTM_CFG)
+ 148:.\Generated_Source\PSoC4/I2C_1.c ****     {
+ 149:.\Generated_Source\PSoC4/I2C_1.c ****         I2C_1_CTRL_REG |= I2C_1_CTRL_ENABLED;
+ 150:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 151:.\Generated_Source\PSoC4/I2C_1.c ****         I2C_1_ScbEnableIntr();
+ 152:.\Generated_Source\PSoC4/I2C_1.c ****     }
+ 153:.\Generated_Source\PSoC4/I2C_1.c **** #else
+ 154:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_CTRL_REG |= I2C_1_CTRL_ENABLED;
+  57              		.loc 1 154 0
+  58 0002 054B     		ldr	r3, .L3
+  59 0004 8022     		mov	r2, #128
+  60 0006 1968     		ldr	r1, [r3]
+  61 0008 1006     		lsl	r0, r2, #24
+  62 000a 0843     		orr	r0, r1
+  63 000c 1860     		str	r0, [r3]
+  64              	.LBB8:
+  65              	.LBB9:
+ 155:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 156:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_ScbEnableIntr();
+ 157:.\Generated_Source\PSoC4/I2C_1.c **** #endif /* (I2C_1_SCB_MODE_UNCONFIG_CONST_CFG) */
+ 158:.\Generated_Source\PSoC4/I2C_1.c **** }
+ 159:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 160:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 161:.\Generated_Source\PSoC4/I2C_1.c **** /*******************************************************************************
+ 162:.\Generated_Source\PSoC4/I2C_1.c **** * Function Name: I2C_1_Start
+ 163:.\Generated_Source\PSoC4/I2C_1.c **** ********************************************************************************
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 5
+
+
+ 164:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 165:.\Generated_Source\PSoC4/I2C_1.c **** * Summary:
+ 166:.\Generated_Source\PSoC4/I2C_1.c **** *  Invokes SCB_Init() and SCB_Enable().
+ 167:.\Generated_Source\PSoC4/I2C_1.c **** *  After this function call, the component is enabled and ready for operation.
+ 168:.\Generated_Source\PSoC4/I2C_1.c **** *  When configuration is set to “Unconfigured SCB”, the component must first be
+ 169:.\Generated_Source\PSoC4/I2C_1.c **** *  initialized to operate in one of the following configurations: I2C, SPI, UART
+ 170:.\Generated_Source\PSoC4/I2C_1.c **** *  or EZ I2C. Otherwise this function does not enable the component.
+ 171:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 172:.\Generated_Source\PSoC4/I2C_1.c **** * Parameters:
+ 173:.\Generated_Source\PSoC4/I2C_1.c **** *  None
+ 174:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 175:.\Generated_Source\PSoC4/I2C_1.c **** * Return:
+ 176:.\Generated_Source\PSoC4/I2C_1.c **** *  None
+ 177:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 178:.\Generated_Source\PSoC4/I2C_1.c **** * Global variables:
+ 179:.\Generated_Source\PSoC4/I2C_1.c **** *  I2C_1_initVar - used to check initial configuration, modified
+ 180:.\Generated_Source\PSoC4/I2C_1.c **** *  on first function call.
+ 181:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 182:.\Generated_Source\PSoC4/I2C_1.c **** *******************************************************************************/
+ 183:.\Generated_Source\PSoC4/I2C_1.c **** void I2C_1_Start(void)
+ 184:.\Generated_Source\PSoC4/I2C_1.c **** {
+ 185:.\Generated_Source\PSoC4/I2C_1.c ****     if(0u == I2C_1_initVar)
+ 186:.\Generated_Source\PSoC4/I2C_1.c ****     {
+ 187:.\Generated_Source\PSoC4/I2C_1.c ****         I2C_1_Init();
+ 188:.\Generated_Source\PSoC4/I2C_1.c ****         I2C_1_initVar = 1u; /* Component was initialized */
+ 189:.\Generated_Source\PSoC4/I2C_1.c ****     }
+ 190:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 191:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_Enable();
+ 192:.\Generated_Source\PSoC4/I2C_1.c **** }
+ 193:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 194:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 195:.\Generated_Source\PSoC4/I2C_1.c **** /*******************************************************************************
+ 196:.\Generated_Source\PSoC4/I2C_1.c **** * Function Name: I2C_1_Stop
+ 197:.\Generated_Source\PSoC4/I2C_1.c **** ********************************************************************************
+ 198:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 199:.\Generated_Source\PSoC4/I2C_1.c **** * Summary:
+ 200:.\Generated_Source\PSoC4/I2C_1.c **** *  Disables the SCB component and its interrupt.
+ 201:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 202:.\Generated_Source\PSoC4/I2C_1.c **** * Parameters:
+ 203:.\Generated_Source\PSoC4/I2C_1.c **** *  None
+ 204:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 205:.\Generated_Source\PSoC4/I2C_1.c **** * Return:
+ 206:.\Generated_Source\PSoC4/I2C_1.c **** *  None
+ 207:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 208:.\Generated_Source\PSoC4/I2C_1.c **** *******************************************************************************/
+ 209:.\Generated_Source\PSoC4/I2C_1.c **** void I2C_1_Stop(void)
+ 210:.\Generated_Source\PSoC4/I2C_1.c **** {
+ 211:.\Generated_Source\PSoC4/I2C_1.c **** #if(I2C_1_SCB_IRQ_INTERNAL)
+ 212:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_DisableInt();
+ 213:.\Generated_Source\PSoC4/I2C_1.c **** #endif /* (I2C_1_SCB_IRQ_INTERNAL) */
+ 214:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 215:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_CTRL_REG &= (uint32) ~I2C_1_CTRL_ENABLED;  /* Disable SCB block */
+ 216:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 217:.\Generated_Source\PSoC4/I2C_1.c **** #if(I2C_1_SCB_IRQ_INTERNAL)
+ 218:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_ClearPendingInt();
+ 219:.\Generated_Source\PSoC4/I2C_1.c **** #endif /* (I2C_1_SCB_IRQ_INTERNAL) */
+ 220:.\Generated_Source\PSoC4/I2C_1.c **** 
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 6
+
+
+ 221:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_ScbModeStop(); /* Calls scbMode specific Stop function */
+ 222:.\Generated_Source\PSoC4/I2C_1.c **** }
+ 223:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 224:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 225:.\Generated_Source\PSoC4/I2C_1.c **** /*******************************************************************************
+ 226:.\Generated_Source\PSoC4/I2C_1.c **** * Function Name: I2C_1_SetCustomInterruptHandler
+ 227:.\Generated_Source\PSoC4/I2C_1.c **** ********************************************************************************
+ 228:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 229:.\Generated_Source\PSoC4/I2C_1.c **** * Summary:
+ 230:.\Generated_Source\PSoC4/I2C_1.c **** *  Registers a function to be called by the internal interrupt handler.
+ 231:.\Generated_Source\PSoC4/I2C_1.c **** *  First the function that is registered is called, then the internal interrupt
+ 232:.\Generated_Source\PSoC4/I2C_1.c **** *  handler performs any operations such as software buffer management functions
+ 233:.\Generated_Source\PSoC4/I2C_1.c **** *  before the interrupt returns.  It is the user's responsibility not to break the
+ 234:.\Generated_Source\PSoC4/I2C_1.c **** *  software buffer operations. Only one custom handler is supported, which is
+ 235:.\Generated_Source\PSoC4/I2C_1.c **** *  the function provided by the most recent call.
+ 236:.\Generated_Source\PSoC4/I2C_1.c **** *  At initialization time no custom handler is registered.
+ 237:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 238:.\Generated_Source\PSoC4/I2C_1.c **** * Parameters:
+ 239:.\Generated_Source\PSoC4/I2C_1.c **** *  func: Pointer to the function to register.
+ 240:.\Generated_Source\PSoC4/I2C_1.c **** *        The value NULL indicates to remove the current custom interrupt
+ 241:.\Generated_Source\PSoC4/I2C_1.c **** *        handler.
+ 242:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 243:.\Generated_Source\PSoC4/I2C_1.c **** * Return:
+ 244:.\Generated_Source\PSoC4/I2C_1.c **** *  None
+ 245:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 246:.\Generated_Source\PSoC4/I2C_1.c **** *******************************************************************************/
+ 247:.\Generated_Source\PSoC4/I2C_1.c **** void I2C_1_SetCustomInterruptHandler(cyisraddress func)
+ 248:.\Generated_Source\PSoC4/I2C_1.c **** {
+ 249:.\Generated_Source\PSoC4/I2C_1.c **** #if !defined (CY_REMOVE_I2C_1_CUSTOM_INTR_HANDLER)
+ 250:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_customIntrHandler = func; /* Register interrupt handler */
+ 251:.\Generated_Source\PSoC4/I2C_1.c **** #else
+ 252:.\Generated_Source\PSoC4/I2C_1.c ****     if(NULL != func)
+ 253:.\Generated_Source\PSoC4/I2C_1.c ****     {
+ 254:.\Generated_Source\PSoC4/I2C_1.c ****         /* Suppress compiler warning */
+ 255:.\Generated_Source\PSoC4/I2C_1.c ****     }
+ 256:.\Generated_Source\PSoC4/I2C_1.c **** #endif /* !defined (CY_REMOVE_I2C_1_CUSTOM_INTR_HANDLER) */
+ 257:.\Generated_Source\PSoC4/I2C_1.c **** }
+ 258:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 259:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 260:.\Generated_Source\PSoC4/I2C_1.c **** /*******************************************************************************
+ 261:.\Generated_Source\PSoC4/I2C_1.c **** * Function Name: I2C_1_ScbModeEnableIntr
+ 262:.\Generated_Source\PSoC4/I2C_1.c **** ********************************************************************************
+ 263:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 264:.\Generated_Source\PSoC4/I2C_1.c **** * Summary:
+ 265:.\Generated_Source\PSoC4/I2C_1.c **** *  Enables an interrupt for a specific mode.
+ 266:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 267:.\Generated_Source\PSoC4/I2C_1.c **** * Parameters:
+ 268:.\Generated_Source\PSoC4/I2C_1.c **** *  None
+ 269:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 270:.\Generated_Source\PSoC4/I2C_1.c **** * Return:
+ 271:.\Generated_Source\PSoC4/I2C_1.c **** *  None
+ 272:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 273:.\Generated_Source\PSoC4/I2C_1.c **** *******************************************************************************/
+ 274:.\Generated_Source\PSoC4/I2C_1.c **** static void I2C_1_ScbEnableIntr(void)
+ 275:.\Generated_Source\PSoC4/I2C_1.c **** {
+ 276:.\Generated_Source\PSoC4/I2C_1.c **** #if(I2C_1_SCB_IRQ_INTERNAL)
+ 277:.\Generated_Source\PSoC4/I2C_1.c ****     #if(I2C_1_SCB_MODE_UNCONFIG_CONST_CFG)
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 7
+
+
+ 278:.\Generated_Source\PSoC4/I2C_1.c ****         /* Enable interrupt in the NVIC */
+ 279:.\Generated_Source\PSoC4/I2C_1.c ****         if(0u != I2C_1_scbEnableIntr)
+ 280:.\Generated_Source\PSoC4/I2C_1.c ****         {
+ 281:.\Generated_Source\PSoC4/I2C_1.c ****             I2C_1_EnableInt();
+ 282:.\Generated_Source\PSoC4/I2C_1.c ****         }
+ 283:.\Generated_Source\PSoC4/I2C_1.c ****     #else
+ 284:.\Generated_Source\PSoC4/I2C_1.c ****         I2C_1_EnableInt();
+  66              		.loc 1 284 0
+  67 000e 0B20     		mov	r0, #11
+  68 0010 FFF7FEFF 		bl	CyIntEnable
+  69              	.LVL1:
+  70              	.LBE9:
+  71              	.LBE8:
+ 158:.\Generated_Source\PSoC4/I2C_1.c **** }
+  72              		.loc 1 158 0
+  73              		@ sp needed for prologue
+  74 0014 08BD     		pop	{r3, pc}
+  75              	.L4:
+  76 0016 C046     		.align	2
+  77              	.L3:
+  78 0018 00000740 		.word	1074200576
+  79              		.cfi_endproc
+  80              	.LFE1:
+  81              		.size	I2C_1_Enable, .-I2C_1_Enable
+  82              		.section	.text.I2C_1_Start,"ax",%progbits
+  83              		.align	1
+  84              		.global	I2C_1_Start
+  85              		.code	16
+  86              		.thumb_func
+  87              		.type	I2C_1_Start, %function
+  88              	I2C_1_Start:
+  89              	.LFB2:
+ 184:.\Generated_Source\PSoC4/I2C_1.c **** {
+  90              		.loc 1 184 0
+  91              		.cfi_startproc
+  92 0000 10B5     		push	{r4, lr}
+  93              	.LCFI2:
+  94              		.cfi_def_cfa_offset 8
+  95              		.cfi_offset 4, -8
+  96              		.cfi_offset 14, -4
+ 185:.\Generated_Source\PSoC4/I2C_1.c ****     if(0u == I2C_1_initVar)
+  97              		.loc 1 185 0
+  98 0002 054C     		ldr	r4, .L8
+  99 0004 2378     		ldrb	r3, [r4]
+ 100 0006 002B     		cmp	r3, #0
+ 101 0008 03D1     		bne	.L6
+ 102              	.LBB10:
+ 103              	.LBB11:
+ 112:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_I2CInit();
+ 104              		.loc 1 112 0
+ 105 000a FFF7FEFF 		bl	I2C_1_I2CInit
+ 106              	.LVL2:
+ 107              	.LBE11:
+ 108              	.LBE10:
+ 188:.\Generated_Source\PSoC4/I2C_1.c ****         I2C_1_initVar = 1u; /* Component was initialized */
+ 109              		.loc 1 188 0
+ 110 000e 0120     		mov	r0, #1
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 8
+
+
+ 111 0010 2070     		strb	r0, [r4]
+ 112              	.L6:
+ 191:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_Enable();
+ 113              		.loc 1 191 0
+ 114 0012 FFF7FEFF 		bl	I2C_1_Enable
+ 115              	.LVL3:
+ 192:.\Generated_Source\PSoC4/I2C_1.c **** }
+ 116              		.loc 1 192 0
+ 117              		@ sp needed for prologue
+ 118 0016 10BD     		pop	{r4, pc}
+ 119              	.L9:
+ 120              		.align	2
+ 121              	.L8:
+ 122 0018 00000000 		.word	.LANCHOR0
+ 123              		.cfi_endproc
+ 124              	.LFE2:
+ 125              		.size	I2C_1_Start, .-I2C_1_Start
+ 126              		.section	.text.I2C_1_Stop,"ax",%progbits
+ 127              		.align	1
+ 128              		.global	I2C_1_Stop
+ 129              		.code	16
+ 130              		.thumb_func
+ 131              		.type	I2C_1_Stop, %function
+ 132              	I2C_1_Stop:
+ 133              	.LFB3:
+ 210:.\Generated_Source\PSoC4/I2C_1.c **** {
+ 134              		.loc 1 210 0
+ 135              		.cfi_startproc
+ 136 0000 08B5     		push	{r3, lr}
+ 137              	.LCFI3:
+ 138              		.cfi_def_cfa_offset 8
+ 139              		.cfi_offset 3, -8
+ 140              		.cfi_offset 14, -4
+ 212:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_DisableInt();
+ 141              		.loc 1 212 0
+ 142 0002 0B20     		mov	r0, #11
+ 143 0004 FFF7FEFF 		bl	CyIntDisable
+ 144              	.LVL4:
+ 215:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_CTRL_REG &= (uint32) ~I2C_1_CTRL_ENABLED;  /* Disable SCB block */
+ 145              		.loc 1 215 0
+ 146 0008 054B     		ldr	r3, .L11
+ 222:.\Generated_Source\PSoC4/I2C_1.c **** }
+ 147              		.loc 1 222 0
+ 148              		@ sp needed for prologue
+ 215:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_CTRL_REG &= (uint32) ~I2C_1_CTRL_ENABLED;  /* Disable SCB block */
+ 149              		.loc 1 215 0
+ 150 000a 1A68     		ldr	r2, [r3]
+ 151 000c 5000     		lsl	r0, r2, #1
+ 152 000e 4108     		lsr	r1, r0, #1
+ 153 0010 1960     		str	r1, [r3]
+ 218:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_ClearPendingInt();
+ 154              		.loc 1 218 0
+ 155 0012 0B20     		mov	r0, #11
+ 156 0014 FFF7FEFF 		bl	CyIntClearPending
+ 157              	.LVL5:
+ 158              	.LBB12:
+ 159              	.LBB13:
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 9
+
+
+ 285:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 286:.\Generated_Source\PSoC4/I2C_1.c ****     #endif /* (I2C_1_SCB_MODE_UNCONFIG_CONST_CFG) */
+ 287:.\Generated_Source\PSoC4/I2C_1.c **** #endif /* (I2C_1_SCB_IRQ_INTERNAL) */
+ 288:.\Generated_Source\PSoC4/I2C_1.c **** }
+ 289:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 290:.\Generated_Source\PSoC4/I2C_1.c **** 
+ 291:.\Generated_Source\PSoC4/I2C_1.c **** /*******************************************************************************
+ 292:.\Generated_Source\PSoC4/I2C_1.c **** * Function Name: I2C_1_ScbModeStop
+ 293:.\Generated_Source\PSoC4/I2C_1.c **** ********************************************************************************
+ 294:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 295:.\Generated_Source\PSoC4/I2C_1.c **** * Summary:
+ 296:.\Generated_Source\PSoC4/I2C_1.c **** *  Calls the Stop function for a specific operation mode.
+ 297:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 298:.\Generated_Source\PSoC4/I2C_1.c **** * Parameters:
+ 299:.\Generated_Source\PSoC4/I2C_1.c **** *  None
+ 300:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 301:.\Generated_Source\PSoC4/I2C_1.c **** * Return:
+ 302:.\Generated_Source\PSoC4/I2C_1.c **** *  None
+ 303:.\Generated_Source\PSoC4/I2C_1.c **** *
+ 304:.\Generated_Source\PSoC4/I2C_1.c **** *******************************************************************************/
+ 305:.\Generated_Source\PSoC4/I2C_1.c **** static void I2C_1_ScbModeStop(void)
+ 306:.\Generated_Source\PSoC4/I2C_1.c **** {
+ 307:.\Generated_Source\PSoC4/I2C_1.c **** #if(I2C_1_SCB_MODE_UNCONFIG_CONST_CFG)
+ 308:.\Generated_Source\PSoC4/I2C_1.c ****     if(I2C_1_SCB_MODE_I2C_RUNTM_CFG)
+ 309:.\Generated_Source\PSoC4/I2C_1.c ****     {
+ 310:.\Generated_Source\PSoC4/I2C_1.c ****         I2C_1_I2CStop();
+ 311:.\Generated_Source\PSoC4/I2C_1.c ****     }
+ 312:.\Generated_Source\PSoC4/I2C_1.c ****     else if(I2C_1_SCB_MODE_EZI2C_RUNTM_CFG)
+ 313:.\Generated_Source\PSoC4/I2C_1.c ****     {
+ 314:.\Generated_Source\PSoC4/I2C_1.c ****         I2C_1_EzI2CStop();
+ 315:.\Generated_Source\PSoC4/I2C_1.c ****     }
+ 316:.\Generated_Source\PSoC4/I2C_1.c ****     else
+ 317:.\Generated_Source\PSoC4/I2C_1.c ****     {
+ 318:.\Generated_Source\PSoC4/I2C_1.c ****         /* Do nohing for other modes */
+ 319:.\Generated_Source\PSoC4/I2C_1.c ****     }
+ 320:.\Generated_Source\PSoC4/I2C_1.c **** #elif(I2C_1_SCB_MODE_I2C_CONST_CFG)
+ 321:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_I2CStop();
+ 160              		.loc 1 321 0
+ 161 0018 FFF7FEFF 		bl	I2C_1_I2CStop
+ 162              	.LVL6:
+ 163              	.LBE13:
+ 164              	.LBE12:
+ 222:.\Generated_Source\PSoC4/I2C_1.c **** }
+ 165              		.loc 1 222 0
+ 166 001c 08BD     		pop	{r3, pc}
+ 167              	.L12:
+ 168 001e C046     		.align	2
+ 169              	.L11:
+ 170 0020 00000740 		.word	1074200576
+ 171              		.cfi_endproc
+ 172              	.LFE3:
+ 173              		.size	I2C_1_Stop, .-I2C_1_Stop
+ 174              		.section	.text.I2C_1_SetCustomInterruptHandler,"ax",%progbits
+ 175              		.align	1
+ 176              		.global	I2C_1_SetCustomInterruptHandler
+ 177              		.code	16
+ 178              		.thumb_func
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 10
+
+
+ 179              		.type	I2C_1_SetCustomInterruptHandler, %function
+ 180              	I2C_1_SetCustomInterruptHandler:
+ 181              	.LFB4:
+ 248:.\Generated_Source\PSoC4/I2C_1.c **** {
+ 182              		.loc 1 248 0
+ 183              		.cfi_startproc
+ 184              	.LVL7:
+ 250:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_customIntrHandler = func; /* Register interrupt handler */
+ 185              		.loc 1 250 0
+ 186 0000 014B     		ldr	r3, .L14
+ 257:.\Generated_Source\PSoC4/I2C_1.c **** }
+ 187              		.loc 1 257 0
+ 188              		@ sp needed for prologue
+ 250:.\Generated_Source\PSoC4/I2C_1.c ****     I2C_1_customIntrHandler = func; /* Register interrupt handler */
+ 189              		.loc 1 250 0
+ 190 0002 5860     		str	r0, [r3, #4]
+ 257:.\Generated_Source\PSoC4/I2C_1.c **** }
+ 191              		.loc 1 257 0
+ 192 0004 7047     		bx	lr
+ 193              	.L15:
+ 194 0006 C046     		.align	2
+ 195              	.L14:
+ 196 0008 00000000 		.word	.LANCHOR0
+ 197              		.cfi_endproc
+ 198              	.LFE4:
+ 199              		.size	I2C_1_SetCustomInterruptHandler, .-I2C_1_SetCustomInterruptHandler
+ 200              		.global	I2C_1_customIntrHandler
+ 201              		.global	I2C_1_initVar
+ 202              		.bss
+ 203              		.align	2
+ 204              		.set	.LANCHOR0,. + 0
+ 205              		.type	I2C_1_initVar, %object
+ 206              		.size	I2C_1_initVar, 1
+ 207              	I2C_1_initVar:
+ 208 0000 00       		.space	1
+ 209 0001 000000   		.space	3
+ 210              		.type	I2C_1_customIntrHandler, %object
+ 211              		.size	I2C_1_customIntrHandler, 4
+ 212              	I2C_1_customIntrHandler:
+ 213 0004 00000000 		.space	4
+ 214              		.text
+ 215              	.Letext0:
+ 216              		.file 2 "./Generated_Source/PSoC4/cytypes.h"
+ 217              		.file 3 ".\\Generated_Source\\PSoC4\\I2C_1_I2C_PVT.h"
+ 218              		.file 4 "./Generated_Source/PSoC4/CyLib.h"
+ 219              		.section	.debug_info,"",%progbits
+ 220              	.Ldebug_info0:
+ 221 0000 6C020000 		.4byte	0x26c
+ 222 0004 0200     		.2byte	0x2
+ 223 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 224 000a 04       		.byte	0x4
+ 225 000b 01       		.uleb128 0x1
+ 226 000c 06020000 		.4byte	.LASF30
+ 227 0010 01       		.byte	0x1
+ 228 0011 68000000 		.4byte	.LASF31
+ 229 0015 00000000 		.4byte	.LASF32
+ 230 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 11
+
+
+ 231 001d 00000000 		.4byte	0
+ 232 0021 00000000 		.4byte	0
+ 233 0025 00000000 		.4byte	.Ldebug_line0
+ 234 0029 02       		.uleb128 0x2
+ 235 002a 01       		.byte	0x1
+ 236 002b 06       		.byte	0x6
+ 237 002c 58020000 		.4byte	.LASF0
+ 238 0030 02       		.uleb128 0x2
+ 239 0031 01       		.byte	0x1
+ 240 0032 08       		.byte	0x8
+ 241 0033 BF000000 		.4byte	.LASF1
+ 242 0037 02       		.uleb128 0x2
+ 243 0038 02       		.byte	0x2
+ 244 0039 05       		.byte	0x5
+ 245 003a E4010000 		.4byte	.LASF2
+ 246 003e 02       		.uleb128 0x2
+ 247 003f 02       		.byte	0x2
+ 248 0040 07       		.byte	0x7
+ 249 0041 9B000000 		.4byte	.LASF3
+ 250 0045 02       		.uleb128 0x2
+ 251 0046 04       		.byte	0x4
+ 252 0047 05       		.byte	0x5
+ 253 0048 4F020000 		.4byte	.LASF4
+ 254 004c 02       		.uleb128 0x2
+ 255 004d 04       		.byte	0x4
+ 256 004e 07       		.byte	0x7
+ 257 004f DB000000 		.4byte	.LASF5
+ 258 0053 02       		.uleb128 0x2
+ 259 0054 08       		.byte	0x8
+ 260 0055 05       		.byte	0x5
+ 261 0056 AB010000 		.4byte	.LASF6
+ 262 005a 02       		.uleb128 0x2
+ 263 005b 08       		.byte	0x8
+ 264 005c 07       		.byte	0x7
+ 265 005d 6C010000 		.4byte	.LASF7
+ 266 0061 03       		.uleb128 0x3
+ 267 0062 04       		.byte	0x4
+ 268 0063 05       		.byte	0x5
+ 269 0064 696E7400 		.ascii	"int\000"
+ 270 0068 02       		.uleb128 0x2
+ 271 0069 04       		.byte	0x4
+ 272 006a 07       		.byte	0x7
+ 273 006b 4B010000 		.4byte	.LASF8
+ 274 006f 04       		.uleb128 0x4
+ 275 0070 ED000000 		.4byte	.LASF9
+ 276 0074 02       		.byte	0x2
+ 277 0075 5B       		.byte	0x5b
+ 278 0076 30000000 		.4byte	0x30
+ 279 007a 04       		.uleb128 0x4
+ 280 007b 44010000 		.4byte	.LASF10
+ 281 007f 02       		.byte	0x2
+ 282 0080 5D       		.byte	0x5d
+ 283 0081 4C000000 		.4byte	0x4c
+ 284 0085 02       		.uleb128 0x2
+ 285 0086 04       		.byte	0x4
+ 286 0087 04       		.byte	0x4
+ 287 0088 B9000000 		.4byte	.LASF11
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 12
+
+
+ 288 008c 02       		.uleb128 0x2
+ 289 008d 08       		.byte	0x8
+ 290 008e 04       		.byte	0x4
+ 291 008f 13010000 		.4byte	.LASF12
+ 292 0093 02       		.uleb128 0x2
+ 293 0094 01       		.byte	0x1
+ 294 0095 08       		.byte	0x8
+ 295 0096 B9010000 		.4byte	.LASF13
+ 296 009a 04       		.uleb128 0x4
+ 297 009b 62000000 		.4byte	.LASF14
+ 298 009f 02       		.byte	0x2
+ 299 00a0 F2       		.byte	0xf2
+ 300 00a1 A5000000 		.4byte	0xa5
+ 301 00a5 05       		.uleb128 0x5
+ 302 00a6 7A000000 		.4byte	0x7a
+ 303 00aa 06       		.uleb128 0x6
+ 304 00ab 83010000 		.4byte	.LASF15
+ 305 00af 02       		.byte	0x2
+ 306 00b0 0201     		.2byte	0x102
+ 307 00b2 B6000000 		.4byte	0xb6
+ 308 00b6 07       		.uleb128 0x7
+ 309 00b7 04       		.byte	0x4
+ 310 00b8 BC000000 		.4byte	0xbc
+ 311 00bc 08       		.uleb128 0x8
+ 312 00bd 01       		.byte	0x1
+ 313 00be 02       		.uleb128 0x2
+ 314 00bf 04       		.byte	0x4
+ 315 00c0 07       		.byte	0x7
+ 316 00c1 A2010000 		.4byte	.LASF16
+ 317 00c5 09       		.uleb128 0x9
+ 318 00c6 01       		.byte	0x1
+ 319 00c7 AE000000 		.4byte	.LASF25
+ 320 00cb 01       		.byte	0x1
+ 321 00cc 63       		.byte	0x63
+ 322 00cd 01       		.byte	0x1
+ 323 00ce 01       		.byte	0x1
+ 324 00cf 0A       		.uleb128 0xa
+ 325 00d0 89000000 		.4byte	.LASF17
+ 326 00d4 01       		.byte	0x1
+ 327 00d5 3101     		.2byte	0x131
+ 328 00d7 01       		.byte	0x1
+ 329 00d8 01       		.byte	0x1
+ 330 00d9 0B       		.uleb128 0xb
+ 331 00da C5000000 		.4byte	0xc5
+ 332 00de 00000000 		.4byte	.LFB0
+ 333 00e2 08000000 		.4byte	.LFE0
+ 334 00e6 00000000 		.4byte	.LLST0
+ 335 00ea 01       		.byte	0x1
+ 336 00eb F9000000 		.4byte	0xf9
+ 337 00ef 0C       		.uleb128 0xc
+ 338 00f0 06000000 		.4byte	.LVL0
+ 339 00f4 23020000 		.4byte	0x223
+ 340 00f8 00       		.byte	0
+ 341 00f9 0A       		.uleb128 0xa
+ 342 00fa 58010000 		.4byte	.LASF18
+ 343 00fe 01       		.byte	0x1
+ 344 00ff 1201     		.2byte	0x112
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 13
+
+
+ 345 0101 01       		.byte	0x1
+ 346 0102 01       		.byte	0x1
+ 347 0103 0D       		.uleb128 0xd
+ 348 0104 01       		.byte	0x1
+ 349 0105 BE010000 		.4byte	.LASF19
+ 350 0109 01       		.byte	0x1
+ 351 010a 8F       		.byte	0x8f
+ 352 010b 01       		.byte	0x1
+ 353 010c 00000000 		.4byte	.LFB1
+ 354 0110 1C000000 		.4byte	.LFE1
+ 355 0114 20000000 		.4byte	.LLST1
+ 356 0118 01       		.byte	0x1
+ 357 0119 3D010000 		.4byte	0x13d
+ 358 011d 0E       		.uleb128 0xe
+ 359 011e F9000000 		.4byte	0xf9
+ 360 0122 0E000000 		.4byte	.LBB8
+ 361 0126 14000000 		.4byte	.LBE8
+ 362 012a 01       		.byte	0x1
+ 363 012b 9C       		.byte	0x9c
+ 364 012c 0F       		.uleb128 0xf
+ 365 012d 14000000 		.4byte	.LVL1
+ 366 0131 2D020000 		.4byte	0x22d
+ 367 0135 10       		.uleb128 0x10
+ 368 0136 01       		.byte	0x1
+ 369 0137 50       		.byte	0x50
+ 370 0138 01       		.byte	0x1
+ 371 0139 3B       		.byte	0x3b
+ 372 013a 00       		.byte	0
+ 373 013b 00       		.byte	0
+ 374 013c 00       		.byte	0
+ 375 013d 0D       		.uleb128 0xd
+ 376 013e 01       		.byte	0x1
+ 377 013f D8010000 		.4byte	.LASF20
+ 378 0143 01       		.byte	0x1
+ 379 0144 B7       		.byte	0xb7
+ 380 0145 01       		.byte	0x1
+ 381 0146 00000000 		.4byte	.LFB2
+ 382 014a 1C000000 		.4byte	.LFE2
+ 383 014e 40000000 		.4byte	.LLST2
+ 384 0152 01       		.byte	0x1
+ 385 0153 7E010000 		.4byte	0x17e
+ 386 0157 11       		.uleb128 0x11
+ 387 0158 C5000000 		.4byte	0xc5
+ 388 015c 0A000000 		.4byte	.LBB10
+ 389 0160 0E000000 		.4byte	.LBE10
+ 390 0164 01       		.byte	0x1
+ 391 0165 BB       		.byte	0xbb
+ 392 0166 74010000 		.4byte	0x174
+ 393 016a 0C       		.uleb128 0xc
+ 394 016b 0E000000 		.4byte	.LVL2
+ 395 016f 23020000 		.4byte	0x223
+ 396 0173 00       		.byte	0
+ 397 0174 0C       		.uleb128 0xc
+ 398 0175 16000000 		.4byte	.LVL3
+ 399 0179 03010000 		.4byte	0x103
+ 400 017d 00       		.byte	0
+ 401 017e 0D       		.uleb128 0xd
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 14
+
+
+ 402 017f 01       		.byte	0x1
+ 403 0180 2B010000 		.4byte	.LASF21
+ 404 0184 01       		.byte	0x1
+ 405 0185 D1       		.byte	0xd1
+ 406 0186 01       		.byte	0x1
+ 407 0187 00000000 		.4byte	.LFB3
+ 408 018b 24000000 		.4byte	.LFE3
+ 409 018f 60000000 		.4byte	.LLST3
+ 410 0193 01       		.byte	0x1
+ 411 0194 D8010000 		.4byte	0x1d8
+ 412 0198 11       		.uleb128 0x11
+ 413 0199 CF000000 		.4byte	0xcf
+ 414 019d 18000000 		.4byte	.LBB12
+ 415 01a1 1C000000 		.4byte	.LBE12
+ 416 01a5 01       		.byte	0x1
+ 417 01a6 DD       		.byte	0xdd
+ 418 01a7 B5010000 		.4byte	0x1b5
+ 419 01ab 0C       		.uleb128 0xc
+ 420 01ac 1C000000 		.4byte	.LVL6
+ 421 01b0 41020000 		.4byte	0x241
+ 422 01b4 00       		.byte	0
+ 423 01b5 12       		.uleb128 0x12
+ 424 01b6 08000000 		.4byte	.LVL4
+ 425 01ba 4B020000 		.4byte	0x24b
+ 426 01be C8010000 		.4byte	0x1c8
+ 427 01c2 10       		.uleb128 0x10
+ 428 01c3 01       		.byte	0x1
+ 429 01c4 50       		.byte	0x50
+ 430 01c5 01       		.byte	0x1
+ 431 01c6 3B       		.byte	0x3b
+ 432 01c7 00       		.byte	0
+ 433 01c8 0F       		.uleb128 0xf
+ 434 01c9 18000000 		.4byte	.LVL5
+ 435 01cd 5F020000 		.4byte	0x25f
+ 436 01d1 10       		.uleb128 0x10
+ 437 01d2 01       		.byte	0x1
+ 438 01d3 50       		.byte	0x50
+ 439 01d4 01       		.byte	0x1
+ 440 01d5 3B       		.byte	0x3b
+ 441 01d6 00       		.byte	0
+ 442 01d7 00       		.byte	0
+ 443 01d8 13       		.uleb128 0x13
+ 444 01d9 01       		.byte	0x1
+ 445 01da F3000000 		.4byte	.LASF22
+ 446 01de 01       		.byte	0x1
+ 447 01df F7       		.byte	0xf7
+ 448 01e0 01       		.byte	0x1
+ 449 01e1 00000000 		.4byte	.LFB4
+ 450 01e5 0C000000 		.4byte	.LFE4
+ 451 01e9 02       		.byte	0x2
+ 452 01ea 7D       		.byte	0x7d
+ 453 01eb 00       		.sleb128 0
+ 454 01ec 01       		.byte	0x1
+ 455 01ed FF010000 		.4byte	0x1ff
+ 456 01f1 14       		.uleb128 0x14
+ 457 01f2 1A010000 		.4byte	.LASF33
+ 458 01f6 01       		.byte	0x1
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 15
+
+
+ 459 01f7 F7       		.byte	0xf7
+ 460 01f8 AA000000 		.4byte	0xaa
+ 461 01fc 01       		.byte	0x1
+ 462 01fd 50       		.byte	0x50
+ 463 01fe 00       		.byte	0
+ 464 01ff 15       		.uleb128 0x15
+ 465 0200 36010000 		.4byte	.LASF23
+ 466 0204 01       		.byte	0x1
+ 467 0205 42       		.byte	0x42
+ 468 0206 6F000000 		.4byte	0x6f
+ 469 020a 01       		.byte	0x1
+ 470 020b 05       		.byte	0x5
+ 471 020c 03       		.byte	0x3
+ 472 020d 00000000 		.4byte	I2C_1_initVar
+ 473 0211 15       		.uleb128 0x15
+ 474 0212 EE010000 		.4byte	.LASF24
+ 475 0216 01       		.byte	0x1
+ 476 0217 45       		.byte	0x45
+ 477 0218 AA000000 		.4byte	0xaa
+ 478 021c 01       		.byte	0x1
+ 479 021d 05       		.byte	0x5
+ 480 021e 03       		.byte	0x3
+ 481 021f 00000000 		.4byte	I2C_1_customIntrHandler
+ 482 0223 16       		.uleb128 0x16
+ 483 0224 01       		.byte	0x1
+ 484 0225 54000000 		.4byte	.LASF26
+ 485 0229 03       		.byte	0x3
+ 486 022a 45       		.byte	0x45
+ 487 022b 01       		.byte	0x1
+ 488 022c 01       		.byte	0x1
+ 489 022d 17       		.uleb128 0x17
+ 490 022e 01       		.byte	0x1
+ 491 022f 1F010000 		.4byte	.LASF28
+ 492 0233 04       		.byte	0x4
+ 493 0234 61       		.byte	0x61
+ 494 0235 01       		.byte	0x1
+ 495 0236 01       		.byte	0x1
+ 496 0237 41020000 		.4byte	0x241
+ 497 023b 18       		.uleb128 0x18
+ 498 023c 6F000000 		.4byte	0x6f
+ 499 0240 00       		.byte	0
+ 500 0241 16       		.uleb128 0x16
+ 501 0242 01       		.byte	0x1
+ 502 0243 CD000000 		.4byte	.LASF27
+ 503 0247 03       		.byte	0x3
+ 504 0248 48       		.byte	0x48
+ 505 0249 01       		.byte	0x1
+ 506 024a 01       		.byte	0x1
+ 507 024b 17       		.uleb128 0x17
+ 508 024c 01       		.byte	0x1
+ 509 024d CB010000 		.4byte	.LASF29
+ 510 0251 04       		.byte	0x4
+ 511 0252 63       		.byte	0x63
+ 512 0253 01       		.byte	0x1
+ 513 0254 01       		.byte	0x1
+ 514 0255 5F020000 		.4byte	0x25f
+ 515 0259 18       		.uleb128 0x18
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 16
+
+
+ 516 025a 6F000000 		.4byte	0x6f
+ 517 025e 00       		.byte	0
+ 518 025f 19       		.uleb128 0x19
+ 519 0260 01       		.byte	0x1
+ 520 0261 90010000 		.4byte	.LASF34
+ 521 0265 04       		.byte	0x4
+ 522 0266 66       		.byte	0x66
+ 523 0267 01       		.byte	0x1
+ 524 0268 01       		.byte	0x1
+ 525 0269 18       		.uleb128 0x18
+ 526 026a 6F000000 		.4byte	0x6f
+ 527 026e 00       		.byte	0
+ 528 026f 00       		.byte	0
+ 529              		.section	.debug_abbrev,"",%progbits
+ 530              	.Ldebug_abbrev0:
+ 531 0000 01       		.uleb128 0x1
+ 532 0001 11       		.uleb128 0x11
+ 533 0002 01       		.byte	0x1
+ 534 0003 25       		.uleb128 0x25
+ 535 0004 0E       		.uleb128 0xe
+ 536 0005 13       		.uleb128 0x13
+ 537 0006 0B       		.uleb128 0xb
+ 538 0007 03       		.uleb128 0x3
+ 539 0008 0E       		.uleb128 0xe
+ 540 0009 1B       		.uleb128 0x1b
+ 541 000a 0E       		.uleb128 0xe
+ 542 000b 55       		.uleb128 0x55
+ 543 000c 06       		.uleb128 0x6
+ 544 000d 11       		.uleb128 0x11
+ 545 000e 01       		.uleb128 0x1
+ 546 000f 52       		.uleb128 0x52
+ 547 0010 01       		.uleb128 0x1
+ 548 0011 10       		.uleb128 0x10
+ 549 0012 06       		.uleb128 0x6
+ 550 0013 00       		.byte	0
+ 551 0014 00       		.byte	0
+ 552 0015 02       		.uleb128 0x2
+ 553 0016 24       		.uleb128 0x24
+ 554 0017 00       		.byte	0
+ 555 0018 0B       		.uleb128 0xb
+ 556 0019 0B       		.uleb128 0xb
+ 557 001a 3E       		.uleb128 0x3e
+ 558 001b 0B       		.uleb128 0xb
+ 559 001c 03       		.uleb128 0x3
+ 560 001d 0E       		.uleb128 0xe
+ 561 001e 00       		.byte	0
+ 562 001f 00       		.byte	0
+ 563 0020 03       		.uleb128 0x3
+ 564 0021 24       		.uleb128 0x24
+ 565 0022 00       		.byte	0
+ 566 0023 0B       		.uleb128 0xb
+ 567 0024 0B       		.uleb128 0xb
+ 568 0025 3E       		.uleb128 0x3e
+ 569 0026 0B       		.uleb128 0xb
+ 570 0027 03       		.uleb128 0x3
+ 571 0028 08       		.uleb128 0x8
+ 572 0029 00       		.byte	0
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 17
+
+
+ 573 002a 00       		.byte	0
+ 574 002b 04       		.uleb128 0x4
+ 575 002c 16       		.uleb128 0x16
+ 576 002d 00       		.byte	0
+ 577 002e 03       		.uleb128 0x3
+ 578 002f 0E       		.uleb128 0xe
+ 579 0030 3A       		.uleb128 0x3a
+ 580 0031 0B       		.uleb128 0xb
+ 581 0032 3B       		.uleb128 0x3b
+ 582 0033 0B       		.uleb128 0xb
+ 583 0034 49       		.uleb128 0x49
+ 584 0035 13       		.uleb128 0x13
+ 585 0036 00       		.byte	0
+ 586 0037 00       		.byte	0
+ 587 0038 05       		.uleb128 0x5
+ 588 0039 35       		.uleb128 0x35
+ 589 003a 00       		.byte	0
+ 590 003b 49       		.uleb128 0x49
+ 591 003c 13       		.uleb128 0x13
+ 592 003d 00       		.byte	0
+ 593 003e 00       		.byte	0
+ 594 003f 06       		.uleb128 0x6
+ 595 0040 16       		.uleb128 0x16
+ 596 0041 00       		.byte	0
+ 597 0042 03       		.uleb128 0x3
+ 598 0043 0E       		.uleb128 0xe
+ 599 0044 3A       		.uleb128 0x3a
+ 600 0045 0B       		.uleb128 0xb
+ 601 0046 3B       		.uleb128 0x3b
+ 602 0047 05       		.uleb128 0x5
+ 603 0048 49       		.uleb128 0x49
+ 604 0049 13       		.uleb128 0x13
+ 605 004a 00       		.byte	0
+ 606 004b 00       		.byte	0
+ 607 004c 07       		.uleb128 0x7
+ 608 004d 0F       		.uleb128 0xf
+ 609 004e 00       		.byte	0
+ 610 004f 0B       		.uleb128 0xb
+ 611 0050 0B       		.uleb128 0xb
+ 612 0051 49       		.uleb128 0x49
+ 613 0052 13       		.uleb128 0x13
+ 614 0053 00       		.byte	0
+ 615 0054 00       		.byte	0
+ 616 0055 08       		.uleb128 0x8
+ 617 0056 15       		.uleb128 0x15
+ 618 0057 00       		.byte	0
+ 619 0058 27       		.uleb128 0x27
+ 620 0059 0C       		.uleb128 0xc
+ 621 005a 00       		.byte	0
+ 622 005b 00       		.byte	0
+ 623 005c 09       		.uleb128 0x9
+ 624 005d 2E       		.uleb128 0x2e
+ 625 005e 00       		.byte	0
+ 626 005f 3F       		.uleb128 0x3f
+ 627 0060 0C       		.uleb128 0xc
+ 628 0061 03       		.uleb128 0x3
+ 629 0062 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 18
+
+
+ 630 0063 3A       		.uleb128 0x3a
+ 631 0064 0B       		.uleb128 0xb
+ 632 0065 3B       		.uleb128 0x3b
+ 633 0066 0B       		.uleb128 0xb
+ 634 0067 27       		.uleb128 0x27
+ 635 0068 0C       		.uleb128 0xc
+ 636 0069 20       		.uleb128 0x20
+ 637 006a 0B       		.uleb128 0xb
+ 638 006b 00       		.byte	0
+ 639 006c 00       		.byte	0
+ 640 006d 0A       		.uleb128 0xa
+ 641 006e 2E       		.uleb128 0x2e
+ 642 006f 00       		.byte	0
+ 643 0070 03       		.uleb128 0x3
+ 644 0071 0E       		.uleb128 0xe
+ 645 0072 3A       		.uleb128 0x3a
+ 646 0073 0B       		.uleb128 0xb
+ 647 0074 3B       		.uleb128 0x3b
+ 648 0075 05       		.uleb128 0x5
+ 649 0076 27       		.uleb128 0x27
+ 650 0077 0C       		.uleb128 0xc
+ 651 0078 20       		.uleb128 0x20
+ 652 0079 0B       		.uleb128 0xb
+ 653 007a 00       		.byte	0
+ 654 007b 00       		.byte	0
+ 655 007c 0B       		.uleb128 0xb
+ 656 007d 2E       		.uleb128 0x2e
+ 657 007e 01       		.byte	0x1
+ 658 007f 31       		.uleb128 0x31
+ 659 0080 13       		.uleb128 0x13
+ 660 0081 11       		.uleb128 0x11
+ 661 0082 01       		.uleb128 0x1
+ 662 0083 12       		.uleb128 0x12
+ 663 0084 01       		.uleb128 0x1
+ 664 0085 40       		.uleb128 0x40
+ 665 0086 06       		.uleb128 0x6
+ 666 0087 9742     		.uleb128 0x2117
+ 667 0089 0C       		.uleb128 0xc
+ 668 008a 01       		.uleb128 0x1
+ 669 008b 13       		.uleb128 0x13
+ 670 008c 00       		.byte	0
+ 671 008d 00       		.byte	0
+ 672 008e 0C       		.uleb128 0xc
+ 673 008f 898201   		.uleb128 0x4109
+ 674 0092 00       		.byte	0
+ 675 0093 11       		.uleb128 0x11
+ 676 0094 01       		.uleb128 0x1
+ 677 0095 31       		.uleb128 0x31
+ 678 0096 13       		.uleb128 0x13
+ 679 0097 00       		.byte	0
+ 680 0098 00       		.byte	0
+ 681 0099 0D       		.uleb128 0xd
+ 682 009a 2E       		.uleb128 0x2e
+ 683 009b 01       		.byte	0x1
+ 684 009c 3F       		.uleb128 0x3f
+ 685 009d 0C       		.uleb128 0xc
+ 686 009e 03       		.uleb128 0x3
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 19
+
+
+ 687 009f 0E       		.uleb128 0xe
+ 688 00a0 3A       		.uleb128 0x3a
+ 689 00a1 0B       		.uleb128 0xb
+ 690 00a2 3B       		.uleb128 0x3b
+ 691 00a3 0B       		.uleb128 0xb
+ 692 00a4 27       		.uleb128 0x27
+ 693 00a5 0C       		.uleb128 0xc
+ 694 00a6 11       		.uleb128 0x11
+ 695 00a7 01       		.uleb128 0x1
+ 696 00a8 12       		.uleb128 0x12
+ 697 00a9 01       		.uleb128 0x1
+ 698 00aa 40       		.uleb128 0x40
+ 699 00ab 06       		.uleb128 0x6
+ 700 00ac 9742     		.uleb128 0x2117
+ 701 00ae 0C       		.uleb128 0xc
+ 702 00af 01       		.uleb128 0x1
+ 703 00b0 13       		.uleb128 0x13
+ 704 00b1 00       		.byte	0
+ 705 00b2 00       		.byte	0
+ 706 00b3 0E       		.uleb128 0xe
+ 707 00b4 1D       		.uleb128 0x1d
+ 708 00b5 01       		.byte	0x1
+ 709 00b6 31       		.uleb128 0x31
+ 710 00b7 13       		.uleb128 0x13
+ 711 00b8 11       		.uleb128 0x11
+ 712 00b9 01       		.uleb128 0x1
+ 713 00ba 12       		.uleb128 0x12
+ 714 00bb 01       		.uleb128 0x1
+ 715 00bc 58       		.uleb128 0x58
+ 716 00bd 0B       		.uleb128 0xb
+ 717 00be 59       		.uleb128 0x59
+ 718 00bf 0B       		.uleb128 0xb
+ 719 00c0 00       		.byte	0
+ 720 00c1 00       		.byte	0
+ 721 00c2 0F       		.uleb128 0xf
+ 722 00c3 898201   		.uleb128 0x4109
+ 723 00c6 01       		.byte	0x1
+ 724 00c7 11       		.uleb128 0x11
+ 725 00c8 01       		.uleb128 0x1
+ 726 00c9 31       		.uleb128 0x31
+ 727 00ca 13       		.uleb128 0x13
+ 728 00cb 00       		.byte	0
+ 729 00cc 00       		.byte	0
+ 730 00cd 10       		.uleb128 0x10
+ 731 00ce 8A8201   		.uleb128 0x410a
+ 732 00d1 00       		.byte	0
+ 733 00d2 02       		.uleb128 0x2
+ 734 00d3 0A       		.uleb128 0xa
+ 735 00d4 9142     		.uleb128 0x2111
+ 736 00d6 0A       		.uleb128 0xa
+ 737 00d7 00       		.byte	0
+ 738 00d8 00       		.byte	0
+ 739 00d9 11       		.uleb128 0x11
+ 740 00da 1D       		.uleb128 0x1d
+ 741 00db 01       		.byte	0x1
+ 742 00dc 31       		.uleb128 0x31
+ 743 00dd 13       		.uleb128 0x13
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 20
+
+
+ 744 00de 11       		.uleb128 0x11
+ 745 00df 01       		.uleb128 0x1
+ 746 00e0 12       		.uleb128 0x12
+ 747 00e1 01       		.uleb128 0x1
+ 748 00e2 58       		.uleb128 0x58
+ 749 00e3 0B       		.uleb128 0xb
+ 750 00e4 59       		.uleb128 0x59
+ 751 00e5 0B       		.uleb128 0xb
+ 752 00e6 01       		.uleb128 0x1
+ 753 00e7 13       		.uleb128 0x13
+ 754 00e8 00       		.byte	0
+ 755 00e9 00       		.byte	0
+ 756 00ea 12       		.uleb128 0x12
+ 757 00eb 898201   		.uleb128 0x4109
+ 758 00ee 01       		.byte	0x1
+ 759 00ef 11       		.uleb128 0x11
+ 760 00f0 01       		.uleb128 0x1
+ 761 00f1 31       		.uleb128 0x31
+ 762 00f2 13       		.uleb128 0x13
+ 763 00f3 01       		.uleb128 0x1
+ 764 00f4 13       		.uleb128 0x13
+ 765 00f5 00       		.byte	0
+ 766 00f6 00       		.byte	0
+ 767 00f7 13       		.uleb128 0x13
+ 768 00f8 2E       		.uleb128 0x2e
+ 769 00f9 01       		.byte	0x1
+ 770 00fa 3F       		.uleb128 0x3f
+ 771 00fb 0C       		.uleb128 0xc
+ 772 00fc 03       		.uleb128 0x3
+ 773 00fd 0E       		.uleb128 0xe
+ 774 00fe 3A       		.uleb128 0x3a
+ 775 00ff 0B       		.uleb128 0xb
+ 776 0100 3B       		.uleb128 0x3b
+ 777 0101 0B       		.uleb128 0xb
+ 778 0102 27       		.uleb128 0x27
+ 779 0103 0C       		.uleb128 0xc
+ 780 0104 11       		.uleb128 0x11
+ 781 0105 01       		.uleb128 0x1
+ 782 0106 12       		.uleb128 0x12
+ 783 0107 01       		.uleb128 0x1
+ 784 0108 40       		.uleb128 0x40
+ 785 0109 0A       		.uleb128 0xa
+ 786 010a 9742     		.uleb128 0x2117
+ 787 010c 0C       		.uleb128 0xc
+ 788 010d 01       		.uleb128 0x1
+ 789 010e 13       		.uleb128 0x13
+ 790 010f 00       		.byte	0
+ 791 0110 00       		.byte	0
+ 792 0111 14       		.uleb128 0x14
+ 793 0112 05       		.uleb128 0x5
+ 794 0113 00       		.byte	0
+ 795 0114 03       		.uleb128 0x3
+ 796 0115 0E       		.uleb128 0xe
+ 797 0116 3A       		.uleb128 0x3a
+ 798 0117 0B       		.uleb128 0xb
+ 799 0118 3B       		.uleb128 0x3b
+ 800 0119 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 21
+
+
+ 801 011a 49       		.uleb128 0x49
+ 802 011b 13       		.uleb128 0x13
+ 803 011c 02       		.uleb128 0x2
+ 804 011d 0A       		.uleb128 0xa
+ 805 011e 00       		.byte	0
+ 806 011f 00       		.byte	0
+ 807 0120 15       		.uleb128 0x15
+ 808 0121 34       		.uleb128 0x34
+ 809 0122 00       		.byte	0
+ 810 0123 03       		.uleb128 0x3
+ 811 0124 0E       		.uleb128 0xe
+ 812 0125 3A       		.uleb128 0x3a
+ 813 0126 0B       		.uleb128 0xb
+ 814 0127 3B       		.uleb128 0x3b
+ 815 0128 0B       		.uleb128 0xb
+ 816 0129 49       		.uleb128 0x49
+ 817 012a 13       		.uleb128 0x13
+ 818 012b 3F       		.uleb128 0x3f
+ 819 012c 0C       		.uleb128 0xc
+ 820 012d 02       		.uleb128 0x2
+ 821 012e 0A       		.uleb128 0xa
+ 822 012f 00       		.byte	0
+ 823 0130 00       		.byte	0
+ 824 0131 16       		.uleb128 0x16
+ 825 0132 2E       		.uleb128 0x2e
+ 826 0133 00       		.byte	0
+ 827 0134 3F       		.uleb128 0x3f
+ 828 0135 0C       		.uleb128 0xc
+ 829 0136 03       		.uleb128 0x3
+ 830 0137 0E       		.uleb128 0xe
+ 831 0138 3A       		.uleb128 0x3a
+ 832 0139 0B       		.uleb128 0xb
+ 833 013a 3B       		.uleb128 0x3b
+ 834 013b 0B       		.uleb128 0xb
+ 835 013c 27       		.uleb128 0x27
+ 836 013d 0C       		.uleb128 0xc
+ 837 013e 3C       		.uleb128 0x3c
+ 838 013f 0C       		.uleb128 0xc
+ 839 0140 00       		.byte	0
+ 840 0141 00       		.byte	0
+ 841 0142 17       		.uleb128 0x17
+ 842 0143 2E       		.uleb128 0x2e
+ 843 0144 01       		.byte	0x1
+ 844 0145 3F       		.uleb128 0x3f
+ 845 0146 0C       		.uleb128 0xc
+ 846 0147 03       		.uleb128 0x3
+ 847 0148 0E       		.uleb128 0xe
+ 848 0149 3A       		.uleb128 0x3a
+ 849 014a 0B       		.uleb128 0xb
+ 850 014b 3B       		.uleb128 0x3b
+ 851 014c 0B       		.uleb128 0xb
+ 852 014d 27       		.uleb128 0x27
+ 853 014e 0C       		.uleb128 0xc
+ 854 014f 3C       		.uleb128 0x3c
+ 855 0150 0C       		.uleb128 0xc
+ 856 0151 01       		.uleb128 0x1
+ 857 0152 13       		.uleb128 0x13
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 22
+
+
+ 858 0153 00       		.byte	0
+ 859 0154 00       		.byte	0
+ 860 0155 18       		.uleb128 0x18
+ 861 0156 05       		.uleb128 0x5
+ 862 0157 00       		.byte	0
+ 863 0158 49       		.uleb128 0x49
+ 864 0159 13       		.uleb128 0x13
+ 865 015a 00       		.byte	0
+ 866 015b 00       		.byte	0
+ 867 015c 19       		.uleb128 0x19
+ 868 015d 2E       		.uleb128 0x2e
+ 869 015e 01       		.byte	0x1
+ 870 015f 3F       		.uleb128 0x3f
+ 871 0160 0C       		.uleb128 0xc
+ 872 0161 03       		.uleb128 0x3
+ 873 0162 0E       		.uleb128 0xe
+ 874 0163 3A       		.uleb128 0x3a
+ 875 0164 0B       		.uleb128 0xb
+ 876 0165 3B       		.uleb128 0x3b
+ 877 0166 0B       		.uleb128 0xb
+ 878 0167 27       		.uleb128 0x27
+ 879 0168 0C       		.uleb128 0xc
+ 880 0169 3C       		.uleb128 0x3c
+ 881 016a 0C       		.uleb128 0xc
+ 882 016b 00       		.byte	0
+ 883 016c 00       		.byte	0
+ 884 016d 00       		.byte	0
+ 885              		.section	.debug_loc,"",%progbits
+ 886              	.Ldebug_loc0:
+ 887              	.LLST0:
+ 888 0000 00000000 		.4byte	.LFB0
+ 889 0004 02000000 		.4byte	.LCFI0
+ 890 0008 0200     		.2byte	0x2
+ 891 000a 7D       		.byte	0x7d
+ 892 000b 00       		.sleb128 0
+ 893 000c 02000000 		.4byte	.LCFI0
+ 894 0010 08000000 		.4byte	.LFE0
+ 895 0014 0200     		.2byte	0x2
+ 896 0016 7D       		.byte	0x7d
+ 897 0017 08       		.sleb128 8
+ 898 0018 00000000 		.4byte	0
+ 899 001c 00000000 		.4byte	0
+ 900              	.LLST1:
+ 901 0020 00000000 		.4byte	.LFB1
+ 902 0024 02000000 		.4byte	.LCFI1
+ 903 0028 0200     		.2byte	0x2
+ 904 002a 7D       		.byte	0x7d
+ 905 002b 00       		.sleb128 0
+ 906 002c 02000000 		.4byte	.LCFI1
+ 907 0030 1C000000 		.4byte	.LFE1
+ 908 0034 0200     		.2byte	0x2
+ 909 0036 7D       		.byte	0x7d
+ 910 0037 08       		.sleb128 8
+ 911 0038 00000000 		.4byte	0
+ 912 003c 00000000 		.4byte	0
+ 913              	.LLST2:
+ 914 0040 00000000 		.4byte	.LFB2
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 23
+
+
+ 915 0044 02000000 		.4byte	.LCFI2
+ 916 0048 0200     		.2byte	0x2
+ 917 004a 7D       		.byte	0x7d
+ 918 004b 00       		.sleb128 0
+ 919 004c 02000000 		.4byte	.LCFI2
+ 920 0050 1C000000 		.4byte	.LFE2
+ 921 0054 0200     		.2byte	0x2
+ 922 0056 7D       		.byte	0x7d
+ 923 0057 08       		.sleb128 8
+ 924 0058 00000000 		.4byte	0
+ 925 005c 00000000 		.4byte	0
+ 926              	.LLST3:
+ 927 0060 00000000 		.4byte	.LFB3
+ 928 0064 02000000 		.4byte	.LCFI3
+ 929 0068 0200     		.2byte	0x2
+ 930 006a 7D       		.byte	0x7d
+ 931 006b 00       		.sleb128 0
+ 932 006c 02000000 		.4byte	.LCFI3
+ 933 0070 24000000 		.4byte	.LFE3
+ 934 0074 0200     		.2byte	0x2
+ 935 0076 7D       		.byte	0x7d
+ 936 0077 08       		.sleb128 8
+ 937 0078 00000000 		.4byte	0
+ 938 007c 00000000 		.4byte	0
+ 939              		.section	.debug_aranges,"",%progbits
+ 940 0000 3C000000 		.4byte	0x3c
+ 941 0004 0200     		.2byte	0x2
+ 942 0006 00000000 		.4byte	.Ldebug_info0
+ 943 000a 04       		.byte	0x4
+ 944 000b 00       		.byte	0
+ 945 000c 0000     		.2byte	0
+ 946 000e 0000     		.2byte	0
+ 947 0010 00000000 		.4byte	.LFB0
+ 948 0014 08000000 		.4byte	.LFE0-.LFB0
+ 949 0018 00000000 		.4byte	.LFB1
+ 950 001c 1C000000 		.4byte	.LFE1-.LFB1
+ 951 0020 00000000 		.4byte	.LFB2
+ 952 0024 1C000000 		.4byte	.LFE2-.LFB2
+ 953 0028 00000000 		.4byte	.LFB3
+ 954 002c 24000000 		.4byte	.LFE3-.LFB3
+ 955 0030 00000000 		.4byte	.LFB4
+ 956 0034 0C000000 		.4byte	.LFE4-.LFB4
+ 957 0038 00000000 		.4byte	0
+ 958 003c 00000000 		.4byte	0
+ 959              		.section	.debug_ranges,"",%progbits
+ 960              	.Ldebug_ranges0:
+ 961 0000 00000000 		.4byte	.LFB0
+ 962 0004 08000000 		.4byte	.LFE0
+ 963 0008 00000000 		.4byte	.LFB1
+ 964 000c 1C000000 		.4byte	.LFE1
+ 965 0010 00000000 		.4byte	.LFB2
+ 966 0014 1C000000 		.4byte	.LFE2
+ 967 0018 00000000 		.4byte	.LFB3
+ 968 001c 24000000 		.4byte	.LFE3
+ 969 0020 00000000 		.4byte	.LFB4
+ 970 0024 0C000000 		.4byte	.LFE4
+ 971 0028 00000000 		.4byte	0
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 24
+
+
+ 972 002c 00000000 		.4byte	0
+ 973              		.section	.debug_line,"",%progbits
+ 974              	.Ldebug_line0:
+ 975 0000 E9000000 		.section	.debug_str,"MS",%progbits,1
+ 975      02006200 
+ 975      00000201 
+ 975      FB0E0D00 
+ 975      01010101 
+ 976              	.LASF32:
+ 977 0000 433A5C55 		.ascii	"C:\\Users\\Milo\\Documents\\PSoC Creator\\DPI_Deskt"
+ 977      73657273 
+ 977      5C4D696C 
+ 977      6F5C446F 
+ 977      63756D65 
+ 978 002e 6F705F54 		.ascii	"op_Tester\\Desktop_Tool_Emulator.cydsn\000"
+ 978      65737465 
+ 978      725C4465 
+ 978      736B746F 
+ 978      705F546F 
+ 979              	.LASF26:
+ 980 0054 4932435F 		.ascii	"I2C_1_I2CInit\000"
+ 980      315F4932 
+ 980      43496E69 
+ 980      7400
+ 981              	.LASF14:
+ 982 0062 72656733 		.ascii	"reg32\000"
+ 982      3200
+ 983              	.LASF31:
+ 984 0068 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\I2C_1.c\000"
+ 984      6E657261 
+ 984      7465645F 
+ 984      536F7572 
+ 984      63655C50 
+ 985              	.LASF17:
+ 986 0089 4932435F 		.ascii	"I2C_1_ScbModeStop\000"
+ 986      315F5363 
+ 986      624D6F64 
+ 986      6553746F 
+ 986      7000
+ 987              	.LASF3:
+ 988 009b 73686F72 		.ascii	"short unsigned int\000"
+ 988      7420756E 
+ 988      7369676E 
+ 988      65642069 
+ 988      6E7400
+ 989              	.LASF25:
+ 990 00ae 4932435F 		.ascii	"I2C_1_Init\000"
+ 990      315F496E 
+ 990      697400
+ 991              	.LASF11:
+ 992 00b9 666C6F61 		.ascii	"float\000"
+ 992      7400
+ 993              	.LASF1:
+ 994 00bf 756E7369 		.ascii	"unsigned char\000"
+ 994      676E6564 
+ 994      20636861 
+ 994      7200
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 25
+
+
+ 995              	.LASF27:
+ 996 00cd 4932435F 		.ascii	"I2C_1_I2CStop\000"
+ 996      315F4932 
+ 996      4353746F 
+ 996      7000
+ 997              	.LASF5:
+ 998 00db 6C6F6E67 		.ascii	"long unsigned int\000"
+ 998      20756E73 
+ 998      69676E65 
+ 998      6420696E 
+ 998      7400
+ 999              	.LASF9:
+ 1000 00ed 75696E74 		.ascii	"uint8\000"
+ 1000      3800
+ 1001              	.LASF22:
+ 1002 00f3 4932435F 		.ascii	"I2C_1_SetCustomInterruptHandler\000"
+ 1002      315F5365 
+ 1002      74437573 
+ 1002      746F6D49 
+ 1002      6E746572 
+ 1003              	.LASF12:
+ 1004 0113 646F7562 		.ascii	"double\000"
+ 1004      6C6500
+ 1005              	.LASF33:
+ 1006 011a 66756E63 		.ascii	"func\000"
+ 1006      00
+ 1007              	.LASF28:
+ 1008 011f 4379496E 		.ascii	"CyIntEnable\000"
+ 1008      74456E61 
+ 1008      626C6500 
+ 1009              	.LASF21:
+ 1010 012b 4932435F 		.ascii	"I2C_1_Stop\000"
+ 1010      315F5374 
+ 1010      6F7000
+ 1011              	.LASF23:
+ 1012 0136 4932435F 		.ascii	"I2C_1_initVar\000"
+ 1012      315F696E 
+ 1012      69745661 
+ 1012      7200
+ 1013              	.LASF10:
+ 1014 0144 75696E74 		.ascii	"uint32\000"
+ 1014      333200
+ 1015              	.LASF8:
+ 1016 014b 756E7369 		.ascii	"unsigned int\000"
+ 1016      676E6564 
+ 1016      20696E74 
+ 1016      00
+ 1017              	.LASF18:
+ 1018 0158 4932435F 		.ascii	"I2C_1_ScbEnableIntr\000"
+ 1018      315F5363 
+ 1018      62456E61 
+ 1018      626C6549 
+ 1018      6E747200 
+ 1019              	.LASF7:
+ 1020 016c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1020      206C6F6E 
+ 1020      6720756E 
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 26
+
+
+ 1020      7369676E 
+ 1020      65642069 
+ 1021              	.LASF15:
+ 1022 0183 63796973 		.ascii	"cyisraddress\000"
+ 1022      72616464 
+ 1022      72657373 
+ 1022      00
+ 1023              	.LASF34:
+ 1024 0190 4379496E 		.ascii	"CyIntClearPending\000"
+ 1024      74436C65 
+ 1024      61725065 
+ 1024      6E64696E 
+ 1024      6700
+ 1025              	.LASF16:
+ 1026 01a2 73697A65 		.ascii	"sizetype\000"
+ 1026      74797065 
+ 1026      00
+ 1027              	.LASF6:
+ 1028 01ab 6C6F6E67 		.ascii	"long long int\000"
+ 1028      206C6F6E 
+ 1028      6720696E 
+ 1028      7400
+ 1029              	.LASF13:
+ 1030 01b9 63686172 		.ascii	"char\000"
+ 1030      00
+ 1031              	.LASF19:
+ 1032 01be 4932435F 		.ascii	"I2C_1_Enable\000"
+ 1032      315F456E 
+ 1032      61626C65 
+ 1032      00
+ 1033              	.LASF29:
+ 1034 01cb 4379496E 		.ascii	"CyIntDisable\000"
+ 1034      74446973 
+ 1034      61626C65 
+ 1034      00
+ 1035              	.LASF20:
+ 1036 01d8 4932435F 		.ascii	"I2C_1_Start\000"
+ 1036      315F5374 
+ 1036      61727400 
+ 1037              	.LASF2:
+ 1038 01e4 73686F72 		.ascii	"short int\000"
+ 1038      7420696E 
+ 1038      7400
+ 1039              	.LASF24:
+ 1040 01ee 4932435F 		.ascii	"I2C_1_customIntrHandler\000"
+ 1040      315F6375 
+ 1040      73746F6D 
+ 1040      496E7472 
+ 1040      48616E64 
+ 1041              	.LASF30:
+ 1042 0206 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 1042      4320342E 
+ 1042      372E3320 
+ 1042      32303133 
+ 1042      30333132 
+ 1043 0239 616E6368 		.ascii	"anch revision 196615]\000"
+ 1043      20726576 
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccEKODjP.s 			page 27
+
+
+ 1043      6973696F 
+ 1043      6E203139 
+ 1043      36363135 
+ 1044              	.LASF4:
+ 1045 024f 6C6F6E67 		.ascii	"long int\000"
+ 1045      20696E74 
+ 1045      00
+ 1046              	.LASF0:
+ 1047 0258 7369676E 		.ascii	"signed char\000"
+ 1047      65642063 
+ 1047      68617200 
+ 1048              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

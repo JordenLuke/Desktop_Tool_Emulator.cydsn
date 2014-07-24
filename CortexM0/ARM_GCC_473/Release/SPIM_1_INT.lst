@@ -1,0 +1,559 @@
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccoqSmlx.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"SPIM_1_INT.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.SPIM_1_TX_ISR,"ax",%progbits
+  18              		.align	1
+  19              		.global	SPIM_1_TX_ISR
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	SPIM_1_TX_ISR, %function
+  23              	SPIM_1_TX_ISR:
+  24              	.LFB0:
+  25              		.file 1 ".\\Generated_Source\\PSoC4\\SPIM_1_INT.c"
+   1:.\Generated_Source\PSoC4/SPIM_1_INT.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * File Name: SPIM_1_INT.c
+   3:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * Version 2.40
+   4:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *
+   5:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * Description:
+   6:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  This file provides all Interrupt Service Routine (ISR) for the SPI Master
+   7:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  component.
+   8:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *
+   9:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * Note:
+  10:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  None.
+  11:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *
+  12:.\Generated_Source\PSoC4/SPIM_1_INT.c **** ********************************************************************************
+  13:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  14:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * the software package with which this file was provided.
+  17:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *******************************************************************************/
+  18:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+  19:.\Generated_Source\PSoC4/SPIM_1_INT.c **** #include "SPIM_1_PVT.h"
+  20:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+  21:.\Generated_Source\PSoC4/SPIM_1_INT.c **** /* User code required at start of ISR */
+  22:.\Generated_Source\PSoC4/SPIM_1_INT.c **** /* `#START SPIM_1_ISR_START_DEF` */
+  23:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+  24:.\Generated_Source\PSoC4/SPIM_1_INT.c **** /* `#END` */
+  25:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+  26:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+  27:.\Generated_Source\PSoC4/SPIM_1_INT.c **** /*******************************************************************************
+  28:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * Function Name: SPIM_1_TX_ISR
+  29:.\Generated_Source\PSoC4/SPIM_1_INT.c **** ********************************************************************************
+  30:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *
+  31:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * Summary:
+  32:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  Interrupt Service Routine for TX portion of the SPI Master.
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccoqSmlx.s 			page 2
+
+
+  33:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *
+  34:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * Parameters:
+  35:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  None.
+  36:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *
+  37:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * Return:
+  38:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  None.
+  39:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *
+  40:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * Global variables:
+  41:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  SPIM_1_txBufferWrite - used for the account of the bytes which
+  42:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  have been written down in the TX software buffer.
+  43:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  SPIM_1_txBufferRead - used for the account of the bytes which
+  44:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  have been read from the TX software buffer, modified when exist data to
+  45:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  sending and FIFO Not Full.
+  46:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  SPIM_1_txBuffer[SPIM_1_TX_BUFFER_SIZE] - used to store
+  47:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  data to sending.
+  48:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  All described above Global variables are used when Software Buffer is used.
+  49:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *
+  50:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *******************************************************************************/
+  51:.\Generated_Source\PSoC4/SPIM_1_INT.c **** CY_ISR(SPIM_1_TX_ISR)
+  52:.\Generated_Source\PSoC4/SPIM_1_INT.c **** {
+  26              		.loc 1 52 0
+  27              		.cfi_startproc
+  53:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     #if(SPIM_1_TX_SOFTWARE_BUF_ENABLED)
+  54:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         uint8 tmpStatus;
+  55:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     #endif /* (SPIM_1_TX_SOFTWARE_BUF_ENABLED) */
+  56:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+  57:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     /* User code required at start of ISR */
+  58:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     /* `#START SPIM_1_TX_ISR_START` */
+  59:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+  60:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     /* `#END` */
+  61:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+  62:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     #if(SPIM_1_TX_SOFTWARE_BUF_ENABLED)
+  63:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         /* Check if TX data buffer is not empty and there is space in TX FIFO */
+  64:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         while(SPIM_1_txBufferRead != SPIM_1_txBufferWrite)
+  65:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         {
+  66:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             tmpStatus = SPIM_1_GET_STATUS_TX(SPIM_1_swStatusTx);
+  67:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             SPIM_1_swStatusTx = tmpStatus;
+  68:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+  69:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             if(0u != (SPIM_1_swStatusTx & SPIM_1_STS_TX_FIFO_NOT_FULL))
+  70:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             {
+  71:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                 if(0u == SPIM_1_txBufferFull)
+  72:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                 {
+  73:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                    SPIM_1_txBufferRead++;
+  74:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+  75:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                     if(SPIM_1_txBufferRead >= SPIM_1_TX_BUFFER_SIZE)
+  76:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                     {
+  77:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                         SPIM_1_txBufferRead = 0u;
+  78:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                     }
+  79:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                 }
+  80:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                 else
+  81:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                 {
+  82:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                     SPIM_1_txBufferFull = 0u;
+  83:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                 }
+  84:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+  85:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                 /* Move data from the Buffer to the FIFO */
+  86:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                 CY_SET_REG8(SPIM_1_TXDATA_PTR,
+  87:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                     SPIM_1_txBuffer[SPIM_1_txBufferRead]);
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccoqSmlx.s 			page 3
+
+
+  88:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             }
+  89:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             else
+  90:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             {
+  91:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                 break;
+  92:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             }
+  93:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         }
+  94:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+  95:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         if(SPIM_1_txBufferRead == SPIM_1_txBufferWrite)
+  96:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         {
+  97:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             /* TX Buffer is EMPTY: disable interrupt on TX NOT FULL */
+  98:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             SPIM_1_TX_STATUS_MASK_REG &= ((uint8) ~SPIM_1_STS_TX_FIFO_NOT_FULL);
+  99:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         }
+ 100:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 101:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     #endif /* (SPIM_1_TX_SOFTWARE_BUF_ENABLED) */
+ 102:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 103:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     /* User code required at end of ISR (Optional) */
+ 104:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     /* `#START SPIM_1_TX_ISR_END` */
+ 105:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 106:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     /* `#END` */
+ 107:.\Generated_Source\PSoC4/SPIM_1_INT.c **** }
+  28              		.loc 1 107 0
+  29              		@ sp needed for prologue
+  30 0000 7047     		bx	lr
+  31              		.cfi_endproc
+  32              	.LFE0:
+  33              		.size	SPIM_1_TX_ISR, .-SPIM_1_TX_ISR
+  34              		.section	.text.SPIM_1_RX_ISR,"ax",%progbits
+  35              		.align	1
+  36              		.global	SPIM_1_RX_ISR
+  37              		.code	16
+  38              		.thumb_func
+  39              		.type	SPIM_1_RX_ISR, %function
+  40              	SPIM_1_RX_ISR:
+  41              	.LFB1:
+ 108:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 109:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 110:.\Generated_Source\PSoC4/SPIM_1_INT.c **** /*******************************************************************************
+ 111:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * Function Name: SPIM_1_RX_ISR
+ 112:.\Generated_Source\PSoC4/SPIM_1_INT.c **** ********************************************************************************
+ 113:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *
+ 114:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * Summary:
+ 115:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  Interrupt Service Routine for RX portion of the SPI Master.
+ 116:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *
+ 117:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * Parameters:
+ 118:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  None.
+ 119:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *
+ 120:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * Return:
+ 121:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  None.
+ 122:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *
+ 123:.\Generated_Source\PSoC4/SPIM_1_INT.c **** * Global variables:
+ 124:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  SPIM_1_rxBufferWrite - used for the account of the bytes which
+ 125:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  have been written down in the RX software buffer modified when FIFO contains
+ 126:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  new data.
+ 127:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  SPIM_1_rxBufferRead - used for the account of the bytes which
+ 128:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  have been read from the RX software buffer, modified when overflow occurred.
+ 129:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  SPIM_1_rxBuffer[SPIM_1_RX_BUFFER_SIZE] - used to store
+ 130:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  received data, modified when FIFO contains new data.
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccoqSmlx.s 			page 4
+
+
+ 131:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *  All described above Global variables are used when Software Buffer is used.
+ 132:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *
+ 133:.\Generated_Source\PSoC4/SPIM_1_INT.c **** *******************************************************************************/
+ 134:.\Generated_Source\PSoC4/SPIM_1_INT.c **** CY_ISR(SPIM_1_RX_ISR)
+ 135:.\Generated_Source\PSoC4/SPIM_1_INT.c **** {
+  42              		.loc 1 135 0
+  43              		.cfi_startproc
+ 136:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     #if(SPIM_1_RX_SOFTWARE_BUF_ENABLED)
+ 137:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         uint8 tmpStatus;
+ 138:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         uint8 rxData;
+ 139:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     #endif /* (SPIM_1_RX_SOFTWARE_BUF_ENABLED) */
+ 140:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 141:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     /* User code required at start of ISR */
+ 142:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     /* `#START SPIM_1_RX_ISR_START` */
+ 143:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 144:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     /* `#END` */
+ 145:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 146:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     #if(SPIM_1_RX_SOFTWARE_BUF_ENABLED)
+ 147:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 148:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         tmpStatus = SPIM_1_GET_STATUS_RX(SPIM_1_swStatusRx);
+ 149:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         SPIM_1_swStatusRx = tmpStatus;
+ 150:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 151:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         /* Check if RX data FIFO has some data to be moved into the RX Buffer */
+ 152:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         while(0u != (SPIM_1_swStatusRx & SPIM_1_STS_RX_FIFO_NOT_EMPTY))
+ 153:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         {
+ 154:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             rxData = CY_GET_REG8(SPIM_1_RXDATA_PTR);
+ 155:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 156:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             /* Set next pointer. */
+ 157:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             SPIM_1_rxBufferWrite++;
+ 158:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             if(SPIM_1_rxBufferWrite >= SPIM_1_RX_BUFFER_SIZE)
+ 159:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             {
+ 160:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                 SPIM_1_rxBufferWrite = 0u;
+ 161:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             }
+ 162:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 163:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             if(SPIM_1_rxBufferWrite == SPIM_1_rxBufferRead)
+ 164:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             {
+ 165:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                 SPIM_1_rxBufferRead++;
+ 166:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                 if(SPIM_1_rxBufferRead >= SPIM_1_RX_BUFFER_SIZE)
+ 167:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                 {
+ 168:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                     SPIM_1_rxBufferRead = 0u;
+ 169:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                 }
+ 170:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 171:.\Generated_Source\PSoC4/SPIM_1_INT.c ****                 SPIM_1_rxBufferFull = 1u;
+ 172:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             }
+ 173:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 174:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             /* Move data from the FIFO to the Buffer */
+ 175:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             SPIM_1_rxBuffer[SPIM_1_rxBufferWrite] = rxData;
+ 176:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 177:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             tmpStatus = SPIM_1_GET_STATUS_RX(SPIM_1_swStatusRx);
+ 178:.\Generated_Source\PSoC4/SPIM_1_INT.c ****             SPIM_1_swStatusRx = tmpStatus;
+ 179:.\Generated_Source\PSoC4/SPIM_1_INT.c ****         }
+ 180:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 181:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     #endif /* (SPIM_1_RX_SOFTWARE_BUF_ENABLED) */
+ 182:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ 183:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     /* User code required at end of ISR (Optional) */
+ 184:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     /* `#START SPIM_1_RX_ISR_END` */
+ 185:.\Generated_Source\PSoC4/SPIM_1_INT.c **** 
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccoqSmlx.s 			page 5
+
+
+ 186:.\Generated_Source\PSoC4/SPIM_1_INT.c ****     /* `#END` */
+ 187:.\Generated_Source\PSoC4/SPIM_1_INT.c **** }
+  44              		.loc 1 187 0
+  45              		@ sp needed for prologue
+  46 0000 7047     		bx	lr
+  47              		.cfi_endproc
+  48              	.LFE1:
+  49              		.size	SPIM_1_RX_ISR, .-SPIM_1_RX_ISR
+  50              		.text
+  51              	.Letext0:
+  52              		.section	.debug_info,"",%progbits
+  53              	.Ldebug_info0:
+  54 0000 B2000000 		.4byte	0xb2
+  55 0004 0200     		.2byte	0x2
+  56 0006 00000000 		.4byte	.Ldebug_abbrev0
+  57 000a 04       		.byte	0x4
+  58 000b 01       		.uleb128 0x1
+  59 000c 8B000000 		.4byte	.LASF15
+  60 0010 01       		.byte	0x1
+  61 0011 19010000 		.4byte	.LASF16
+  62 0015 1B000000 		.4byte	.LASF17
+  63 0019 00000000 		.4byte	.Ldebug_ranges0+0
+  64 001d 00000000 		.4byte	0
+  65 0021 00000000 		.4byte	0
+  66 0025 00000000 		.4byte	.Ldebug_line0
+  67 0029 02       		.uleb128 0x2
+  68 002a 01       		.byte	0x1
+  69 002b 06       		.byte	0x6
+  70 002c 59010000 		.4byte	.LASF0
+  71 0030 02       		.uleb128 0x2
+  72 0031 01       		.byte	0x1
+  73 0032 08       		.byte	0x8
+  74 0033 FD000000 		.4byte	.LASF1
+  75 0037 02       		.uleb128 0x2
+  76 0038 02       		.byte	0x2
+  77 0039 05       		.byte	0x5
+  78 003a 6B010000 		.4byte	.LASF2
+  79 003e 02       		.uleb128 0x2
+  80 003f 02       		.byte	0x2
+  81 0040 07       		.byte	0x7
+  82 0041 46010000 		.4byte	.LASF3
+  83 0045 02       		.uleb128 0x2
+  84 0046 04       		.byte	0x4
+  85 0047 05       		.byte	0x5
+  86 0048 10010000 		.4byte	.LASF4
+  87 004c 02       		.uleb128 0x2
+  88 004d 04       		.byte	0x4
+  89 004e 07       		.byte	0x7
+  90 004f D4000000 		.4byte	.LASF5
+  91 0053 02       		.uleb128 0x2
+  92 0054 08       		.byte	0x8
+  93 0055 05       		.byte	0x5
+  94 0056 00000000 		.4byte	.LASF6
+  95 005a 02       		.uleb128 0x2
+  96 005b 08       		.byte	0x8
+  97 005c 07       		.byte	0x7
+  98 005d E6000000 		.4byte	.LASF7
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccoqSmlx.s 			page 6
+
+
+  99 0061 03       		.uleb128 0x3
+ 100 0062 04       		.byte	0x4
+ 101 0063 05       		.byte	0x5
+ 102 0064 696E7400 		.ascii	"int\000"
+ 103 0068 02       		.uleb128 0x2
+ 104 0069 04       		.byte	0x4
+ 105 006a 07       		.byte	0x7
+ 106 006b 0E000000 		.4byte	.LASF8
+ 107 006f 02       		.uleb128 0x2
+ 108 0070 04       		.byte	0x4
+ 109 0071 04       		.byte	0x4
+ 110 0072 65010000 		.4byte	.LASF9
+ 111 0076 02       		.uleb128 0x2
+ 112 0077 08       		.byte	0x8
+ 113 0078 04       		.byte	0x4
+ 114 0079 3F010000 		.4byte	.LASF10
+ 115 007d 02       		.uleb128 0x2
+ 116 007e 01       		.byte	0x1
+ 117 007f 08       		.byte	0x8
+ 118 0080 0B010000 		.4byte	.LASF11
+ 119 0084 02       		.uleb128 0x2
+ 120 0085 04       		.byte	0x4
+ 121 0086 07       		.byte	0x7
+ 122 0087 75010000 		.4byte	.LASF12
+ 123 008b 04       		.uleb128 0x4
+ 124 008c 01       		.byte	0x1
+ 125 008d 6F000000 		.4byte	.LASF13
+ 126 0091 01       		.byte	0x1
+ 127 0092 33       		.byte	0x33
+ 128 0093 01       		.byte	0x1
+ 129 0094 00000000 		.4byte	.LFB0
+ 130 0098 02000000 		.4byte	.LFE0
+ 131 009c 02       		.byte	0x2
+ 132 009d 7D       		.byte	0x7d
+ 133 009e 00       		.sleb128 0
+ 134 009f 01       		.byte	0x1
+ 135 00a0 04       		.uleb128 0x4
+ 136 00a1 01       		.byte	0x1
+ 137 00a2 7D000000 		.4byte	.LASF14
+ 138 00a6 01       		.byte	0x1
+ 139 00a7 86       		.byte	0x86
+ 140 00a8 01       		.byte	0x1
+ 141 00a9 00000000 		.4byte	.LFB1
+ 142 00ad 02000000 		.4byte	.LFE1
+ 143 00b1 02       		.byte	0x2
+ 144 00b2 7D       		.byte	0x7d
+ 145 00b3 00       		.sleb128 0
+ 146 00b4 01       		.byte	0x1
+ 147 00b5 00       		.byte	0
+ 148              		.section	.debug_abbrev,"",%progbits
+ 149              	.Ldebug_abbrev0:
+ 150 0000 01       		.uleb128 0x1
+ 151 0001 11       		.uleb128 0x11
+ 152 0002 01       		.byte	0x1
+ 153 0003 25       		.uleb128 0x25
+ 154 0004 0E       		.uleb128 0xe
+ 155 0005 13       		.uleb128 0x13
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccoqSmlx.s 			page 7
+
+
+ 156 0006 0B       		.uleb128 0xb
+ 157 0007 03       		.uleb128 0x3
+ 158 0008 0E       		.uleb128 0xe
+ 159 0009 1B       		.uleb128 0x1b
+ 160 000a 0E       		.uleb128 0xe
+ 161 000b 55       		.uleb128 0x55
+ 162 000c 06       		.uleb128 0x6
+ 163 000d 11       		.uleb128 0x11
+ 164 000e 01       		.uleb128 0x1
+ 165 000f 52       		.uleb128 0x52
+ 166 0010 01       		.uleb128 0x1
+ 167 0011 10       		.uleb128 0x10
+ 168 0012 06       		.uleb128 0x6
+ 169 0013 00       		.byte	0
+ 170 0014 00       		.byte	0
+ 171 0015 02       		.uleb128 0x2
+ 172 0016 24       		.uleb128 0x24
+ 173 0017 00       		.byte	0
+ 174 0018 0B       		.uleb128 0xb
+ 175 0019 0B       		.uleb128 0xb
+ 176 001a 3E       		.uleb128 0x3e
+ 177 001b 0B       		.uleb128 0xb
+ 178 001c 03       		.uleb128 0x3
+ 179 001d 0E       		.uleb128 0xe
+ 180 001e 00       		.byte	0
+ 181 001f 00       		.byte	0
+ 182 0020 03       		.uleb128 0x3
+ 183 0021 24       		.uleb128 0x24
+ 184 0022 00       		.byte	0
+ 185 0023 0B       		.uleb128 0xb
+ 186 0024 0B       		.uleb128 0xb
+ 187 0025 3E       		.uleb128 0x3e
+ 188 0026 0B       		.uleb128 0xb
+ 189 0027 03       		.uleb128 0x3
+ 190 0028 08       		.uleb128 0x8
+ 191 0029 00       		.byte	0
+ 192 002a 00       		.byte	0
+ 193 002b 04       		.uleb128 0x4
+ 194 002c 2E       		.uleb128 0x2e
+ 195 002d 00       		.byte	0
+ 196 002e 3F       		.uleb128 0x3f
+ 197 002f 0C       		.uleb128 0xc
+ 198 0030 03       		.uleb128 0x3
+ 199 0031 0E       		.uleb128 0xe
+ 200 0032 3A       		.uleb128 0x3a
+ 201 0033 0B       		.uleb128 0xb
+ 202 0034 3B       		.uleb128 0x3b
+ 203 0035 0B       		.uleb128 0xb
+ 204 0036 27       		.uleb128 0x27
+ 205 0037 0C       		.uleb128 0xc
+ 206 0038 11       		.uleb128 0x11
+ 207 0039 01       		.uleb128 0x1
+ 208 003a 12       		.uleb128 0x12
+ 209 003b 01       		.uleb128 0x1
+ 210 003c 40       		.uleb128 0x40
+ 211 003d 0A       		.uleb128 0xa
+ 212 003e 9742     		.uleb128 0x2117
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccoqSmlx.s 			page 8
+
+
+ 213 0040 0C       		.uleb128 0xc
+ 214 0041 00       		.byte	0
+ 215 0042 00       		.byte	0
+ 216 0043 00       		.byte	0
+ 217              		.section	.debug_aranges,"",%progbits
+ 218 0000 24000000 		.4byte	0x24
+ 219 0004 0200     		.2byte	0x2
+ 220 0006 00000000 		.4byte	.Ldebug_info0
+ 221 000a 04       		.byte	0x4
+ 222 000b 00       		.byte	0
+ 223 000c 0000     		.2byte	0
+ 224 000e 0000     		.2byte	0
+ 225 0010 00000000 		.4byte	.LFB0
+ 226 0014 02000000 		.4byte	.LFE0-.LFB0
+ 227 0018 00000000 		.4byte	.LFB1
+ 228 001c 02000000 		.4byte	.LFE1-.LFB1
+ 229 0020 00000000 		.4byte	0
+ 230 0024 00000000 		.4byte	0
+ 231              		.section	.debug_ranges,"",%progbits
+ 232              	.Ldebug_ranges0:
+ 233 0000 00000000 		.4byte	.LFB0
+ 234 0004 02000000 		.4byte	.LFE0
+ 235 0008 00000000 		.4byte	.LFB1
+ 236 000c 02000000 		.4byte	.LFE1
+ 237 0010 00000000 		.4byte	0
+ 238 0014 00000000 		.4byte	0
+ 239              		.section	.debug_line,"",%progbits
+ 240              	.Ldebug_line0:
+ 241 0000 67000000 		.section	.debug_str,"MS",%progbits,1
+ 241      02003C00 
+ 241      00000201 
+ 241      FB0E0D00 
+ 241      01010101 
+ 242              	.LASF6:
+ 243 0000 6C6F6E67 		.ascii	"long long int\000"
+ 243      206C6F6E 
+ 243      6720696E 
+ 243      7400
+ 244              	.LASF8:
+ 245 000e 756E7369 		.ascii	"unsigned int\000"
+ 245      676E6564 
+ 245      20696E74 
+ 245      00
+ 246              	.LASF17:
+ 247 001b 433A5C55 		.ascii	"C:\\Users\\Milo\\Documents\\PSoC Creator\\DPI_Deskt"
+ 247      73657273 
+ 247      5C4D696C 
+ 247      6F5C446F 
+ 247      63756D65 
+ 248 0049 6F705F54 		.ascii	"op_Tester\\Desktop_Tool_Emulator.cydsn\000"
+ 248      65737465 
+ 248      725C4465 
+ 248      736B746F 
+ 248      705F546F 
+ 249              	.LASF13:
+ 250 006f 5350494D 		.ascii	"SPIM_1_TX_ISR\000"
+ 250      5F315F54 
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccoqSmlx.s 			page 9
+
+
+ 250      585F4953 
+ 250      5200
+ 251              	.LASF14:
+ 252 007d 5350494D 		.ascii	"SPIM_1_RX_ISR\000"
+ 252      5F315F52 
+ 252      585F4953 
+ 252      5200
+ 253              	.LASF15:
+ 254 008b 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 254      4320342E 
+ 254      372E3320 
+ 254      32303133 
+ 254      30333132 
+ 255 00be 616E6368 		.ascii	"anch revision 196615]\000"
+ 255      20726576 
+ 255      6973696F 
+ 255      6E203139 
+ 255      36363135 
+ 256              	.LASF5:
+ 257 00d4 6C6F6E67 		.ascii	"long unsigned int\000"
+ 257      20756E73 
+ 257      69676E65 
+ 257      6420696E 
+ 257      7400
+ 258              	.LASF7:
+ 259 00e6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 259      206C6F6E 
+ 259      6720756E 
+ 259      7369676E 
+ 259      65642069 
+ 260              	.LASF1:
+ 261 00fd 756E7369 		.ascii	"unsigned char\000"
+ 261      676E6564 
+ 261      20636861 
+ 261      7200
+ 262              	.LASF11:
+ 263 010b 63686172 		.ascii	"char\000"
+ 263      00
+ 264              	.LASF4:
+ 265 0110 6C6F6E67 		.ascii	"long int\000"
+ 265      20696E74 
+ 265      00
+ 266              	.LASF16:
+ 267 0119 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\SPIM_1_INT.c\000"
+ 267      6E657261 
+ 267      7465645F 
+ 267      536F7572 
+ 267      63655C50 
+ 268              	.LASF10:
+ 269 013f 646F7562 		.ascii	"double\000"
+ 269      6C6500
+ 270              	.LASF3:
+ 271 0146 73686F72 		.ascii	"short unsigned int\000"
+ 271      7420756E 
+ 271      7369676E 
+ 271      65642069 
+ 271      6E7400
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\ccoqSmlx.s 			page 10
+
+
+ 272              	.LASF0:
+ 273 0159 7369676E 		.ascii	"signed char\000"
+ 273      65642063 
+ 273      68617200 
+ 274              	.LASF9:
+ 275 0165 666C6F61 		.ascii	"float\000"
+ 275      7400
+ 276              	.LASF2:
+ 277 016b 73686F72 		.ascii	"short int\000"
+ 277      7420696E 
+ 277      7400
+ 278              	.LASF12:
+ 279 0175 73697A65 		.ascii	"sizetype\000"
+ 279      74797065 
+ 279      00
+ 280              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br

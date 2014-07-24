@@ -1,0 +1,3485 @@
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.startup.main,"ax",%progbits
+  18              		.align	1
+  19              		.global	main
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	main, %function
+  23              	main:
+  24              	.LFB33:
+  25              		.file 1 ".\\main.c"
+   1:.\main.c      **** /* ========================================
+   2:.\main.c      ****  *
+   3:.\main.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\main.c      ****  * All Rights Reserved
+   5:.\main.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\main.c      ****  *
+   7:.\main.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\main.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\main.c      ****  *
+  10:.\main.c      ****  * ========================================
+  11:.\main.c      **** */
+  12:.\main.c      **** #include <project.h>
+  13:.\main.c      **** #include <stdio.h>
+  14:.\main.c      **** 
+  15:.\main.c      **** uint8 i2c_write(uint8 subAddr, uint8 *buffer, uint8 buff_size);
+  16:.\main.c      **** uint8 i2c_read(uint8 subAddr, uint8 *buffer, uint8 buff_size);
+  17:.\main.c      **** void spi_read( uint8 reg, uint8 *buffer);
+  18:.\main.c      **** void configure();
+  19:.\main.c      **** 
+  20:.\main.c      **** 
+  21:.\main.c      **** const int ADDRESS = 0x0E;
+  22:.\main.c      **** int main()
+  23:.\main.c      **** {
+  26              		.loc 1 23 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  29 0000 13B5     		push	{r0, r1, r4, lr}
+  30              	.LCFI0:
+  31              		.cfi_def_cfa_offset 16
+  32              		.cfi_offset 0, -16
+  33              		.cfi_offset 1, -12
+  34              		.cfi_offset 4, -8
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 2
+
+
+  35              		.cfi_offset 14, -4
+  24:.\main.c      ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  25:.\main.c      **** 	uint8 array[6]={1,2,3,1,2,3};
+  26:.\main.c      **** 	uint8 array2[6]={1,2,3,1,2,3};
+  27:.\main.c      **** 	int16 x = 6;
+  28:.\main.c      **** 	int16 y = 7;
+  29:.\main.c      **** 	int16 z = 8;
+  30:.\main.c      **** 	int16 ax = 9;
+  31:.\main.c      **** 	int16 ay =0;
+  32:.\main.c      **** 	int16 az;
+  33:.\main.c      **** 	
+  34:.\main.c      **** 	char *buffer;
+  35:.\main.c      **** 	int n;
+  36:.\main.c      **** 	
+  37:.\main.c      **** 	//I2C_1_Start();
+  38:.\main.c      **** 	UART_1_Start();
+  36              		.loc 1 38 0
+  37 0002 FFF7FEFF 		bl	UART_1_Start
+  38              	.LVL1:
+  39:.\main.c      **** 	//SPIM_1_Start();
+  40:.\main.c      ****     CyGlobalIntEnable;  /* Uncomment this line to enable global interrupts. */
+  39              		.loc 1 40 0
+  40              	@ 40 ".\main.c" 1
+  41 0006 62B6     		CPSIE   i
+  42              	@ 0 "" 2
+  43              	.LVL2:
+  44              		.code	16
+  45              	.L2:
+  41:.\main.c      **** 	//configure();
+  42:.\main.c      ****     for(;;)
+  43:.\main.c      ****     {
+  44:.\main.c      ****     	
+  45:.\main.c      **** 		//i2c_read(0x1u,array, 6);
+  46:.\main.c      **** 		//spi_read(0x28,array2);
+  47:.\main.c      **** 		x = (array[0] << 8)|array[1];
+  48:.\main.c      **** 		y = (array[2] << 8)|array[3];
+  49:.\main.c      **** 		z = (array[4] << 8)|array[5];
+  50:.\main.c      **** 		
+  51:.\main.c      **** 		ax = (array2[1] << 8)|array2[0];
+  52:.\main.c      **** 		ay = (array2[3] << 8)|array2[2];
+  53:.\main.c      **** 		az = (array2[5] << 8)|array2[4];
+  54:.\main.c      **** 		CyDelay(1000);
+  46              		.loc 1 54 0 discriminator 1
+  47 0008 FA20     		mov	r0, #250
+  48 000a 8000     		lsl	r0, r0, #2
+  49 000c FFF7FEFF 		bl	CyDelay
+  50              	.LVL3:
+  55:.\main.c      **** 		UART_1_UartPutString("MAG: \n\r");
+  51              		.loc 1 55 0 discriminator 1
+  52 0010 0948     		ldr	r0, .L4
+  53 0012 FFF7FEFF 		bl	UART_1_UartPutString
+  54              	.LVL4:
+  56:.\main.c      **** 		//n=sprintf(buffer, "X: %d \nY: %d \nZ: %d \n",(int)x,(int)y,(int)z);
+  57:.\main.c      **** 		//UART_1_SpiUartPutArray(buffer, n);
+  58:.\main.c      **** 		UART_1_UartPutString("ACC: \n\r");
+  55              		.loc 1 58 0 discriminator 1
+  56 0016 0948     		ldr	r0, .L4+4
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 3
+
+
+  57 0018 FFF7FEFF 		bl	UART_1_UartPutString
+  58              	.LVL5:
+  59:.\main.c      **** 		n=sprintf(buffer, "X: %d \nY: %d \nZ: %d \n\r ",ax,ay,az);
+  59              		.loc 1 59 0 discriminator 1
+  60 001c 084B     		ldr	r3, .L4+8
+  61 001e 0024     		mov	r4, #0
+  62 0020 0093     		str	r3, [sp]
+  63 0022 201C     		mov	r0, r4
+  64 0024 0749     		ldr	r1, .L4+12
+  65 0026 084A     		ldr	r2, .L4+16
+  66 0028 084B     		ldr	r3, .L4+20
+  67 002a FFF7FEFF 		bl	sprintf
+  68              	.LVL6:
+  69 002e 011C     		mov	r1, r0
+  70              	.LVL7:
+  60:.\main.c      **** 		UART_1_SpiUartPutArray(buffer, n);
+  71              		.loc 1 60 0 discriminator 1
+  72 0030 201C     		mov	r0, r4
+  73              	.LVL8:
+  74 0032 FFF7FEFF 		bl	UART_1_SpiUartPutArray
+  75              	.LVL9:
+  76 0036 E7E7     		b	.L2
+  77              	.L5:
+  78              		.align	2
+  79              	.L4:
+  80 0038 00000000 		.word	.LC1
+  81 003c 08000000 		.word	.LC3
+  82 0040 02030000 		.word	770
+  83 0044 10000000 		.word	.LC5
+  84 0048 01020000 		.word	513
+  85 004c 03010000 		.word	259
+  86              		.cfi_endproc
+  87              	.LFE33:
+  88              		.size	main, .-main
+  89              		.section	.text.i2c_write,"ax",%progbits
+  90              		.align	1
+  91              		.global	i2c_write
+  92              		.code	16
+  93              		.thumb_func
+  94              		.type	i2c_write, %function
+  95              	i2c_write:
+  96              	.LFB34:
+  61:.\main.c      ****     }
+  62:.\main.c      **** }
+  63:.\main.c      **** uint8 i2c_write(uint8 subAddr, uint8 *buffer, uint8 buff_size) {
+  97              		.loc 1 63 0
+  98              		.cfi_startproc
+  99              	.LVL10:
+ 100 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 101              	.LCFI1:
+ 102              		.cfi_def_cfa_offset 20
+ 103              		.cfi_offset 4, -20
+ 104              		.cfi_offset 5, -16
+ 105              		.cfi_offset 6, -12
+ 106              		.cfi_offset 7, -8
+ 107              		.cfi_offset 14, -4
+ 108 0002 85B0     		sub	sp, sp, #20
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 4
+
+
+ 109              	.LCFI2:
+ 110              		.cfi_def_cfa_offset 40
+ 111              		.loc 1 63 0
+ 112 0004 0E1C     		mov	r6, r1
+ 113 0006 171C     		mov	r7, r2
+ 114 0008 051C     		mov	r5, r0
+  64:.\main.c      **** 
+  65:.\main.c      **** 	int i;
+  66:.\main.c      **** 	uint8 status;
+  67:.\main.c      **** 	char array[10];
+  68:.\main.c      **** 	I2C_1_I2CMasterClearStatus();
+ 115              		.loc 1 68 0
+ 116 000a FFF7FEFF 		bl	I2C_1_I2CMasterClearStatus
+ 117              	.LVL11:
+  69:.\main.c      **** 
+  70:.\main.c      **** 	
+  71:.\main.c      **** 	//Set subaddr
+  72:.\main.c      **** 	status = I2C_1_I2CMasterSendStart(ADDRESS, 0);
+ 118              		.loc 1 72 0
+ 119 000e 0E20     		mov	r0, #14
+ 120 0010 0021     		mov	r1, #0
+ 121 0012 FFF7FEFF 		bl	I2C_1_I2CMasterSendStart
+ 122              	.LVL12:
+ 123 0016 C4B2     		uxtb	r4, r0
+ 124              	.LVL13:
+  73:.\main.c      **** 	if (status != I2C_1_I2C_MSTR_NO_ERROR) {
+ 125              		.loc 1 73 0
+ 126 0018 002C     		cmp	r4, #0
+ 127 001a 03D0     		beq	.L7
+  74:.\main.c      **** 		i= sprintf(array, "Error 1.1: %d \n",status);
+  75:.\main.c      **** 		UART_1_UartPutString(array);;
+  76:.\main.c      **** 		return status;
+  77:.\main.c      **** 	}
+  78:.\main.c      ****    
+  79:.\main.c      ****      
+  80:.\main.c      **** 	status = I2C_1_I2CMasterWriteByte(subAddr);
+  81:.\main.c      **** 	if (status != I2C_1_I2C_MSTR_NO_ERROR) {
+  82:.\main.c      **** 		i= sprintf(array, "Error 1.2: %d \n",status);
+  83:.\main.c      **** 		UART_1_UartPutString(array);
+  84:.\main.c      **** 		return status;
+  85:.\main.c      **** 	}
+  86:.\main.c      ****                
+  87:.\main.c      **** 	for (i=0;i<buff_size;i++) {
+  88:.\main.c      **** 		status = I2C_1_I2CMasterWriteByte(buffer[i]);
+  89:.\main.c      **** 		if (status != I2C_1_I2C_MSTR_NO_ERROR) {
+  90:.\main.c      **** 			return status;
+  91:.\main.c      **** 			i= sprintf(array, "Error 1.3: %d \n",status);
+  92:.\main.c      **** 			UART_1_UartPutString(array);
+  93:.\main.c      **** 		}
+  94:.\main.c      **** 	}
+  95:.\main.c      ****                   
+  96:.\main.c      **** 		status = I2C_1_I2CMasterSendStop();
+  97:.\main.c      **** 	if (status != I2C_1_I2C_MSTR_NO_ERROR) {
+  98:.\main.c      **** 		return status;
+  99:.\main.c      **** 		i= sprintf(array, "Error 1.4: %d \n",status);
+ 100:.\main.c      **** 		UART_1_UartPutString(array);
+ 101:.\main.c      **** 	}   
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 5
+
+
+ 102:.\main.c      **** 	return status;
+ 103:.\main.c      **** }
+ 104:.\main.c      **** uint8 i2c_read(uint8 subAddr, uint8 *buffer, uint8 buff_size) {
+ 105:.\main.c      **** 
+ 106:.\main.c      **** 	uint8 status;
+ 107:.\main.c      **** 	int i;
+ 108:.\main.c      **** 	char array[12];
+ 109:.\main.c      **** 	
+ 110:.\main.c      **** 	I2C_1_I2CMasterClearStatus();
+ 111:.\main.c      ****     //UART_1_PutString("make it here?  \n"); 
+ 112:.\main.c      **** 	//Set subaddr
+ 113:.\main.c      **** 	status = I2C_1_I2CMasterSendStart(ADDRESS, 0);
+ 114:.\main.c      **** 	if (status != I2C_1_I2C_MSTR_NO_ERROR) {
+ 115:.\main.c      **** 		i= sprintf(array, "Error 2.1: %d \n",status);
+ 116:.\main.c      **** 		UART_1_UartPutString(array);
+ 117:.\main.c      **** 		return status;
+ 118:.\main.c      **** 	}
+ 119:.\main.c      ****            
+ 120:.\main.c      **** 	///buffer[0] = I2C_1_I2CMasterReadByte(0);
+ 121:.\main.c      ****                    
+ 122:.\main.c      **** 	status = I2C_1_I2CMasterWriteByte(subAddr);
+ 123:.\main.c      **** 	if (status != I2C_1_I2C_MSTR_NO_ERROR) {
+ 124:.\main.c      **** 		return status;
+ 125:.\main.c      **** 	}
+ 126:.\main.c      **** 	UART_1_UartPutString("make it here?  \n\r"); 
+ 127:.\main.c      **** 	I2C_1_I2CMasterReadBuf(ADDRESS,buffer,buff_size,(I2C_1_I2C_MODE_REPEAT_START | I2C_1_I2C_MODE_COMP
+ 128:.\main.c      ****                
+ 129:.\main.c      **** //	status = I2C_1_I2CMasterSendRestart(ADDRESS, 1);
+ 130:.\main.c      **** //	if (status != I2C_1_I2C_MSTR_NO_ERROR) {
+ 131:.\main.c      **** //		return status;
+ 132:.\main.c      **** //	}               
+ 133:.\main.c      **** //               
+ 134:.\main.c      **** //	for (i=0;i<buff_size;i++) {
+ 135:.\main.c      **** //		buffer[i] = I2C_1_I2CMasterReadByte( (i<(buff_size-1) ) );
+ 136:.\main.c      **** //	}
+ 137:.\main.c      ****  
+ 138:.\main.c      **** 	status = I2C_1_I2CMasterSendStop();
+ 139:.\main.c      **** 	if (status != I2C_1_I2C_MSTR_NO_ERROR) {
+ 140:.\main.c      ****         return status;
+ 141:.\main.c      ****  	}  
+ 142:.\main.c      **** 	return 0;
+ 143:.\main.c      **** }
+ 144:.\main.c      **** void configure()
+ 145:.\main.c      **** {
+ 146:.\main.c      **** 	uint8 array[2];
+ 147:.\main.c      **** 	Pin_4_Write(1);
+ 148:.\main.c      **** 	array [0] = 0x80;
+ 149:.\main.c      **** 	i2c_write(0x11,array,1);
+ 150:.\main.c      **** 	
+ 151:.\main.c      **** 	array [0] = 1;
+ 152:.\main.c      **** 	i2c_write(0x10,array,1);
+ 153:.\main.c      **** 	
+ 154:.\main.c      **** 	Pin_4_Write(0);
+ 155:.\main.c      **** 	CyDelay(10);
+ 156:.\main.c      **** 	SPIM_1_WriteTxData(0x20);
+ 157:.\main.c      **** 	SPIM_1_WriteTxData(0x37);
+ 158:.\main.c      **** 	Pin_4_Write(1);
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 6
+
+
+ 159:.\main.c      **** 	CyDelay(100);
+ 160:.\main.c      **** 	
+ 161:.\main.c      **** 	Pin_4_Write(0);
+ 162:.\main.c      **** 	CyDelay(10);
+ 163:.\main.c      **** 	SPIM_1_WriteTxData(0x21);
+ 164:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ 165:.\main.c      **** 	Pin_4_Write(1);
+ 166:.\main.c      **** 	CyDelay(100);
+ 167:.\main.c      **** 	
+ 168:.\main.c      **** 	Pin_4_Write(0);
+ 169:.\main.c      **** 	CyDelay(10);
+ 170:.\main.c      **** 	SPIM_1_WriteTxData(0x22);
+ 171:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ 172:.\main.c      **** 	Pin_4_Write(1);
+ 173:.\main.c      **** 	CyDelay(100);
+ 174:.\main.c      **** 	
+ 175:.\main.c      **** 	Pin_4_Write(0);
+ 176:.\main.c      **** 	CyDelay(10);
+ 177:.\main.c      **** 	SPIM_1_WriteTxData(0x23);
+ 178:.\main.c      **** 	SPIM_1_WriteTxData(0x30);
+ 179:.\main.c      **** 	Pin_4_Write(1);
+ 180:.\main.c      **** 	CyDelay(100);
+ 181:.\main.c      **** 
+ 182:.\main.c      **** }
+ 183:.\main.c      **** void spi_read(uint8 reg, uint8 *buffer)
+ 184:.\main.c      **** {
+ 185:.\main.c      **** 	uint8 array[6];
+ 186:.\main.c      **** 	reg = 0xC0 | reg;
+ 187:.\main.c      **** 	Pin_4_Write(0);
+ 188:.\main.c      **** 	CyDelay(10);
+ 189:.\main.c      **** 	SPIM_1_WriteTxData(reg);
+ 190:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ 191:.\main.c      **** 	array[0] = SPIM_1_ReadRxData();
+ 192:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ 193:.\main.c      **** 	array[1] = SPIM_1_ReadRxData();
+ 194:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ 195:.\main.c      **** 	array[2] = SPIM_1_ReadRxData();
+ 196:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ 197:.\main.c      **** 	array[3] = SPIM_1_ReadRxData();
+ 198:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ 199:.\main.c      **** 	array[4] = SPIM_1_ReadRxData();
+ 200:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ 201:.\main.c      **** 	array[5] = SPIM_1_ReadRxData();
+ 202:.\main.c      **** 	Pin_4_Write(1);
+ 203:.\main.c      **** 	buffer = array;
+ 204:.\main.c      **** }
+ 128              		.loc 1 204 0
+ 129 001c C2B2     		uxtb	r2, r0
+  74:.\main.c      **** 		i= sprintf(array, "Error 1.1: %d \n",status);
+ 130              		.loc 1 74 0
+ 131 001e 1249     		ldr	r1, .L15
+ 132 0020 01A8     		add	r0, sp, #4
+ 133              	.LVL14:
+ 134 0022 18E0     		b	.L13
+ 135              	.LVL15:
+ 136              	.L7:
+  80:.\main.c      **** 	status = I2C_1_I2CMasterWriteByte(subAddr);
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 7
+
+
+ 137              		.loc 1 80 0
+ 138 0024 281C     		mov	r0, r5
+ 139              	.LVL16:
+ 140 0026 FFF7FEFF 		bl	I2C_1_I2CMasterWriteByte
+ 141              	.LVL17:
+ 142 002a C4B2     		uxtb	r4, r0
+ 143              	.LVL18:
+  81:.\main.c      **** 	if (status != I2C_1_I2C_MSTR_NO_ERROR) {
+ 144              		.loc 1 81 0
+ 145 002c 002C     		cmp	r4, #0
+ 146 002e 0FD1     		bne	.L9
+ 147 0030 351C     		mov	r5, r6
+ 148              	.LVL19:
+ 149              	.L10:
+ 150              	.LBB4:
+ 151              	.LBB5:
+  63:.\main.c      **** uint8 i2c_write(uint8 subAddr, uint8 *buffer, uint8 buff_size) {
+ 152              		.loc 1 63 0
+ 153 0032 AB1B     		sub	r3, r5, r6
+  87:.\main.c      **** 	for (i=0;i<buff_size;i++) {
+ 154              		.loc 1 87 0
+ 155 0034 BB42     		cmp	r3, r7
+ 156 0036 07DA     		bge	.L14
+ 157              	.L12:
+  88:.\main.c      **** 		status = I2C_1_I2CMasterWriteByte(buffer[i]);
+ 158              		.loc 1 88 0
+ 159 0038 2878     		ldrb	r0, [r5]
+ 160 003a FFF7FEFF 		bl	I2C_1_I2CMasterWriteByte
+ 161              	.LVL20:
+ 162 003e C4B2     		uxtb	r4, r0
+ 163              	.LVL21:
+ 164 0040 0135     		add	r5, r5, #1
+  89:.\main.c      **** 		if (status != I2C_1_I2C_MSTR_NO_ERROR) {
+ 165              		.loc 1 89 0
+ 166 0042 002C     		cmp	r4, #0
+ 167 0044 F5D0     		beq	.L10
+ 168 0046 0BE0     		b	.L8
+ 169              	.LVL22:
+ 170              	.L14:
+  96:.\main.c      **** 		status = I2C_1_I2CMasterSendStop();
+ 171              		.loc 1 96 0
+ 172 0048 FFF7FEFF 		bl	I2C_1_I2CMasterSendStop
+ 173              	.LVL23:
+ 174 004c C4B2     		uxtb	r4, r0
+ 175              	.LVL24:
+ 176 004e 07E0     		b	.L8
+ 177              	.LVL25:
+ 178              	.L9:
+ 179              	.LBE5:
+ 180              	.LBE4:
+  82:.\main.c      **** 		i= sprintf(array, "Error 1.2: %d \n",status);
+ 181              		.loc 1 82 0
+ 182 0050 0649     		ldr	r1, .L15+4
+ 183              		.loc 1 204 0
+ 184 0052 C2B2     		uxtb	r2, r0
+  82:.\main.c      **** 		i= sprintf(array, "Error 1.2: %d \n",status);
+ 185              		.loc 1 82 0
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 8
+
+
+ 186 0054 01A8     		add	r0, sp, #4
+ 187              	.LVL26:
+ 188              	.L13:
+ 189 0056 FFF7FEFF 		bl	sprintf
+ 190              	.LVL27:
+  83:.\main.c      **** 		UART_1_UartPutString(array);
+ 191              		.loc 1 83 0
+ 192 005a 01A8     		add	r0, sp, #4
+ 193 005c FFF7FEFF 		bl	UART_1_UartPutString
+ 194              	.LVL28:
+ 195              	.L8:
+ 103:.\main.c      **** }
+ 196              		.loc 1 103 0
+ 197 0060 201C     		mov	r0, r4
+ 198 0062 05B0     		add	sp, sp, #20
+ 199              		@ sp needed for prologue
+ 200              	.LVL29:
+ 201 0064 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 202              	.L16:
+ 203 0066 C046     		.align	2
+ 204              	.L15:
+ 205 0068 28000000 		.word	.LC9
+ 206 006c 38000000 		.word	.LC11
+ 207              		.cfi_endproc
+ 208              	.LFE34:
+ 209              		.size	i2c_write, .-i2c_write
+ 210              		.section	.text.i2c_read,"ax",%progbits
+ 211              		.align	1
+ 212              		.global	i2c_read
+ 213              		.code	16
+ 214              		.thumb_func
+ 215              		.type	i2c_read, %function
+ 216              	i2c_read:
+ 217              	.LFB35:
+ 104:.\main.c      **** uint8 i2c_read(uint8 subAddr, uint8 *buffer, uint8 buff_size) {
+ 218              		.loc 1 104 0
+ 219              		.cfi_startproc
+ 220              	.LVL30:
+ 221 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 222              	.LCFI3:
+ 223              		.cfi_def_cfa_offset 20
+ 224              		.cfi_offset 4, -20
+ 225              		.cfi_offset 5, -16
+ 226              		.cfi_offset 6, -12
+ 227              		.cfi_offset 7, -8
+ 228              		.cfi_offset 14, -4
+ 229 0002 85B0     		sub	sp, sp, #20
+ 230              	.LCFI4:
+ 231              		.cfi_def_cfa_offset 40
+ 104:.\main.c      **** uint8 i2c_read(uint8 subAddr, uint8 *buffer, uint8 buff_size) {
+ 232              		.loc 1 104 0
+ 233 0004 0E1C     		mov	r6, r1
+ 234 0006 151C     		mov	r5, r2
+ 235 0008 071C     		mov	r7, r0
+ 110:.\main.c      **** 	I2C_1_I2CMasterClearStatus();
+ 236              		.loc 1 110 0
+ 237 000a FFF7FEFF 		bl	I2C_1_I2CMasterClearStatus
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 9
+
+
+ 238              	.LVL31:
+ 113:.\main.c      **** 	status = I2C_1_I2CMasterSendStart(ADDRESS, 0);
+ 239              		.loc 1 113 0
+ 240 000e 0E20     		mov	r0, #14
+ 241 0010 0021     		mov	r1, #0
+ 242 0012 FFF7FEFF 		bl	I2C_1_I2CMasterSendStart
+ 243              	.LVL32:
+ 244 0016 C4B2     		uxtb	r4, r0
+ 245              	.LVL33:
+ 114:.\main.c      **** 	if (status != I2C_1_I2C_MSTR_NO_ERROR) {
+ 246              		.loc 1 114 0
+ 247 0018 002C     		cmp	r4, #0
+ 248 001a 08D0     		beq	.L18
+ 249              		.loc 1 204 0
+ 250 001c C2B2     		uxtb	r2, r0
+ 115:.\main.c      **** 		i= sprintf(array, "Error 2.1: %d \n",status);
+ 251              		.loc 1 115 0
+ 252 001e 0E49     		ldr	r1, .L20
+ 253 0020 01A8     		add	r0, sp, #4
+ 254              	.LVL34:
+ 255 0022 FFF7FEFF 		bl	sprintf
+ 256              	.LVL35:
+ 116:.\main.c      **** 		UART_1_UartPutString(array);
+ 257              		.loc 1 116 0
+ 258 0026 01A8     		add	r0, sp, #4
+ 259 0028 FFF7FEFF 		bl	UART_1_UartPutString
+ 260              	.LVL36:
+ 261 002c 11E0     		b	.L19
+ 262              	.LVL37:
+ 263              	.L18:
+ 122:.\main.c      **** 	status = I2C_1_I2CMasterWriteByte(subAddr);
+ 264              		.loc 1 122 0
+ 265 002e 381C     		mov	r0, r7
+ 266              	.LVL38:
+ 267 0030 FFF7FEFF 		bl	I2C_1_I2CMasterWriteByte
+ 268              	.LVL39:
+ 269 0034 C4B2     		uxtb	r4, r0
+ 270              	.LVL40:
+ 123:.\main.c      **** 	if (status != I2C_1_I2C_MSTR_NO_ERROR) {
+ 271              		.loc 1 123 0
+ 272 0036 002C     		cmp	r4, #0
+ 273 0038 0BD1     		bne	.L19
+ 126:.\main.c      **** 	UART_1_UartPutString("make it here?  \n\r"); 
+ 274              		.loc 1 126 0
+ 275 003a 0848     		ldr	r0, .L20+4
+ 276              	.LVL41:
+ 277 003c FFF7FEFF 		bl	UART_1_UartPutString
+ 278              	.LVL42:
+ 127:.\main.c      **** 	I2C_1_I2CMasterReadBuf(ADDRESS,buffer,buff_size,(I2C_1_I2C_MODE_REPEAT_START | I2C_1_I2C_MODE_COMP
+ 279              		.loc 1 127 0
+ 280 0040 311C     		mov	r1, r6
+ 281 0042 2A1C     		mov	r2, r5
+ 282 0044 0123     		mov	r3, #1
+ 283 0046 0E20     		mov	r0, #14
+ 284 0048 FFF7FEFF 		bl	I2C_1_I2CMasterReadBuf
+ 285              	.LVL43:
+ 138:.\main.c      **** 	status = I2C_1_I2CMasterSendStop();
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 10
+
+
+ 286              		.loc 1 138 0
+ 287 004c FFF7FEFF 		bl	I2C_1_I2CMasterSendStop
+ 288              	.LVL44:
+ 289 0050 C4B2     		uxtb	r4, r0
+ 290              	.LVL45:
+ 291              	.L19:
+ 143:.\main.c      **** }
+ 292              		.loc 1 143 0
+ 293 0052 201C     		mov	r0, r4
+ 294 0054 05B0     		add	sp, sp, #20
+ 295              		@ sp needed for prologue
+ 296              	.LVL46:
+ 297 0056 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 298              	.L21:
+ 299              		.align	2
+ 300              	.L20:
+ 301 0058 48000000 		.word	.LC13
+ 302 005c 58000000 		.word	.LC15
+ 303              		.cfi_endproc
+ 304              	.LFE35:
+ 305              		.size	i2c_read, .-i2c_read
+ 306              		.section	.text.configure,"ax",%progbits
+ 307              		.align	1
+ 308              		.global	configure
+ 309              		.code	16
+ 310              		.thumb_func
+ 311              		.type	configure, %function
+ 312              	configure:
+ 313              	.LFB36:
+ 145:.\main.c      **** {
+ 314              		.loc 1 145 0
+ 315              		.cfi_startproc
+ 316 0000 37B5     		push	{r0, r1, r2, r4, r5, lr}
+ 317              	.LCFI5:
+ 318              		.cfi_def_cfa_offset 24
+ 319              		.cfi_offset 0, -24
+ 320              		.cfi_offset 1, -20
+ 321              		.cfi_offset 2, -16
+ 322              		.cfi_offset 4, -12
+ 323              		.cfi_offset 5, -8
+ 324              		.cfi_offset 14, -4
+ 147:.\main.c      **** 	Pin_4_Write(1);
+ 325              		.loc 1 147 0
+ 326 0002 0120     		mov	r0, #1
+ 148:.\main.c      **** 	array [0] = 0x80;
+ 327              		.loc 1 148 0
+ 328 0004 01AD     		add	r5, sp, #4
+ 147:.\main.c      **** 	Pin_4_Write(1);
+ 329              		.loc 1 147 0
+ 330 0006 FFF7FEFF 		bl	Pin_4_Write
+ 331              	.LVL47:
+ 151:.\main.c      **** 	array [0] = 1;
+ 332              		.loc 1 151 0
+ 333 000a 0124     		mov	r4, #1
+ 148:.\main.c      **** 	array [0] = 0x80;
+ 334              		.loc 1 148 0
+ 335 000c 8023     		mov	r3, #128
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 11
+
+
+ 149:.\main.c      **** 	i2c_write(0x11,array,1);
+ 336              		.loc 1 149 0
+ 337 000e 291C     		mov	r1, r5
+ 338 0010 0122     		mov	r2, #1
+ 339 0012 1120     		mov	r0, #17
+ 148:.\main.c      **** 	array [0] = 0x80;
+ 340              		.loc 1 148 0
+ 341 0014 2B70     		strb	r3, [r5]
+ 149:.\main.c      **** 	i2c_write(0x11,array,1);
+ 342              		.loc 1 149 0
+ 343 0016 FFF7FEFF 		bl	i2c_write
+ 344              	.LVL48:
+ 152:.\main.c      **** 	i2c_write(0x10,array,1);
+ 345              		.loc 1 152 0
+ 346 001a 291C     		mov	r1, r5
+ 347 001c 221C     		mov	r2, r4
+ 348 001e 1020     		mov	r0, #16
+ 151:.\main.c      **** 	array [0] = 1;
+ 349              		.loc 1 151 0
+ 350 0020 2C70     		strb	r4, [r5]
+ 152:.\main.c      **** 	i2c_write(0x10,array,1);
+ 351              		.loc 1 152 0
+ 352 0022 FFF7FEFF 		bl	i2c_write
+ 353              	.LVL49:
+ 154:.\main.c      **** 	Pin_4_Write(0);
+ 354              		.loc 1 154 0
+ 355 0026 0020     		mov	r0, #0
+ 356 0028 FFF7FEFF 		bl	Pin_4_Write
+ 357              	.LVL50:
+ 155:.\main.c      **** 	CyDelay(10);
+ 358              		.loc 1 155 0
+ 359 002c 0A20     		mov	r0, #10
+ 360 002e FFF7FEFF 		bl	CyDelay
+ 361              	.LVL51:
+ 156:.\main.c      **** 	SPIM_1_WriteTxData(0x20);
+ 362              		.loc 1 156 0
+ 363 0032 2020     		mov	r0, #32
+ 364 0034 FFF7FEFF 		bl	SPIM_1_WriteTxData
+ 365              	.LVL52:
+ 157:.\main.c      **** 	SPIM_1_WriteTxData(0x37);
+ 366              		.loc 1 157 0
+ 367 0038 3720     		mov	r0, #55
+ 368 003a FFF7FEFF 		bl	SPIM_1_WriteTxData
+ 369              	.LVL53:
+ 158:.\main.c      **** 	Pin_4_Write(1);
+ 370              		.loc 1 158 0
+ 371 003e 201C     		mov	r0, r4
+ 372 0040 FFF7FEFF 		bl	Pin_4_Write
+ 373              	.LVL54:
+ 159:.\main.c      **** 	CyDelay(100);
+ 374              		.loc 1 159 0
+ 375 0044 6420     		mov	r0, #100
+ 376 0046 FFF7FEFF 		bl	CyDelay
+ 377              	.LVL55:
+ 161:.\main.c      **** 	Pin_4_Write(0);
+ 378              		.loc 1 161 0
+ 379 004a 0020     		mov	r0, #0
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 12
+
+
+ 380 004c FFF7FEFF 		bl	Pin_4_Write
+ 381              	.LVL56:
+ 162:.\main.c      **** 	CyDelay(10);
+ 382              		.loc 1 162 0
+ 383 0050 0A20     		mov	r0, #10
+ 384 0052 FFF7FEFF 		bl	CyDelay
+ 385              	.LVL57:
+ 163:.\main.c      **** 	SPIM_1_WriteTxData(0x21);
+ 386              		.loc 1 163 0
+ 387 0056 2120     		mov	r0, #33
+ 388 0058 FFF7FEFF 		bl	SPIM_1_WriteTxData
+ 389              	.LVL58:
+ 164:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ 390              		.loc 1 164 0
+ 391 005c 0020     		mov	r0, #0
+ 392 005e FFF7FEFF 		bl	SPIM_1_WriteTxData
+ 393              	.LVL59:
+ 165:.\main.c      **** 	Pin_4_Write(1);
+ 394              		.loc 1 165 0
+ 395 0062 201C     		mov	r0, r4
+ 396 0064 FFF7FEFF 		bl	Pin_4_Write
+ 397              	.LVL60:
+ 166:.\main.c      **** 	CyDelay(100);
+ 398              		.loc 1 166 0
+ 399 0068 6420     		mov	r0, #100
+ 400 006a FFF7FEFF 		bl	CyDelay
+ 401              	.LVL61:
+ 168:.\main.c      **** 	Pin_4_Write(0);
+ 402              		.loc 1 168 0
+ 403 006e 0020     		mov	r0, #0
+ 404 0070 FFF7FEFF 		bl	Pin_4_Write
+ 405              	.LVL62:
+ 169:.\main.c      **** 	CyDelay(10);
+ 406              		.loc 1 169 0
+ 407 0074 0A20     		mov	r0, #10
+ 408 0076 FFF7FEFF 		bl	CyDelay
+ 409              	.LVL63:
+ 170:.\main.c      **** 	SPIM_1_WriteTxData(0x22);
+ 410              		.loc 1 170 0
+ 411 007a 2220     		mov	r0, #34
+ 412 007c FFF7FEFF 		bl	SPIM_1_WriteTxData
+ 413              	.LVL64:
+ 171:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ 414              		.loc 1 171 0
+ 415 0080 0020     		mov	r0, #0
+ 416 0082 FFF7FEFF 		bl	SPIM_1_WriteTxData
+ 417              	.LVL65:
+ 172:.\main.c      **** 	Pin_4_Write(1);
+ 418              		.loc 1 172 0
+ 419 0086 201C     		mov	r0, r4
+ 420 0088 FFF7FEFF 		bl	Pin_4_Write
+ 421              	.LVL66:
+ 173:.\main.c      **** 	CyDelay(100);
+ 422              		.loc 1 173 0
+ 423 008c 6420     		mov	r0, #100
+ 424 008e FFF7FEFF 		bl	CyDelay
+ 425              	.LVL67:
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 13
+
+
+ 175:.\main.c      **** 	Pin_4_Write(0);
+ 426              		.loc 1 175 0
+ 427 0092 0020     		mov	r0, #0
+ 428 0094 FFF7FEFF 		bl	Pin_4_Write
+ 429              	.LVL68:
+ 176:.\main.c      **** 	CyDelay(10);
+ 430              		.loc 1 176 0
+ 431 0098 0A20     		mov	r0, #10
+ 432 009a FFF7FEFF 		bl	CyDelay
+ 433              	.LVL69:
+ 177:.\main.c      **** 	SPIM_1_WriteTxData(0x23);
+ 434              		.loc 1 177 0
+ 435 009e 2320     		mov	r0, #35
+ 436 00a0 FFF7FEFF 		bl	SPIM_1_WriteTxData
+ 437              	.LVL70:
+ 178:.\main.c      **** 	SPIM_1_WriteTxData(0x30);
+ 438              		.loc 1 178 0
+ 439 00a4 3020     		mov	r0, #48
+ 440 00a6 FFF7FEFF 		bl	SPIM_1_WriteTxData
+ 441              	.LVL71:
+ 179:.\main.c      **** 	Pin_4_Write(1);
+ 442              		.loc 1 179 0
+ 443 00aa 201C     		mov	r0, r4
+ 444 00ac FFF7FEFF 		bl	Pin_4_Write
+ 445              	.LVL72:
+ 180:.\main.c      **** 	CyDelay(100);
+ 446              		.loc 1 180 0
+ 447 00b0 6420     		mov	r0, #100
+ 448 00b2 FFF7FEFF 		bl	CyDelay
+ 449              	.LVL73:
+ 182:.\main.c      **** }
+ 450              		.loc 1 182 0
+ 451              		@ sp needed for prologue
+ 452 00b6 37BD     		pop	{r0, r1, r2, r4, r5, pc}
+ 453              		.cfi_endproc
+ 454              	.LFE36:
+ 455              		.size	configure, .-configure
+ 456              		.section	.text.spi_read,"ax",%progbits
+ 457              		.align	1
+ 458              		.global	spi_read
+ 459              		.code	16
+ 460              		.thumb_func
+ 461              		.type	spi_read, %function
+ 462              	spi_read:
+ 463              	.LFB37:
+ 184:.\main.c      **** {
+ 464              		.loc 1 184 0
+ 465              		.cfi_startproc
+ 466              	.LVL74:
+ 467 0000 10B5     		push	{r4, lr}
+ 468              	.LCFI6:
+ 469              		.cfi_def_cfa_offset 8
+ 470              		.cfi_offset 4, -8
+ 471              		.cfi_offset 14, -4
+ 184:.\main.c      **** {
+ 472              		.loc 1 184 0
+ 473 0002 041C     		mov	r4, r0
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 14
+
+
+ 474              	.LVL75:
+ 187:.\main.c      **** 	Pin_4_Write(0);
+ 475              		.loc 1 187 0
+ 476 0004 0020     		mov	r0, #0
+ 477              	.LVL76:
+ 478 0006 FFF7FEFF 		bl	Pin_4_Write
+ 479              	.LVL77:
+ 188:.\main.c      **** 	CyDelay(10);
+ 480              		.loc 1 188 0
+ 481 000a 0A20     		mov	r0, #10
+ 482 000c FFF7FEFF 		bl	CyDelay
+ 483              	.LVL78:
+ 186:.\main.c      **** 	reg = 0xC0 | reg;
+ 484              		.loc 1 186 0
+ 485 0010 C020     		mov	r0, #192
+ 189:.\main.c      **** 	SPIM_1_WriteTxData(reg);
+ 486              		.loc 1 189 0
+ 487 0012 2043     		orr	r0, r4
+ 488 0014 FFF7FEFF 		bl	SPIM_1_WriteTxData
+ 489              	.LVL79:
+ 190:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ 490              		.loc 1 190 0
+ 491 0018 0020     		mov	r0, #0
+ 492 001a FFF7FEFF 		bl	SPIM_1_WriteTxData
+ 493              	.LVL80:
+ 191:.\main.c      **** 	array[0] = SPIM_1_ReadRxData();
+ 494              		.loc 1 191 0
+ 495 001e FFF7FEFF 		bl	SPIM_1_ReadRxData
+ 496              	.LVL81:
+ 192:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ 497              		.loc 1 192 0
+ 498 0022 0020     		mov	r0, #0
+ 499 0024 FFF7FEFF 		bl	SPIM_1_WriteTxData
+ 500              	.LVL82:
+ 193:.\main.c      **** 	array[1] = SPIM_1_ReadRxData();
+ 501              		.loc 1 193 0
+ 502 0028 FFF7FEFF 		bl	SPIM_1_ReadRxData
+ 503              	.LVL83:
+ 194:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ 504              		.loc 1 194 0
+ 505 002c 0020     		mov	r0, #0
+ 506 002e FFF7FEFF 		bl	SPIM_1_WriteTxData
+ 507              	.LVL84:
+ 195:.\main.c      **** 	array[2] = SPIM_1_ReadRxData();
+ 508              		.loc 1 195 0
+ 509 0032 FFF7FEFF 		bl	SPIM_1_ReadRxData
+ 510              	.LVL85:
+ 196:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ 511              		.loc 1 196 0
+ 512 0036 0020     		mov	r0, #0
+ 513 0038 FFF7FEFF 		bl	SPIM_1_WriteTxData
+ 514              	.LVL86:
+ 197:.\main.c      **** 	array[3] = SPIM_1_ReadRxData();
+ 515              		.loc 1 197 0
+ 516 003c FFF7FEFF 		bl	SPIM_1_ReadRxData
+ 517              	.LVL87:
+ 198:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 15
+
+
+ 518              		.loc 1 198 0
+ 519 0040 0020     		mov	r0, #0
+ 520 0042 FFF7FEFF 		bl	SPIM_1_WriteTxData
+ 521              	.LVL88:
+ 199:.\main.c      **** 	array[4] = SPIM_1_ReadRxData();
+ 522              		.loc 1 199 0
+ 523 0046 FFF7FEFF 		bl	SPIM_1_ReadRxData
+ 524              	.LVL89:
+ 200:.\main.c      **** 	SPIM_1_WriteTxData(0x00);
+ 525              		.loc 1 200 0
+ 526 004a 0020     		mov	r0, #0
+ 527 004c FFF7FEFF 		bl	SPIM_1_WriteTxData
+ 528              	.LVL90:
+ 201:.\main.c      **** 	array[5] = SPIM_1_ReadRxData();
+ 529              		.loc 1 201 0
+ 530 0050 FFF7FEFF 		bl	SPIM_1_ReadRxData
+ 531              	.LVL91:
+ 202:.\main.c      **** 	Pin_4_Write(1);
+ 532              		.loc 1 202 0
+ 533 0054 0120     		mov	r0, #1
+ 534 0056 FFF7FEFF 		bl	Pin_4_Write
+ 535              	.LVL92:
+ 536              		.loc 1 204 0
+ 537              		@ sp needed for prologue
+ 538              	.LVL93:
+ 539 005a 10BD     		pop	{r4, pc}
+ 540              		.cfi_endproc
+ 541              	.LFE37:
+ 542              		.size	spi_read, .-spi_read
+ 543              		.global	ADDRESS
+ 544              		.section	.rodata
+ 545              		.align	2
+ 546              		.type	ADDRESS, %object
+ 547              		.size	ADDRESS, 4
+ 548              	ADDRESS:
+ 549 0000 0E000000 		.word	14
+ 550              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 551              	.LC1:
+ 552 0000 4D41473A 		.ascii	"MAG: \012\015\000"
+ 552      200A0D00 
+ 553              	.LC3:
+ 554 0008 4143433A 		.ascii	"ACC: \012\015\000"
+ 554      200A0D00 
+ 555              	.LC5:
+ 556 0010 583A2025 		.ascii	"X: %d \012Y: %d \012Z: %d \012\015 \000"
+ 556      64200A59 
+ 556      3A202564 
+ 556      200A5A3A 
+ 556      20256420 
+ 557              	.LC9:
+ 558 0028 4572726F 		.ascii	"Error 1.1: %d \012\000"
+ 558      7220312E 
+ 558      313A2025 
+ 558      64200A00 
+ 559              	.LC11:
+ 560 0038 4572726F 		.ascii	"Error 1.2: %d \012\000"
+ 560      7220312E 
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 16
+
+
+ 560      323A2025 
+ 560      64200A00 
+ 561              	.LC13:
+ 562 0048 4572726F 		.ascii	"Error 2.1: %d \012\000"
+ 562      7220322E 
+ 562      313A2025 
+ 562      64200A00 
+ 563              	.LC15:
+ 564 0058 6D616B65 		.ascii	"make it here?  \012\015\000"
+ 564      20697420 
+ 564      68657265 
+ 564      3F20200A 
+ 564      0D00
+ 565              		.text
+ 566              	.Letext0:
+ 567              		.file 2 "./Generated_Source/PSoC4/cytypes.h"
+ 568              		.file 3 "./Generated_Source/PSoC4/CyLib.h"
+ 569              		.file 4 "./Generated_Source/PSoC4/UART_1_SPI_UART.h"
+ 570              		.file 5 "c:\\program files (x86)\\cypress\\psoc creator\\3.0\\psoc creator\\import\\gnu_cs\\arm\\4
+ 571              		.file 6 "./Generated_Source/PSoC4/I2C_1_I2C.h"
+ 572              		.file 7 "./Generated_Source/PSoC4/Pin_4.h"
+ 573              		.file 8 "./Generated_Source/PSoC4/SPIM_1.h"
+ 574              		.file 9 "./Generated_Source/PSoC4/UART_1.h"
+ 575              		.section	.debug_info,"",%progbits
+ 576              	.Ldebug_info0:
+ 577 0000 76090000 		.4byte	0x976
+ 578 0004 0200     		.2byte	0x2
+ 579 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 580 000a 04       		.byte	0x4
+ 581 000b 01       		.uleb128 0x1
+ 582 000c 1D020000 		.4byte	.LASF38
+ 583 0010 01       		.byte	0x1
+ 584 0011 42010000 		.4byte	.LASF39
+ 585 0015 00000000 		.4byte	.LASF40
+ 586 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 587 001d 00000000 		.4byte	0
+ 588 0021 00000000 		.4byte	0
+ 589 0025 00000000 		.4byte	.Ldebug_line0
+ 590 0029 02       		.uleb128 0x2
+ 591 002a 01       		.byte	0x1
+ 592 002b 06       		.byte	0x6
+ 593 002c 85020000 		.4byte	.LASF0
+ 594 0030 02       		.uleb128 0x2
+ 595 0031 01       		.byte	0x1
+ 596 0032 08       		.byte	0x8
+ 597 0033 DE000000 		.4byte	.LASF1
+ 598 0037 02       		.uleb128 0x2
+ 599 0038 02       		.byte	0x2
+ 600 0039 05       		.byte	0x5
+ 601 003a 0C020000 		.4byte	.LASF2
+ 602 003e 02       		.uleb128 0x2
+ 603 003f 02       		.byte	0x2
+ 604 0040 07       		.byte	0x7
+ 605 0041 87000000 		.4byte	.LASF3
+ 606 0045 02       		.uleb128 0x2
+ 607 0046 04       		.byte	0x4
+ 608 0047 05       		.byte	0x5
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 17
+
+
+ 609 0048 6F020000 		.4byte	.LASF4
+ 610 004c 02       		.uleb128 0x2
+ 611 004d 04       		.byte	0x4
+ 612 004e 07       		.byte	0x7
+ 613 004f F8000000 		.4byte	.LASF5
+ 614 0053 02       		.uleb128 0x2
+ 615 0054 08       		.byte	0x8
+ 616 0055 05       		.byte	0x5
+ 617 0056 9D010000 		.4byte	.LASF6
+ 618 005a 02       		.uleb128 0x2
+ 619 005b 08       		.byte	0x8
+ 620 005c 07       		.byte	0x7
+ 621 005d 64010000 		.4byte	.LASF7
+ 622 0061 03       		.uleb128 0x3
+ 623 0062 04       		.byte	0x4
+ 624 0063 05       		.byte	0x5
+ 625 0064 696E7400 		.ascii	"int\000"
+ 626 0068 02       		.uleb128 0x2
+ 627 0069 04       		.byte	0x4
+ 628 006a 07       		.byte	0x7
+ 629 006b 57010000 		.4byte	.LASF8
+ 630 006f 04       		.uleb128 0x4
+ 631 0070 25010000 		.4byte	.LASF9
+ 632 0074 02       		.byte	0x2
+ 633 0075 5B       		.byte	0x5b
+ 634 0076 30000000 		.4byte	0x30
+ 635 007a 04       		.uleb128 0x4
+ 636 007b 4B010000 		.4byte	.LASF10
+ 637 007f 02       		.byte	0x2
+ 638 0080 5D       		.byte	0x5d
+ 639 0081 4C000000 		.4byte	0x4c
+ 640 0085 04       		.uleb128 0x4
+ 641 0086 F2000000 		.4byte	.LASF11
+ 642 008a 02       		.byte	0x2
+ 643 008b 5F       		.byte	0x5f
+ 644 008c 37000000 		.4byte	0x37
+ 645 0090 02       		.uleb128 0x2
+ 646 0091 04       		.byte	0x4
+ 647 0092 04       		.byte	0x4
+ 648 0093 C1000000 		.4byte	.LASF12
+ 649 0097 02       		.uleb128 0x2
+ 650 0098 08       		.byte	0x8
+ 651 0099 04       		.byte	0x4
+ 652 009a 3B010000 		.4byte	.LASF13
+ 653 009e 04       		.uleb128 0x4
+ 654 009f EC000000 		.4byte	.LASF14
+ 655 00a3 02       		.byte	0x2
+ 656 00a4 6C       		.byte	0x6c
+ 657 00a5 A9000000 		.4byte	0xa9
+ 658 00a9 02       		.uleb128 0x2
+ 659 00aa 01       		.byte	0x1
+ 660 00ab 08       		.byte	0x8
+ 661 00ac 78020000 		.4byte	.LASF15
+ 662 00b0 02       		.uleb128 0x2
+ 663 00b1 04       		.byte	0x4
+ 664 00b2 07       		.byte	0x7
+ 665 00b3 94010000 		.4byte	.LASF16
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 18
+
+
+ 666 00b7 05       		.uleb128 0x5
+ 667 00b8 04       		.byte	0x4
+ 668 00b9 A9000000 		.4byte	0xa9
+ 669 00bd 05       		.uleb128 0x5
+ 670 00be 04       		.byte	0x4
+ 671 00bf C3000000 		.4byte	0xc3
+ 672 00c3 06       		.uleb128 0x6
+ 673 00c4 A9000000 		.4byte	0xa9
+ 674 00c8 05       		.uleb128 0x5
+ 675 00c9 04       		.byte	0x4
+ 676 00ca 6F000000 		.4byte	0x6f
+ 677 00ce 07       		.uleb128 0x7
+ 678 00cf 01       		.byte	0x1
+ 679 00d0 31010000 		.4byte	.LASF27
+ 680 00d4 01       		.byte	0x1
+ 681 00d5 3F       		.byte	0x3f
+ 682 00d6 01       		.byte	0x1
+ 683 00d7 6F000000 		.4byte	0x6f
+ 684 00db 01       		.byte	0x1
+ 685 00dc 21010000 		.4byte	0x121
+ 686 00e0 08       		.uleb128 0x8
+ 687 00e1 B9000000 		.4byte	.LASF17
+ 688 00e5 01       		.byte	0x1
+ 689 00e6 3F       		.byte	0x3f
+ 690 00e7 6F000000 		.4byte	0x6f
+ 691 00eb 08       		.uleb128 0x8
+ 692 00ec 16020000 		.4byte	.LASF18
+ 693 00f0 01       		.byte	0x1
+ 694 00f1 3F       		.byte	0x3f
+ 695 00f2 C8000000 		.4byte	0xc8
+ 696 00f6 08       		.uleb128 0x8
+ 697 00f7 AF000000 		.4byte	.LASF19
+ 698 00fb 01       		.byte	0x1
+ 699 00fc 3F       		.byte	0x3f
+ 700 00fd 6F000000 		.4byte	0x6f
+ 701 0101 09       		.uleb128 0x9
+ 702 0102 6900     		.ascii	"i\000"
+ 703 0104 01       		.byte	0x1
+ 704 0105 41       		.byte	0x41
+ 705 0106 61000000 		.4byte	0x61
+ 706 010a 0A       		.uleb128 0xa
+ 707 010b 6B000000 		.4byte	.LASF20
+ 708 010f 01       		.byte	0x1
+ 709 0110 42       		.byte	0x42
+ 710 0111 6F000000 		.4byte	0x6f
+ 711 0115 0A       		.uleb128 0xa
+ 712 0116 2B010000 		.4byte	.LASF21
+ 713 011a 01       		.byte	0x1
+ 714 011b 43       		.byte	0x43
+ 715 011c 21010000 		.4byte	0x121
+ 716 0120 00       		.byte	0
+ 717 0121 0B       		.uleb128 0xb
+ 718 0122 A9000000 		.4byte	0xa9
+ 719 0126 31010000 		.4byte	0x131
+ 720 012a 0C       		.uleb128 0xc
+ 721 012b B0000000 		.4byte	0xb0
+ 722 012f 09       		.byte	0x9
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 19
+
+
+ 723 0130 00       		.byte	0
+ 724 0131 0D       		.uleb128 0xd
+ 725 0132 01       		.byte	0x1
+ 726 0133 52010000 		.4byte	.LASF23
+ 727 0137 01       		.byte	0x1
+ 728 0138 16       		.byte	0x16
+ 729 0139 61000000 		.4byte	0x61
+ 730 013d 00000000 		.4byte	.LFB33
+ 731 0141 50000000 		.4byte	.LFE33
+ 732 0145 00000000 		.4byte	.LLST0
+ 733 0149 01       		.byte	0x1
+ 734 014a 76020000 		.4byte	0x276
+ 735 014e 0A       		.uleb128 0xa
+ 736 014f 2B010000 		.4byte	.LASF21
+ 737 0153 01       		.byte	0x1
+ 738 0154 19       		.byte	0x19
+ 739 0155 76020000 		.4byte	0x276
+ 740 0159 0E       		.uleb128 0xe
+ 741 015a AB010000 		.4byte	.LASF22
+ 742 015e 01       		.byte	0x1
+ 743 015f 1A       		.byte	0x1a
+ 744 0160 76020000 		.4byte	0x276
+ 745 0164 18       		.byte	0x18
+ 746 0165 31       		.byte	0x31
+ 747 0166 9F       		.byte	0x9f
+ 748 0167 93       		.byte	0x93
+ 749 0168 01       		.uleb128 0x1
+ 750 0169 32       		.byte	0x32
+ 751 016a 9F       		.byte	0x9f
+ 752 016b 93       		.byte	0x93
+ 753 016c 01       		.uleb128 0x1
+ 754 016d 33       		.byte	0x33
+ 755 016e 9F       		.byte	0x9f
+ 756 016f 93       		.byte	0x93
+ 757 0170 01       		.uleb128 0x1
+ 758 0171 31       		.byte	0x31
+ 759 0172 9F       		.byte	0x9f
+ 760 0173 93       		.byte	0x93
+ 761 0174 01       		.uleb128 0x1
+ 762 0175 32       		.byte	0x32
+ 763 0176 9F       		.byte	0x9f
+ 764 0177 93       		.byte	0x93
+ 765 0178 01       		.uleb128 0x1
+ 766 0179 33       		.byte	0x33
+ 767 017a 9F       		.byte	0x9f
+ 768 017b 93       		.byte	0x93
+ 769 017c 01       		.uleb128 0x1
+ 770 017d 0F       		.uleb128 0xf
+ 771 017e 7800     		.ascii	"x\000"
+ 772 0180 01       		.byte	0x1
+ 773 0181 1B       		.byte	0x1b
+ 774 0182 85000000 		.4byte	0x85
+ 775 0186 20000000 		.4byte	.LLST1
+ 776 018a 0F       		.uleb128 0xf
+ 777 018b 7900     		.ascii	"y\000"
+ 778 018d 01       		.byte	0x1
+ 779 018e 1C       		.byte	0x1c
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 20
+
+
+ 780 018f 85000000 		.4byte	0x85
+ 781 0193 34000000 		.4byte	.LLST2
+ 782 0197 0F       		.uleb128 0xf
+ 783 0198 7A00     		.ascii	"z\000"
+ 784 019a 01       		.byte	0x1
+ 785 019b 1D       		.byte	0x1d
+ 786 019c 85000000 		.4byte	0x85
+ 787 01a0 48000000 		.4byte	.LLST3
+ 788 01a4 0F       		.uleb128 0xf
+ 789 01a5 617800   		.ascii	"ax\000"
+ 790 01a8 01       		.byte	0x1
+ 791 01a9 1E       		.byte	0x1e
+ 792 01aa 85000000 		.4byte	0x85
+ 793 01ae 5C000000 		.4byte	.LLST4
+ 794 01b2 0F       		.uleb128 0xf
+ 795 01b3 617900   		.ascii	"ay\000"
+ 796 01b6 01       		.byte	0x1
+ 797 01b7 1F       		.byte	0x1f
+ 798 01b8 85000000 		.4byte	0x85
+ 799 01bc 7E000000 		.4byte	.LLST5
+ 800 01c0 10       		.uleb128 0x10
+ 801 01c1 617A00   		.ascii	"az\000"
+ 802 01c4 01       		.byte	0x1
+ 803 01c5 20       		.byte	0x20
+ 804 01c6 85000000 		.4byte	0x85
+ 805 01ca 0203     		.2byte	0x302
+ 806 01cc 0E       		.uleb128 0xe
+ 807 01cd 16020000 		.4byte	.LASF18
+ 808 01d1 01       		.byte	0x1
+ 809 01d2 22       		.byte	0x22
+ 810 01d3 B7000000 		.4byte	0xb7
+ 811 01d7 01       		.byte	0x1
+ 812 01d8 54       		.byte	0x54
+ 813 01d9 0F       		.uleb128 0xf
+ 814 01da 6E00     		.ascii	"n\000"
+ 815 01dc 01       		.byte	0x1
+ 816 01dd 23       		.byte	0x23
+ 817 01de 61000000 		.4byte	0x61
+ 818 01e2 A0000000 		.4byte	.LLST6
+ 819 01e6 11       		.uleb128 0x11
+ 820 01e7 06000000 		.4byte	.LVL1
+ 821 01eb 4A080000 		.4byte	0x84a
+ 822 01ef 12       		.uleb128 0x12
+ 823 01f0 10000000 		.4byte	.LVL3
+ 824 01f4 54080000 		.4byte	0x854
+ 825 01f8 04020000 		.4byte	0x204
+ 826 01fc 13       		.uleb128 0x13
+ 827 01fd 01       		.byte	0x1
+ 828 01fe 50       		.byte	0x50
+ 829 01ff 03       		.byte	0x3
+ 830 0200 0A       		.byte	0xa
+ 831 0201 E803     		.2byte	0x3e8
+ 832 0203 00       		.byte	0
+ 833 0204 12       		.uleb128 0x12
+ 834 0205 16000000 		.4byte	.LVL4
+ 835 0209 68080000 		.4byte	0x868
+ 836 020d 1B020000 		.4byte	0x21b
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 21
+
+
+ 837 0211 13       		.uleb128 0x13
+ 838 0212 01       		.byte	0x1
+ 839 0213 50       		.byte	0x50
+ 840 0214 05       		.byte	0x5
+ 841 0215 03       		.byte	0x3
+ 842 0216 00000000 		.4byte	.LC1
+ 843 021a 00       		.byte	0
+ 844 021b 12       		.uleb128 0x12
+ 845 021c 1C000000 		.4byte	.LVL5
+ 846 0220 68080000 		.4byte	0x868
+ 847 0224 32020000 		.4byte	0x232
+ 848 0228 13       		.uleb128 0x13
+ 849 0229 01       		.byte	0x1
+ 850 022a 50       		.byte	0x50
+ 851 022b 05       		.byte	0x5
+ 852 022c 03       		.byte	0x3
+ 853 022d 08000000 		.4byte	.LC3
+ 854 0231 00       		.byte	0
+ 855 0232 12       		.uleb128 0x12
+ 856 0233 2E000000 		.4byte	.LVL6
+ 857 0237 88080000 		.4byte	0x888
+ 858 023b 65020000 		.4byte	0x265
+ 859 023f 13       		.uleb128 0x13
+ 860 0240 01       		.byte	0x1
+ 861 0241 53       		.byte	0x53
+ 862 0242 03       		.byte	0x3
+ 863 0243 0A       		.byte	0xa
+ 864 0244 0301     		.2byte	0x103
+ 865 0246 13       		.uleb128 0x13
+ 866 0247 01       		.byte	0x1
+ 867 0248 52       		.byte	0x52
+ 868 0249 03       		.byte	0x3
+ 869 024a 0A       		.byte	0xa
+ 870 024b 0102     		.2byte	0x201
+ 871 024d 13       		.uleb128 0x13
+ 872 024e 01       		.byte	0x1
+ 873 024f 51       		.byte	0x51
+ 874 0250 05       		.byte	0x5
+ 875 0251 03       		.byte	0x3
+ 876 0252 10000000 		.4byte	.LC5
+ 877 0256 13       		.uleb128 0x13
+ 878 0257 01       		.byte	0x1
+ 879 0258 50       		.byte	0x50
+ 880 0259 02       		.byte	0x2
+ 881 025a 74       		.byte	0x74
+ 882 025b 00       		.sleb128 0
+ 883 025c 13       		.uleb128 0x13
+ 884 025d 02       		.byte	0x2
+ 885 025e 7D       		.byte	0x7d
+ 886 025f 00       		.sleb128 0
+ 887 0260 03       		.byte	0x3
+ 888 0261 0A       		.byte	0xa
+ 889 0262 0203     		.2byte	0x302
+ 890 0264 00       		.byte	0
+ 891 0265 14       		.uleb128 0x14
+ 892 0266 36000000 		.4byte	.LVL9
+ 893 026a A6080000 		.4byte	0x8a6
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 22
+
+
+ 894 026e 13       		.uleb128 0x13
+ 895 026f 01       		.byte	0x1
+ 896 0270 50       		.byte	0x50
+ 897 0271 02       		.byte	0x2
+ 898 0272 74       		.byte	0x74
+ 899 0273 00       		.sleb128 0
+ 900 0274 00       		.byte	0
+ 901 0275 00       		.byte	0
+ 902 0276 0B       		.uleb128 0xb
+ 903 0277 6F000000 		.4byte	0x6f
+ 904 027b 86020000 		.4byte	0x286
+ 905 027f 0C       		.uleb128 0xc
+ 906 0280 B0000000 		.4byte	0xb0
+ 907 0284 05       		.byte	0x5
+ 908 0285 00       		.byte	0
+ 909 0286 15       		.uleb128 0x15
+ 910 0287 CE000000 		.4byte	0xce
+ 911 028b 00000000 		.4byte	.LFB34
+ 912 028f 70000000 		.4byte	.LFE34
+ 913 0293 BE000000 		.4byte	.LLST7
+ 914 0297 01       		.byte	0x1
+ 915 0298 6E030000 		.4byte	0x36e
+ 916 029c 16       		.uleb128 0x16
+ 917 029d E0000000 		.4byte	0xe0
+ 918 02a1 EA000000 		.4byte	.LLST8
+ 919 02a5 16       		.uleb128 0x16
+ 920 02a6 EB000000 		.4byte	0xeb
+ 921 02aa 0B010000 		.4byte	.LLST9
+ 922 02ae 16       		.uleb128 0x16
+ 923 02af F6000000 		.4byte	0xf6
+ 924 02b3 37010000 		.4byte	.LLST10
+ 925 02b7 17       		.uleb128 0x17
+ 926 02b8 01010000 		.4byte	0x101
+ 927 02bc 18       		.uleb128 0x18
+ 928 02bd 0A010000 		.4byte	0x10a
+ 929 02c1 58010000 		.4byte	.LLST11
+ 930 02c5 19       		.uleb128 0x19
+ 931 02c6 15010000 		.4byte	0x115
+ 932 02ca 02       		.byte	0x2
+ 933 02cb 91       		.byte	0x91
+ 934 02cc 5C       		.sleb128 -36
+ 935 02cd 1A       		.uleb128 0x1a
+ 936 02ce CE000000 		.4byte	0xce
+ 937 02d2 32000000 		.4byte	.LBB4
+ 938 02d6 50000000 		.4byte	.LBE4
+ 939 02da 01       		.byte	0x1
+ 940 02db 3F       		.byte	0x3f
+ 941 02dc 1F030000 		.4byte	0x31f
+ 942 02e0 1B       		.uleb128 0x1b
+ 943 02e1 F6000000 		.4byte	0xf6
+ 944 02e5 1B       		.uleb128 0x1b
+ 945 02e6 EB000000 		.4byte	0xeb
+ 946 02ea 1C       		.uleb128 0x1c
+ 947 02eb 32000000 		.4byte	.LBB5
+ 948 02ef 50000000 		.4byte	.LBE5
+ 949 02f3 17       		.uleb128 0x17
+ 950 02f4 01010000 		.4byte	0x101
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 23
+
+
+ 951 02f8 18       		.uleb128 0x18
+ 952 02f9 0A010000 		.4byte	0x10a
+ 953 02fd A2010000 		.4byte	.LLST12
+ 954 0301 17       		.uleb128 0x17
+ 955 0302 15010000 		.4byte	0x115
+ 956 0306 1B       		.uleb128 0x1b
+ 957 0307 E0000000 		.4byte	0xe0
+ 958 030b 11       		.uleb128 0x11
+ 959 030c 3E000000 		.4byte	.LVL20
+ 960 0310 CB080000 		.4byte	0x8cb
+ 961 0314 11       		.uleb128 0x11
+ 962 0315 4C000000 		.4byte	.LVL23
+ 963 0319 E3080000 		.4byte	0x8e3
+ 964 031d 00       		.byte	0
+ 965 031e 00       		.byte	0
+ 966 031f 11       		.uleb128 0x11
+ 967 0320 0E000000 		.4byte	.LVL11
+ 968 0324 F1080000 		.4byte	0x8f1
+ 969 0328 12       		.uleb128 0x12
+ 970 0329 16000000 		.4byte	.LVL12
+ 971 032d FF080000 		.4byte	0x8ff
+ 972 0331 40030000 		.4byte	0x340
+ 973 0335 13       		.uleb128 0x13
+ 974 0336 01       		.byte	0x1
+ 975 0337 51       		.byte	0x51
+ 976 0338 01       		.byte	0x1
+ 977 0339 30       		.byte	0x30
+ 978 033a 13       		.uleb128 0x13
+ 979 033b 01       		.byte	0x1
+ 980 033c 50       		.byte	0x50
+ 981 033d 01       		.byte	0x1
+ 982 033e 3E       		.byte	0x3e
+ 983 033f 00       		.byte	0
+ 984 0340 12       		.uleb128 0x12
+ 985 0341 2A000000 		.4byte	.LVL17
+ 986 0345 CB080000 		.4byte	0x8cb
+ 987 0349 54030000 		.4byte	0x354
+ 988 034d 13       		.uleb128 0x13
+ 989 034e 01       		.byte	0x1
+ 990 034f 50       		.byte	0x50
+ 991 0350 02       		.byte	0x2
+ 992 0351 75       		.byte	0x75
+ 993 0352 00       		.sleb128 0
+ 994 0353 00       		.byte	0
+ 995 0354 11       		.uleb128 0x11
+ 996 0355 5A000000 		.4byte	.LVL27
+ 997 0359 88080000 		.4byte	0x888
+ 998 035d 14       		.uleb128 0x14
+ 999 035e 60000000 		.4byte	.LVL28
+ 1000 0362 68080000 		.4byte	0x868
+ 1001 0366 13       		.uleb128 0x13
+ 1002 0367 01       		.byte	0x1
+ 1003 0368 50       		.byte	0x50
+ 1004 0369 02       		.byte	0x2
+ 1005 036a 91       		.byte	0x91
+ 1006 036b 5C       		.sleb128 -36
+ 1007 036c 00       		.byte	0
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 24
+
+
+ 1008 036d 00       		.byte	0
+ 1009 036e 1D       		.uleb128 0x1d
+ 1010 036f 01       		.byte	0x1
+ 1011 0370 66020000 		.4byte	.LASF41
+ 1012 0374 01       		.byte	0x1
+ 1013 0375 68       		.byte	0x68
+ 1014 0376 01       		.byte	0x1
+ 1015 0377 6F000000 		.4byte	0x6f
+ 1016 037b 00000000 		.4byte	.LFB35
+ 1017 037f 60000000 		.4byte	.LFE35
+ 1018 0383 C0010000 		.4byte	.LLST13
+ 1019 0387 01       		.byte	0x1
+ 1020 0388 90040000 		.4byte	0x490
+ 1021 038c 1E       		.uleb128 0x1e
+ 1022 038d B9000000 		.4byte	.LASF17
+ 1023 0391 01       		.byte	0x1
+ 1024 0392 68       		.byte	0x68
+ 1025 0393 6F000000 		.4byte	0x6f
+ 1026 0397 EC010000 		.4byte	.LLST14
+ 1027 039b 1E       		.uleb128 0x1e
+ 1028 039c 16020000 		.4byte	.LASF18
+ 1029 03a0 01       		.byte	0x1
+ 1030 03a1 68       		.byte	0x68
+ 1031 03a2 C8000000 		.4byte	0xc8
+ 1032 03a6 0D020000 		.4byte	.LLST15
+ 1033 03aa 1E       		.uleb128 0x1e
+ 1034 03ab AF000000 		.4byte	.LASF19
+ 1035 03af 01       		.byte	0x1
+ 1036 03b0 68       		.byte	0x68
+ 1037 03b1 6F000000 		.4byte	0x6f
+ 1038 03b5 39020000 		.4byte	.LLST16
+ 1039 03b9 1F       		.uleb128 0x1f
+ 1040 03ba 6B000000 		.4byte	.LASF20
+ 1041 03be 01       		.byte	0x1
+ 1042 03bf 6A       		.byte	0x6a
+ 1043 03c0 6F000000 		.4byte	0x6f
+ 1044 03c4 5A020000 		.4byte	.LLST17
+ 1045 03c8 09       		.uleb128 0x9
+ 1046 03c9 6900     		.ascii	"i\000"
+ 1047 03cb 01       		.byte	0x1
+ 1048 03cc 6B       		.byte	0x6b
+ 1049 03cd 61000000 		.4byte	0x61
+ 1050 03d1 0E       		.uleb128 0xe
+ 1051 03d2 2B010000 		.4byte	.LASF21
+ 1052 03d6 01       		.byte	0x1
+ 1053 03d7 6C       		.byte	0x6c
+ 1054 03d8 90040000 		.4byte	0x490
+ 1055 03dc 02       		.byte	0x2
+ 1056 03dd 91       		.byte	0x91
+ 1057 03de 5C       		.sleb128 -36
+ 1058 03df 11       		.uleb128 0x11
+ 1059 03e0 0E000000 		.4byte	.LVL31
+ 1060 03e4 F1080000 		.4byte	0x8f1
+ 1061 03e8 12       		.uleb128 0x12
+ 1062 03e9 16000000 		.4byte	.LVL32
+ 1063 03ed FF080000 		.4byte	0x8ff
+ 1064 03f1 00040000 		.4byte	0x400
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 25
+
+
+ 1065 03f5 13       		.uleb128 0x13
+ 1066 03f6 01       		.byte	0x1
+ 1067 03f7 51       		.byte	0x51
+ 1068 03f8 01       		.byte	0x1
+ 1069 03f9 30       		.byte	0x30
+ 1070 03fa 13       		.uleb128 0x13
+ 1071 03fb 01       		.byte	0x1
+ 1072 03fc 50       		.byte	0x50
+ 1073 03fd 01       		.byte	0x1
+ 1074 03fe 3E       		.byte	0x3e
+ 1075 03ff 00       		.byte	0
+ 1076 0400 12       		.uleb128 0x12
+ 1077 0401 26000000 		.4byte	.LVL35
+ 1078 0405 88080000 		.4byte	0x888
+ 1079 0409 23040000 		.4byte	0x423
+ 1080 040d 13       		.uleb128 0x13
+ 1081 040e 01       		.byte	0x1
+ 1082 040f 52       		.byte	0x52
+ 1083 0410 02       		.byte	0x2
+ 1084 0411 74       		.byte	0x74
+ 1085 0412 00       		.sleb128 0
+ 1086 0413 13       		.uleb128 0x13
+ 1087 0414 01       		.byte	0x1
+ 1088 0415 51       		.byte	0x51
+ 1089 0416 05       		.byte	0x5
+ 1090 0417 03       		.byte	0x3
+ 1091 0418 48000000 		.4byte	.LC13
+ 1092 041c 13       		.uleb128 0x13
+ 1093 041d 01       		.byte	0x1
+ 1094 041e 50       		.byte	0x50
+ 1095 041f 02       		.byte	0x2
+ 1096 0420 91       		.byte	0x91
+ 1097 0421 5C       		.sleb128 -36
+ 1098 0422 00       		.byte	0
+ 1099 0423 12       		.uleb128 0x12
+ 1100 0424 2C000000 		.4byte	.LVL36
+ 1101 0428 68080000 		.4byte	0x868
+ 1102 042c 37040000 		.4byte	0x437
+ 1103 0430 13       		.uleb128 0x13
+ 1104 0431 01       		.byte	0x1
+ 1105 0432 50       		.byte	0x50
+ 1106 0433 02       		.byte	0x2
+ 1107 0434 91       		.byte	0x91
+ 1108 0435 5C       		.sleb128 -36
+ 1109 0436 00       		.byte	0
+ 1110 0437 12       		.uleb128 0x12
+ 1111 0438 34000000 		.4byte	.LVL39
+ 1112 043c CB080000 		.4byte	0x8cb
+ 1113 0440 4B040000 		.4byte	0x44b
+ 1114 0444 13       		.uleb128 0x13
+ 1115 0445 01       		.byte	0x1
+ 1116 0446 50       		.byte	0x50
+ 1117 0447 02       		.byte	0x2
+ 1118 0448 77       		.byte	0x77
+ 1119 0449 00       		.sleb128 0
+ 1120 044a 00       		.byte	0
+ 1121 044b 12       		.uleb128 0x12
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 26
+
+
+ 1122 044c 40000000 		.4byte	.LVL42
+ 1123 0450 68080000 		.4byte	0x868
+ 1124 0454 62040000 		.4byte	0x462
+ 1125 0458 13       		.uleb128 0x13
+ 1126 0459 01       		.byte	0x1
+ 1127 045a 50       		.byte	0x50
+ 1128 045b 05       		.byte	0x5
+ 1129 045c 03       		.byte	0x3
+ 1130 045d 58000000 		.4byte	.LC15
+ 1131 0461 00       		.byte	0
+ 1132 0462 12       		.uleb128 0x12
+ 1133 0463 4C000000 		.4byte	.LVL43
+ 1134 0467 1C090000 		.4byte	0x91c
+ 1135 046b 86040000 		.4byte	0x486
+ 1136 046f 13       		.uleb128 0x13
+ 1137 0470 01       		.byte	0x1
+ 1138 0471 53       		.byte	0x53
+ 1139 0472 01       		.byte	0x1
+ 1140 0473 31       		.byte	0x31
+ 1141 0474 13       		.uleb128 0x13
+ 1142 0475 01       		.byte	0x1
+ 1143 0476 52       		.byte	0x52
+ 1144 0477 02       		.byte	0x2
+ 1145 0478 75       		.byte	0x75
+ 1146 0479 00       		.sleb128 0
+ 1147 047a 13       		.uleb128 0x13
+ 1148 047b 01       		.byte	0x1
+ 1149 047c 51       		.byte	0x51
+ 1150 047d 02       		.byte	0x2
+ 1151 047e 76       		.byte	0x76
+ 1152 047f 00       		.sleb128 0
+ 1153 0480 13       		.uleb128 0x13
+ 1154 0481 01       		.byte	0x1
+ 1155 0482 50       		.byte	0x50
+ 1156 0483 01       		.byte	0x1
+ 1157 0484 3E       		.byte	0x3e
+ 1158 0485 00       		.byte	0
+ 1159 0486 11       		.uleb128 0x11
+ 1160 0487 50000000 		.4byte	.LVL44
+ 1161 048b E3080000 		.4byte	0x8e3
+ 1162 048f 00       		.byte	0
+ 1163 0490 0B       		.uleb128 0xb
+ 1164 0491 A9000000 		.4byte	0xa9
+ 1165 0495 A0040000 		.4byte	0x4a0
+ 1166 0499 0C       		.uleb128 0xc
+ 1167 049a B0000000 		.4byte	0xb0
+ 1168 049e 0B       		.byte	0xb
+ 1169 049f 00       		.byte	0
+ 1170 04a0 20       		.uleb128 0x20
+ 1171 04a1 01       		.byte	0x1
+ 1172 04a2 54000000 		.4byte	.LASF42
+ 1173 04a6 01       		.byte	0x1
+ 1174 04a7 90       		.byte	0x90
+ 1175 04a8 00000000 		.4byte	.LFB36
+ 1176 04ac B8000000 		.4byte	.LFE36
+ 1177 04b0 AF020000 		.4byte	.LLST18
+ 1178 04b4 01       		.byte	0x1
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 27
+
+
+ 1179 04b5 EB060000 		.4byte	0x6eb
+ 1180 04b9 0E       		.uleb128 0xe
+ 1181 04ba 2B010000 		.4byte	.LASF21
+ 1182 04be 01       		.byte	0x1
+ 1183 04bf 92       		.byte	0x92
+ 1184 04c0 EB060000 		.4byte	0x6eb
+ 1185 04c4 02       		.byte	0x2
+ 1186 04c5 91       		.byte	0x91
+ 1187 04c6 6C       		.sleb128 -20
+ 1188 04c7 12       		.uleb128 0x12
+ 1189 04c8 0A000000 		.4byte	.LVL47
+ 1190 04cc 43090000 		.4byte	0x943
+ 1191 04d0 DA040000 		.4byte	0x4da
+ 1192 04d4 13       		.uleb128 0x13
+ 1193 04d5 01       		.byte	0x1
+ 1194 04d6 50       		.byte	0x50
+ 1195 04d7 01       		.byte	0x1
+ 1196 04d8 31       		.byte	0x31
+ 1197 04d9 00       		.byte	0
+ 1198 04da 12       		.uleb128 0x12
+ 1199 04db 1A000000 		.4byte	.LVL48
+ 1200 04df CE000000 		.4byte	0xce
+ 1201 04e3 F9040000 		.4byte	0x4f9
+ 1202 04e7 13       		.uleb128 0x13
+ 1203 04e8 01       		.byte	0x1
+ 1204 04e9 52       		.byte	0x52
+ 1205 04ea 02       		.byte	0x2
+ 1206 04eb 74       		.byte	0x74
+ 1207 04ec 00       		.sleb128 0
+ 1208 04ed 13       		.uleb128 0x13
+ 1209 04ee 01       		.byte	0x1
+ 1210 04ef 51       		.byte	0x51
+ 1211 04f0 02       		.byte	0x2
+ 1212 04f1 75       		.byte	0x75
+ 1213 04f2 00       		.sleb128 0
+ 1214 04f3 13       		.uleb128 0x13
+ 1215 04f4 01       		.byte	0x1
+ 1216 04f5 50       		.byte	0x50
+ 1217 04f6 01       		.byte	0x1
+ 1218 04f7 41       		.byte	0x41
+ 1219 04f8 00       		.byte	0
+ 1220 04f9 12       		.uleb128 0x12
+ 1221 04fa 26000000 		.4byte	.LVL49
+ 1222 04fe CE000000 		.4byte	0xce
+ 1223 0502 18050000 		.4byte	0x518
+ 1224 0506 13       		.uleb128 0x13
+ 1225 0507 01       		.byte	0x1
+ 1226 0508 52       		.byte	0x52
+ 1227 0509 02       		.byte	0x2
+ 1228 050a 74       		.byte	0x74
+ 1229 050b 00       		.sleb128 0
+ 1230 050c 13       		.uleb128 0x13
+ 1231 050d 01       		.byte	0x1
+ 1232 050e 51       		.byte	0x51
+ 1233 050f 02       		.byte	0x2
+ 1234 0510 75       		.byte	0x75
+ 1235 0511 00       		.sleb128 0
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 28
+
+
+ 1236 0512 13       		.uleb128 0x13
+ 1237 0513 01       		.byte	0x1
+ 1238 0514 50       		.byte	0x50
+ 1239 0515 01       		.byte	0x1
+ 1240 0516 40       		.byte	0x40
+ 1241 0517 00       		.byte	0
+ 1242 0518 12       		.uleb128 0x12
+ 1243 0519 2C000000 		.4byte	.LVL50
+ 1244 051d 43090000 		.4byte	0x943
+ 1245 0521 2B050000 		.4byte	0x52b
+ 1246 0525 13       		.uleb128 0x13
+ 1247 0526 01       		.byte	0x1
+ 1248 0527 50       		.byte	0x50
+ 1249 0528 01       		.byte	0x1
+ 1250 0529 30       		.byte	0x30
+ 1251 052a 00       		.byte	0
+ 1252 052b 12       		.uleb128 0x12
+ 1253 052c 32000000 		.4byte	.LVL51
+ 1254 0530 54080000 		.4byte	0x854
+ 1255 0534 3E050000 		.4byte	0x53e
+ 1256 0538 13       		.uleb128 0x13
+ 1257 0539 01       		.byte	0x1
+ 1258 053a 50       		.byte	0x50
+ 1259 053b 01       		.byte	0x1
+ 1260 053c 3A       		.byte	0x3a
+ 1261 053d 00       		.byte	0
+ 1262 053e 12       		.uleb128 0x12
+ 1263 053f 38000000 		.4byte	.LVL52
+ 1264 0543 57090000 		.4byte	0x957
+ 1265 0547 52050000 		.4byte	0x552
+ 1266 054b 13       		.uleb128 0x13
+ 1267 054c 01       		.byte	0x1
+ 1268 054d 50       		.byte	0x50
+ 1269 054e 02       		.byte	0x2
+ 1270 054f 08       		.byte	0x8
+ 1271 0550 20       		.byte	0x20
+ 1272 0551 00       		.byte	0
+ 1273 0552 12       		.uleb128 0x12
+ 1274 0553 3E000000 		.4byte	.LVL53
+ 1275 0557 57090000 		.4byte	0x957
+ 1276 055b 66050000 		.4byte	0x566
+ 1277 055f 13       		.uleb128 0x13
+ 1278 0560 01       		.byte	0x1
+ 1279 0561 50       		.byte	0x50
+ 1280 0562 02       		.byte	0x2
+ 1281 0563 08       		.byte	0x8
+ 1282 0564 37       		.byte	0x37
+ 1283 0565 00       		.byte	0
+ 1284 0566 12       		.uleb128 0x12
+ 1285 0567 44000000 		.4byte	.LVL54
+ 1286 056b 43090000 		.4byte	0x943
+ 1287 056f 7A050000 		.4byte	0x57a
+ 1288 0573 13       		.uleb128 0x13
+ 1289 0574 01       		.byte	0x1
+ 1290 0575 50       		.byte	0x50
+ 1291 0576 02       		.byte	0x2
+ 1292 0577 74       		.byte	0x74
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 29
+
+
+ 1293 0578 00       		.sleb128 0
+ 1294 0579 00       		.byte	0
+ 1295 057a 12       		.uleb128 0x12
+ 1296 057b 4A000000 		.4byte	.LVL55
+ 1297 057f 54080000 		.4byte	0x854
+ 1298 0583 8E050000 		.4byte	0x58e
+ 1299 0587 13       		.uleb128 0x13
+ 1300 0588 01       		.byte	0x1
+ 1301 0589 50       		.byte	0x50
+ 1302 058a 02       		.byte	0x2
+ 1303 058b 08       		.byte	0x8
+ 1304 058c 64       		.byte	0x64
+ 1305 058d 00       		.byte	0
+ 1306 058e 12       		.uleb128 0x12
+ 1307 058f 50000000 		.4byte	.LVL56
+ 1308 0593 43090000 		.4byte	0x943
+ 1309 0597 A1050000 		.4byte	0x5a1
+ 1310 059b 13       		.uleb128 0x13
+ 1311 059c 01       		.byte	0x1
+ 1312 059d 50       		.byte	0x50
+ 1313 059e 01       		.byte	0x1
+ 1314 059f 30       		.byte	0x30
+ 1315 05a0 00       		.byte	0
+ 1316 05a1 12       		.uleb128 0x12
+ 1317 05a2 56000000 		.4byte	.LVL57
+ 1318 05a6 54080000 		.4byte	0x854
+ 1319 05aa B4050000 		.4byte	0x5b4
+ 1320 05ae 13       		.uleb128 0x13
+ 1321 05af 01       		.byte	0x1
+ 1322 05b0 50       		.byte	0x50
+ 1323 05b1 01       		.byte	0x1
+ 1324 05b2 3A       		.byte	0x3a
+ 1325 05b3 00       		.byte	0
+ 1326 05b4 12       		.uleb128 0x12
+ 1327 05b5 5C000000 		.4byte	.LVL58
+ 1328 05b9 57090000 		.4byte	0x957
+ 1329 05bd C8050000 		.4byte	0x5c8
+ 1330 05c1 13       		.uleb128 0x13
+ 1331 05c2 01       		.byte	0x1
+ 1332 05c3 50       		.byte	0x50
+ 1333 05c4 02       		.byte	0x2
+ 1334 05c5 08       		.byte	0x8
+ 1335 05c6 21       		.byte	0x21
+ 1336 05c7 00       		.byte	0
+ 1337 05c8 12       		.uleb128 0x12
+ 1338 05c9 62000000 		.4byte	.LVL59
+ 1339 05cd 57090000 		.4byte	0x957
+ 1340 05d1 DB050000 		.4byte	0x5db
+ 1341 05d5 13       		.uleb128 0x13
+ 1342 05d6 01       		.byte	0x1
+ 1343 05d7 50       		.byte	0x50
+ 1344 05d8 01       		.byte	0x1
+ 1345 05d9 30       		.byte	0x30
+ 1346 05da 00       		.byte	0
+ 1347 05db 12       		.uleb128 0x12
+ 1348 05dc 68000000 		.4byte	.LVL60
+ 1349 05e0 43090000 		.4byte	0x943
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 30
+
+
+ 1350 05e4 EF050000 		.4byte	0x5ef
+ 1351 05e8 13       		.uleb128 0x13
+ 1352 05e9 01       		.byte	0x1
+ 1353 05ea 50       		.byte	0x50
+ 1354 05eb 02       		.byte	0x2
+ 1355 05ec 74       		.byte	0x74
+ 1356 05ed 00       		.sleb128 0
+ 1357 05ee 00       		.byte	0
+ 1358 05ef 12       		.uleb128 0x12
+ 1359 05f0 6E000000 		.4byte	.LVL61
+ 1360 05f4 54080000 		.4byte	0x854
+ 1361 05f8 03060000 		.4byte	0x603
+ 1362 05fc 13       		.uleb128 0x13
+ 1363 05fd 01       		.byte	0x1
+ 1364 05fe 50       		.byte	0x50
+ 1365 05ff 02       		.byte	0x2
+ 1366 0600 08       		.byte	0x8
+ 1367 0601 64       		.byte	0x64
+ 1368 0602 00       		.byte	0
+ 1369 0603 12       		.uleb128 0x12
+ 1370 0604 74000000 		.4byte	.LVL62
+ 1371 0608 43090000 		.4byte	0x943
+ 1372 060c 16060000 		.4byte	0x616
+ 1373 0610 13       		.uleb128 0x13
+ 1374 0611 01       		.byte	0x1
+ 1375 0612 50       		.byte	0x50
+ 1376 0613 01       		.byte	0x1
+ 1377 0614 30       		.byte	0x30
+ 1378 0615 00       		.byte	0
+ 1379 0616 12       		.uleb128 0x12
+ 1380 0617 7A000000 		.4byte	.LVL63
+ 1381 061b 54080000 		.4byte	0x854
+ 1382 061f 29060000 		.4byte	0x629
+ 1383 0623 13       		.uleb128 0x13
+ 1384 0624 01       		.byte	0x1
+ 1385 0625 50       		.byte	0x50
+ 1386 0626 01       		.byte	0x1
+ 1387 0627 3A       		.byte	0x3a
+ 1388 0628 00       		.byte	0
+ 1389 0629 12       		.uleb128 0x12
+ 1390 062a 80000000 		.4byte	.LVL64
+ 1391 062e 57090000 		.4byte	0x957
+ 1392 0632 3D060000 		.4byte	0x63d
+ 1393 0636 13       		.uleb128 0x13
+ 1394 0637 01       		.byte	0x1
+ 1395 0638 50       		.byte	0x50
+ 1396 0639 02       		.byte	0x2
+ 1397 063a 08       		.byte	0x8
+ 1398 063b 22       		.byte	0x22
+ 1399 063c 00       		.byte	0
+ 1400 063d 12       		.uleb128 0x12
+ 1401 063e 86000000 		.4byte	.LVL65
+ 1402 0642 57090000 		.4byte	0x957
+ 1403 0646 50060000 		.4byte	0x650
+ 1404 064a 13       		.uleb128 0x13
+ 1405 064b 01       		.byte	0x1
+ 1406 064c 50       		.byte	0x50
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 31
+
+
+ 1407 064d 01       		.byte	0x1
+ 1408 064e 30       		.byte	0x30
+ 1409 064f 00       		.byte	0
+ 1410 0650 12       		.uleb128 0x12
+ 1411 0651 8C000000 		.4byte	.LVL66
+ 1412 0655 43090000 		.4byte	0x943
+ 1413 0659 64060000 		.4byte	0x664
+ 1414 065d 13       		.uleb128 0x13
+ 1415 065e 01       		.byte	0x1
+ 1416 065f 50       		.byte	0x50
+ 1417 0660 02       		.byte	0x2
+ 1418 0661 74       		.byte	0x74
+ 1419 0662 00       		.sleb128 0
+ 1420 0663 00       		.byte	0
+ 1421 0664 12       		.uleb128 0x12
+ 1422 0665 92000000 		.4byte	.LVL67
+ 1423 0669 54080000 		.4byte	0x854
+ 1424 066d 78060000 		.4byte	0x678
+ 1425 0671 13       		.uleb128 0x13
+ 1426 0672 01       		.byte	0x1
+ 1427 0673 50       		.byte	0x50
+ 1428 0674 02       		.byte	0x2
+ 1429 0675 08       		.byte	0x8
+ 1430 0676 64       		.byte	0x64
+ 1431 0677 00       		.byte	0
+ 1432 0678 12       		.uleb128 0x12
+ 1433 0679 98000000 		.4byte	.LVL68
+ 1434 067d 43090000 		.4byte	0x943
+ 1435 0681 8B060000 		.4byte	0x68b
+ 1436 0685 13       		.uleb128 0x13
+ 1437 0686 01       		.byte	0x1
+ 1438 0687 50       		.byte	0x50
+ 1439 0688 01       		.byte	0x1
+ 1440 0689 30       		.byte	0x30
+ 1441 068a 00       		.byte	0
+ 1442 068b 12       		.uleb128 0x12
+ 1443 068c 9E000000 		.4byte	.LVL69
+ 1444 0690 54080000 		.4byte	0x854
+ 1445 0694 9E060000 		.4byte	0x69e
+ 1446 0698 13       		.uleb128 0x13
+ 1447 0699 01       		.byte	0x1
+ 1448 069a 50       		.byte	0x50
+ 1449 069b 01       		.byte	0x1
+ 1450 069c 3A       		.byte	0x3a
+ 1451 069d 00       		.byte	0
+ 1452 069e 12       		.uleb128 0x12
+ 1453 069f A4000000 		.4byte	.LVL70
+ 1454 06a3 57090000 		.4byte	0x957
+ 1455 06a7 B2060000 		.4byte	0x6b2
+ 1456 06ab 13       		.uleb128 0x13
+ 1457 06ac 01       		.byte	0x1
+ 1458 06ad 50       		.byte	0x50
+ 1459 06ae 02       		.byte	0x2
+ 1460 06af 08       		.byte	0x8
+ 1461 06b0 23       		.byte	0x23
+ 1462 06b1 00       		.byte	0
+ 1463 06b2 12       		.uleb128 0x12
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 32
+
+
+ 1464 06b3 AA000000 		.4byte	.LVL71
+ 1465 06b7 57090000 		.4byte	0x957
+ 1466 06bb C6060000 		.4byte	0x6c6
+ 1467 06bf 13       		.uleb128 0x13
+ 1468 06c0 01       		.byte	0x1
+ 1469 06c1 50       		.byte	0x50
+ 1470 06c2 02       		.byte	0x2
+ 1471 06c3 08       		.byte	0x8
+ 1472 06c4 30       		.byte	0x30
+ 1473 06c5 00       		.byte	0
+ 1474 06c6 12       		.uleb128 0x12
+ 1475 06c7 B0000000 		.4byte	.LVL72
+ 1476 06cb 43090000 		.4byte	0x943
+ 1477 06cf DA060000 		.4byte	0x6da
+ 1478 06d3 13       		.uleb128 0x13
+ 1479 06d4 01       		.byte	0x1
+ 1480 06d5 50       		.byte	0x50
+ 1481 06d6 02       		.byte	0x2
+ 1482 06d7 74       		.byte	0x74
+ 1483 06d8 00       		.sleb128 0
+ 1484 06d9 00       		.byte	0
+ 1485 06da 14       		.uleb128 0x14
+ 1486 06db B6000000 		.4byte	.LVL73
+ 1487 06df 54080000 		.4byte	0x854
+ 1488 06e3 13       		.uleb128 0x13
+ 1489 06e4 01       		.byte	0x1
+ 1490 06e5 50       		.byte	0x50
+ 1491 06e6 02       		.byte	0x2
+ 1492 06e7 08       		.byte	0x8
+ 1493 06e8 64       		.byte	0x64
+ 1494 06e9 00       		.byte	0
+ 1495 06ea 00       		.byte	0
+ 1496 06eb 0B       		.uleb128 0xb
+ 1497 06ec 6F000000 		.4byte	0x6f
+ 1498 06f0 FB060000 		.4byte	0x6fb
+ 1499 06f4 0C       		.uleb128 0xc
+ 1500 06f5 B0000000 		.4byte	0xb0
+ 1501 06f9 01       		.byte	0x1
+ 1502 06fa 00       		.byte	0
+ 1503 06fb 21       		.uleb128 0x21
+ 1504 06fc 01       		.byte	0x1
+ 1505 06fd A6000000 		.4byte	.LASF24
+ 1506 0701 01       		.byte	0x1
+ 1507 0702 B7       		.byte	0xb7
+ 1508 0703 01       		.byte	0x1
+ 1509 0704 00000000 		.4byte	.LFB37
+ 1510 0708 5C000000 		.4byte	.LFE37
+ 1511 070c CF020000 		.4byte	.LLST19
+ 1512 0710 01       		.byte	0x1
+ 1513 0711 33080000 		.4byte	0x833
+ 1514 0715 22       		.uleb128 0x22
+ 1515 0716 72656700 		.ascii	"reg\000"
+ 1516 071a 01       		.byte	0x1
+ 1517 071b B7       		.byte	0xb7
+ 1518 071c 6F000000 		.4byte	0x6f
+ 1519 0720 EF020000 		.4byte	.LLST20
+ 1520 0724 1E       		.uleb128 0x1e
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 33
+
+
+ 1521 0725 16020000 		.4byte	.LASF18
+ 1522 0729 01       		.byte	0x1
+ 1523 072a B7       		.byte	0xb7
+ 1524 072b C8000000 		.4byte	0xc8
+ 1525 072f 22030000 		.4byte	.LLST21
+ 1526 0733 0A       		.uleb128 0xa
+ 1527 0734 2B010000 		.4byte	.LASF21
+ 1528 0738 01       		.byte	0x1
+ 1529 0739 B9       		.byte	0xb9
+ 1530 073a 76020000 		.4byte	0x276
+ 1531 073e 12       		.uleb128 0x12
+ 1532 073f 0A000000 		.4byte	.LVL77
+ 1533 0743 43090000 		.4byte	0x943
+ 1534 0747 51070000 		.4byte	0x751
+ 1535 074b 13       		.uleb128 0x13
+ 1536 074c 01       		.byte	0x1
+ 1537 074d 50       		.byte	0x50
+ 1538 074e 01       		.byte	0x1
+ 1539 074f 30       		.byte	0x30
+ 1540 0750 00       		.byte	0
+ 1541 0751 12       		.uleb128 0x12
+ 1542 0752 10000000 		.4byte	.LVL78
+ 1543 0756 54080000 		.4byte	0x854
+ 1544 075a 64070000 		.4byte	0x764
+ 1545 075e 13       		.uleb128 0x13
+ 1546 075f 01       		.byte	0x1
+ 1547 0760 50       		.byte	0x50
+ 1548 0761 01       		.byte	0x1
+ 1549 0762 3A       		.byte	0x3a
+ 1550 0763 00       		.byte	0
+ 1551 0764 12       		.uleb128 0x12
+ 1552 0765 18000000 		.4byte	.LVL79
+ 1553 0769 57090000 		.4byte	0x957
+ 1554 076d 7B070000 		.4byte	0x77b
+ 1555 0771 13       		.uleb128 0x13
+ 1556 0772 01       		.byte	0x1
+ 1557 0773 50       		.byte	0x50
+ 1558 0774 05       		.byte	0x5
+ 1559 0775 74       		.byte	0x74
+ 1560 0776 00       		.sleb128 0
+ 1561 0777 08       		.byte	0x8
+ 1562 0778 C0       		.byte	0xc0
+ 1563 0779 21       		.byte	0x21
+ 1564 077a 00       		.byte	0
+ 1565 077b 12       		.uleb128 0x12
+ 1566 077c 1E000000 		.4byte	.LVL80
+ 1567 0780 57090000 		.4byte	0x957
+ 1568 0784 8E070000 		.4byte	0x78e
+ 1569 0788 13       		.uleb128 0x13
+ 1570 0789 01       		.byte	0x1
+ 1571 078a 50       		.byte	0x50
+ 1572 078b 01       		.byte	0x1
+ 1573 078c 30       		.byte	0x30
+ 1574 078d 00       		.byte	0
+ 1575 078e 11       		.uleb128 0x11
+ 1576 078f 22000000 		.4byte	.LVL81
+ 1577 0793 6B090000 		.4byte	0x96b
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 34
+
+
+ 1578 0797 12       		.uleb128 0x12
+ 1579 0798 28000000 		.4byte	.LVL82
+ 1580 079c 57090000 		.4byte	0x957
+ 1581 07a0 AA070000 		.4byte	0x7aa
+ 1582 07a4 13       		.uleb128 0x13
+ 1583 07a5 01       		.byte	0x1
+ 1584 07a6 50       		.byte	0x50
+ 1585 07a7 01       		.byte	0x1
+ 1586 07a8 30       		.byte	0x30
+ 1587 07a9 00       		.byte	0
+ 1588 07aa 11       		.uleb128 0x11
+ 1589 07ab 2C000000 		.4byte	.LVL83
+ 1590 07af 6B090000 		.4byte	0x96b
+ 1591 07b3 12       		.uleb128 0x12
+ 1592 07b4 32000000 		.4byte	.LVL84
+ 1593 07b8 57090000 		.4byte	0x957
+ 1594 07bc C6070000 		.4byte	0x7c6
+ 1595 07c0 13       		.uleb128 0x13
+ 1596 07c1 01       		.byte	0x1
+ 1597 07c2 50       		.byte	0x50
+ 1598 07c3 01       		.byte	0x1
+ 1599 07c4 30       		.byte	0x30
+ 1600 07c5 00       		.byte	0
+ 1601 07c6 11       		.uleb128 0x11
+ 1602 07c7 36000000 		.4byte	.LVL85
+ 1603 07cb 6B090000 		.4byte	0x96b
+ 1604 07cf 12       		.uleb128 0x12
+ 1605 07d0 3C000000 		.4byte	.LVL86
+ 1606 07d4 57090000 		.4byte	0x957
+ 1607 07d8 E2070000 		.4byte	0x7e2
+ 1608 07dc 13       		.uleb128 0x13
+ 1609 07dd 01       		.byte	0x1
+ 1610 07de 50       		.byte	0x50
+ 1611 07df 01       		.byte	0x1
+ 1612 07e0 30       		.byte	0x30
+ 1613 07e1 00       		.byte	0
+ 1614 07e2 11       		.uleb128 0x11
+ 1615 07e3 40000000 		.4byte	.LVL87
+ 1616 07e7 6B090000 		.4byte	0x96b
+ 1617 07eb 12       		.uleb128 0x12
+ 1618 07ec 46000000 		.4byte	.LVL88
+ 1619 07f0 57090000 		.4byte	0x957
+ 1620 07f4 FE070000 		.4byte	0x7fe
+ 1621 07f8 13       		.uleb128 0x13
+ 1622 07f9 01       		.byte	0x1
+ 1623 07fa 50       		.byte	0x50
+ 1624 07fb 01       		.byte	0x1
+ 1625 07fc 30       		.byte	0x30
+ 1626 07fd 00       		.byte	0
+ 1627 07fe 11       		.uleb128 0x11
+ 1628 07ff 4A000000 		.4byte	.LVL89
+ 1629 0803 6B090000 		.4byte	0x96b
+ 1630 0807 12       		.uleb128 0x12
+ 1631 0808 50000000 		.4byte	.LVL90
+ 1632 080c 57090000 		.4byte	0x957
+ 1633 0810 1A080000 		.4byte	0x81a
+ 1634 0814 13       		.uleb128 0x13
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 35
+
+
+ 1635 0815 01       		.byte	0x1
+ 1636 0816 50       		.byte	0x50
+ 1637 0817 01       		.byte	0x1
+ 1638 0818 30       		.byte	0x30
+ 1639 0819 00       		.byte	0
+ 1640 081a 11       		.uleb128 0x11
+ 1641 081b 54000000 		.4byte	.LVL91
+ 1642 081f 6B090000 		.4byte	0x96b
+ 1643 0823 14       		.uleb128 0x14
+ 1644 0824 5A000000 		.4byte	.LVL92
+ 1645 0828 43090000 		.4byte	0x943
+ 1646 082c 13       		.uleb128 0x13
+ 1647 082d 01       		.byte	0x1
+ 1648 082e 50       		.byte	0x50
+ 1649 082f 01       		.byte	0x1
+ 1650 0830 31       		.byte	0x31
+ 1651 0831 00       		.byte	0
+ 1652 0832 00       		.byte	0
+ 1653 0833 23       		.uleb128 0x23
+ 1654 0834 7D020000 		.4byte	.LASF43
+ 1655 0838 01       		.byte	0x1
+ 1656 0839 15       		.byte	0x15
+ 1657 083a 45080000 		.4byte	0x845
+ 1658 083e 01       		.byte	0x1
+ 1659 083f 05       		.byte	0x5
+ 1660 0840 03       		.byte	0x3
+ 1661 0841 00000000 		.4byte	ADDRESS
+ 1662 0845 06       		.uleb128 0x6
+ 1663 0846 61000000 		.4byte	0x61
+ 1664 084a 24       		.uleb128 0x24
+ 1665 084b 01       		.byte	0x1
+ 1666 084c 5E000000 		.4byte	.LASF44
+ 1667 0850 09       		.byte	0x9
+ 1668 0851 6B       		.byte	0x6b
+ 1669 0852 01       		.byte	0x1
+ 1670 0853 01       		.byte	0x1
+ 1671 0854 25       		.uleb128 0x25
+ 1672 0855 01       		.byte	0x1
+ 1673 0856 AC020000 		.4byte	.LASF25
+ 1674 085a 03       		.byte	0x3
+ 1675 085b 6C       		.byte	0x6c
+ 1676 085c 01       		.byte	0x1
+ 1677 085d 01       		.byte	0x1
+ 1678 085e 68080000 		.4byte	0x868
+ 1679 0862 26       		.uleb128 0x26
+ 1680 0863 7A000000 		.4byte	0x7a
+ 1681 0867 00       		.byte	0
+ 1682 0868 27       		.uleb128 0x27
+ 1683 0869 01       		.byte	0x1
+ 1684 086a 72000000 		.4byte	.LASF26
+ 1685 086e 04       		.byte	0x4
+ 1686 086f 2E01     		.2byte	0x12e
+ 1687 0871 01       		.byte	0x1
+ 1688 0872 01       		.byte	0x1
+ 1689 0873 7D080000 		.4byte	0x87d
+ 1690 0877 26       		.uleb128 0x26
+ 1691 0878 7D080000 		.4byte	0x87d
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 36
+
+
+ 1692 087c 00       		.byte	0
+ 1693 087d 05       		.uleb128 0x5
+ 1694 087e 04       		.byte	0x4
+ 1695 087f 83080000 		.4byte	0x883
+ 1696 0883 06       		.uleb128 0x6
+ 1697 0884 9E000000 		.4byte	0x9e
+ 1698 0888 28       		.uleb128 0x28
+ 1699 0889 01       		.byte	0x1
+ 1700 088a A4020000 		.4byte	.LASF28
+ 1701 088e 05       		.byte	0x5
+ 1702 088f E2       		.byte	0xe2
+ 1703 0890 01       		.byte	0x1
+ 1704 0891 61000000 		.4byte	0x61
+ 1705 0895 01       		.byte	0x1
+ 1706 0896 A6080000 		.4byte	0x8a6
+ 1707 089a 26       		.uleb128 0x26
+ 1708 089b B7000000 		.4byte	0xb7
+ 1709 089f 26       		.uleb128 0x26
+ 1710 08a0 BD000000 		.4byte	0xbd
+ 1711 08a4 29       		.uleb128 0x29
+ 1712 08a5 00       		.byte	0
+ 1713 08a6 27       		.uleb128 0x27
+ 1714 08a7 01       		.byte	0x1
+ 1715 08a8 C7000000 		.4byte	.LASF29
+ 1716 08ac 04       		.byte	0x4
+ 1717 08ad 3C01     		.2byte	0x13c
+ 1718 08af 01       		.byte	0x1
+ 1719 08b0 01       		.byte	0x1
+ 1720 08b1 C0080000 		.4byte	0x8c0
+ 1721 08b5 26       		.uleb128 0x26
+ 1722 08b6 C0080000 		.4byte	0x8c0
+ 1723 08ba 26       		.uleb128 0x26
+ 1724 08bb 7A000000 		.4byte	0x7a
+ 1725 08bf 00       		.byte	0
+ 1726 08c0 05       		.uleb128 0x5
+ 1727 08c1 04       		.byte	0x4
+ 1728 08c2 C6080000 		.4byte	0x8c6
+ 1729 08c6 06       		.uleb128 0x6
+ 1730 08c7 6F000000 		.4byte	0x6f
+ 1731 08cb 28       		.uleb128 0x28
+ 1732 08cc 01       		.byte	0x1
+ 1733 08cd E1010000 		.4byte	.LASF30
+ 1734 08d1 06       		.byte	0x6
+ 1735 08d2 9B       		.byte	0x9b
+ 1736 08d3 01       		.byte	0x1
+ 1737 08d4 7A000000 		.4byte	0x7a
+ 1738 08d8 01       		.byte	0x1
+ 1739 08d9 E3080000 		.4byte	0x8e3
+ 1740 08dd 26       		.uleb128 0x26
+ 1741 08de 7A000000 		.4byte	0x7a
+ 1742 08e2 00       		.byte	0
+ 1743 08e3 2A       		.uleb128 0x2a
+ 1744 08e4 01       		.byte	0x1
+ 1745 08e5 B2010000 		.4byte	.LASF31
+ 1746 08e9 06       		.byte	0x6
+ 1747 08ea 9A       		.byte	0x9a
+ 1748 08eb 01       		.byte	0x1
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 37
+
+
+ 1749 08ec 7A000000 		.4byte	0x7a
+ 1750 08f0 01       		.byte	0x1
+ 1751 08f1 2A       		.uleb128 0x2a
+ 1752 08f2 01       		.byte	0x1
+ 1753 08f3 0A010000 		.4byte	.LASF32
+ 1754 08f7 06       		.byte	0x6
+ 1755 08f8 8D       		.byte	0x8d
+ 1756 08f9 01       		.byte	0x1
+ 1757 08fa 7A000000 		.4byte	0x7a
+ 1758 08fe 01       		.byte	0x1
+ 1759 08ff 28       		.uleb128 0x28
+ 1760 0900 01       		.byte	0x1
+ 1761 0901 7B010000 		.4byte	.LASF33
+ 1762 0905 06       		.byte	0x6
+ 1763 0906 98       		.byte	0x98
+ 1764 0907 01       		.byte	0x1
+ 1765 0908 7A000000 		.4byte	0x7a
+ 1766 090c 01       		.byte	0x1
+ 1767 090d 1C090000 		.4byte	0x91c
+ 1768 0911 26       		.uleb128 0x26
+ 1769 0912 7A000000 		.4byte	0x7a
+ 1770 0916 26       		.uleb128 0x26
+ 1771 0917 7A000000 		.4byte	0x7a
+ 1772 091b 00       		.byte	0
+ 1773 091c 28       		.uleb128 0x28
+ 1774 091d 01       		.byte	0x1
+ 1775 091e CA010000 		.4byte	.LASF34
+ 1776 0922 06       		.byte	0x6
+ 1777 0923 91       		.byte	0x91
+ 1778 0924 01       		.byte	0x1
+ 1779 0925 7A000000 		.4byte	0x7a
+ 1780 0929 01       		.byte	0x1
+ 1781 092a 43090000 		.4byte	0x943
+ 1782 092e 26       		.uleb128 0x26
+ 1783 092f 7A000000 		.4byte	0x7a
+ 1784 0933 26       		.uleb128 0x26
+ 1785 0934 C8000000 		.4byte	0xc8
+ 1786 0938 26       		.uleb128 0x26
+ 1787 0939 7A000000 		.4byte	0x7a
+ 1788 093d 26       		.uleb128 0x26
+ 1789 093e 7A000000 		.4byte	0x7a
+ 1790 0942 00       		.byte	0
+ 1791 0943 25       		.uleb128 0x25
+ 1792 0944 01       		.byte	0x1
+ 1793 0945 9A000000 		.4byte	.LASF35
+ 1794 0949 07       		.byte	0x7
+ 1795 094a 1D       		.byte	0x1d
+ 1796 094b 01       		.byte	0x1
+ 1797 094c 01       		.byte	0x1
+ 1798 094d 57090000 		.4byte	0x957
+ 1799 0951 26       		.uleb128 0x26
+ 1800 0952 6F000000 		.4byte	0x6f
+ 1801 0956 00       		.byte	0
+ 1802 0957 25       		.uleb128 0x25
+ 1803 0958 01       		.byte	0x1
+ 1804 0959 91020000 		.4byte	.LASF36
+ 1805 095d 08       		.byte	0x8
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 38
+
+
+ 1806 095e 69       		.byte	0x69
+ 1807 095f 01       		.byte	0x1
+ 1808 0960 01       		.byte	0x1
+ 1809 0961 6B090000 		.4byte	0x96b
+ 1810 0965 26       		.uleb128 0x26
+ 1811 0966 6F000000 		.4byte	0x6f
+ 1812 096a 00       		.byte	0
+ 1813 096b 2A       		.uleb128 0x2a
+ 1814 096c 01       		.byte	0x1
+ 1815 096d FA010000 		.4byte	.LASF37
+ 1816 0971 08       		.byte	0x8
+ 1817 0972 6B       		.byte	0x6b
+ 1818 0973 01       		.byte	0x1
+ 1819 0974 6F000000 		.4byte	0x6f
+ 1820 0978 01       		.byte	0x1
+ 1821 0979 00       		.byte	0
+ 1822              		.section	.debug_abbrev,"",%progbits
+ 1823              	.Ldebug_abbrev0:
+ 1824 0000 01       		.uleb128 0x1
+ 1825 0001 11       		.uleb128 0x11
+ 1826 0002 01       		.byte	0x1
+ 1827 0003 25       		.uleb128 0x25
+ 1828 0004 0E       		.uleb128 0xe
+ 1829 0005 13       		.uleb128 0x13
+ 1830 0006 0B       		.uleb128 0xb
+ 1831 0007 03       		.uleb128 0x3
+ 1832 0008 0E       		.uleb128 0xe
+ 1833 0009 1B       		.uleb128 0x1b
+ 1834 000a 0E       		.uleb128 0xe
+ 1835 000b 55       		.uleb128 0x55
+ 1836 000c 06       		.uleb128 0x6
+ 1837 000d 11       		.uleb128 0x11
+ 1838 000e 01       		.uleb128 0x1
+ 1839 000f 52       		.uleb128 0x52
+ 1840 0010 01       		.uleb128 0x1
+ 1841 0011 10       		.uleb128 0x10
+ 1842 0012 06       		.uleb128 0x6
+ 1843 0013 00       		.byte	0
+ 1844 0014 00       		.byte	0
+ 1845 0015 02       		.uleb128 0x2
+ 1846 0016 24       		.uleb128 0x24
+ 1847 0017 00       		.byte	0
+ 1848 0018 0B       		.uleb128 0xb
+ 1849 0019 0B       		.uleb128 0xb
+ 1850 001a 3E       		.uleb128 0x3e
+ 1851 001b 0B       		.uleb128 0xb
+ 1852 001c 03       		.uleb128 0x3
+ 1853 001d 0E       		.uleb128 0xe
+ 1854 001e 00       		.byte	0
+ 1855 001f 00       		.byte	0
+ 1856 0020 03       		.uleb128 0x3
+ 1857 0021 24       		.uleb128 0x24
+ 1858 0022 00       		.byte	0
+ 1859 0023 0B       		.uleb128 0xb
+ 1860 0024 0B       		.uleb128 0xb
+ 1861 0025 3E       		.uleb128 0x3e
+ 1862 0026 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 39
+
+
+ 1863 0027 03       		.uleb128 0x3
+ 1864 0028 08       		.uleb128 0x8
+ 1865 0029 00       		.byte	0
+ 1866 002a 00       		.byte	0
+ 1867 002b 04       		.uleb128 0x4
+ 1868 002c 16       		.uleb128 0x16
+ 1869 002d 00       		.byte	0
+ 1870 002e 03       		.uleb128 0x3
+ 1871 002f 0E       		.uleb128 0xe
+ 1872 0030 3A       		.uleb128 0x3a
+ 1873 0031 0B       		.uleb128 0xb
+ 1874 0032 3B       		.uleb128 0x3b
+ 1875 0033 0B       		.uleb128 0xb
+ 1876 0034 49       		.uleb128 0x49
+ 1877 0035 13       		.uleb128 0x13
+ 1878 0036 00       		.byte	0
+ 1879 0037 00       		.byte	0
+ 1880 0038 05       		.uleb128 0x5
+ 1881 0039 0F       		.uleb128 0xf
+ 1882 003a 00       		.byte	0
+ 1883 003b 0B       		.uleb128 0xb
+ 1884 003c 0B       		.uleb128 0xb
+ 1885 003d 49       		.uleb128 0x49
+ 1886 003e 13       		.uleb128 0x13
+ 1887 003f 00       		.byte	0
+ 1888 0040 00       		.byte	0
+ 1889 0041 06       		.uleb128 0x6
+ 1890 0042 26       		.uleb128 0x26
+ 1891 0043 00       		.byte	0
+ 1892 0044 49       		.uleb128 0x49
+ 1893 0045 13       		.uleb128 0x13
+ 1894 0046 00       		.byte	0
+ 1895 0047 00       		.byte	0
+ 1896 0048 07       		.uleb128 0x7
+ 1897 0049 2E       		.uleb128 0x2e
+ 1898 004a 01       		.byte	0x1
+ 1899 004b 3F       		.uleb128 0x3f
+ 1900 004c 0C       		.uleb128 0xc
+ 1901 004d 03       		.uleb128 0x3
+ 1902 004e 0E       		.uleb128 0xe
+ 1903 004f 3A       		.uleb128 0x3a
+ 1904 0050 0B       		.uleb128 0xb
+ 1905 0051 3B       		.uleb128 0x3b
+ 1906 0052 0B       		.uleb128 0xb
+ 1907 0053 27       		.uleb128 0x27
+ 1908 0054 0C       		.uleb128 0xc
+ 1909 0055 49       		.uleb128 0x49
+ 1910 0056 13       		.uleb128 0x13
+ 1911 0057 20       		.uleb128 0x20
+ 1912 0058 0B       		.uleb128 0xb
+ 1913 0059 01       		.uleb128 0x1
+ 1914 005a 13       		.uleb128 0x13
+ 1915 005b 00       		.byte	0
+ 1916 005c 00       		.byte	0
+ 1917 005d 08       		.uleb128 0x8
+ 1918 005e 05       		.uleb128 0x5
+ 1919 005f 00       		.byte	0
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 40
+
+
+ 1920 0060 03       		.uleb128 0x3
+ 1921 0061 0E       		.uleb128 0xe
+ 1922 0062 3A       		.uleb128 0x3a
+ 1923 0063 0B       		.uleb128 0xb
+ 1924 0064 3B       		.uleb128 0x3b
+ 1925 0065 0B       		.uleb128 0xb
+ 1926 0066 49       		.uleb128 0x49
+ 1927 0067 13       		.uleb128 0x13
+ 1928 0068 00       		.byte	0
+ 1929 0069 00       		.byte	0
+ 1930 006a 09       		.uleb128 0x9
+ 1931 006b 34       		.uleb128 0x34
+ 1932 006c 00       		.byte	0
+ 1933 006d 03       		.uleb128 0x3
+ 1934 006e 08       		.uleb128 0x8
+ 1935 006f 3A       		.uleb128 0x3a
+ 1936 0070 0B       		.uleb128 0xb
+ 1937 0071 3B       		.uleb128 0x3b
+ 1938 0072 0B       		.uleb128 0xb
+ 1939 0073 49       		.uleb128 0x49
+ 1940 0074 13       		.uleb128 0x13
+ 1941 0075 00       		.byte	0
+ 1942 0076 00       		.byte	0
+ 1943 0077 0A       		.uleb128 0xa
+ 1944 0078 34       		.uleb128 0x34
+ 1945 0079 00       		.byte	0
+ 1946 007a 03       		.uleb128 0x3
+ 1947 007b 0E       		.uleb128 0xe
+ 1948 007c 3A       		.uleb128 0x3a
+ 1949 007d 0B       		.uleb128 0xb
+ 1950 007e 3B       		.uleb128 0x3b
+ 1951 007f 0B       		.uleb128 0xb
+ 1952 0080 49       		.uleb128 0x49
+ 1953 0081 13       		.uleb128 0x13
+ 1954 0082 00       		.byte	0
+ 1955 0083 00       		.byte	0
+ 1956 0084 0B       		.uleb128 0xb
+ 1957 0085 01       		.uleb128 0x1
+ 1958 0086 01       		.byte	0x1
+ 1959 0087 49       		.uleb128 0x49
+ 1960 0088 13       		.uleb128 0x13
+ 1961 0089 01       		.uleb128 0x1
+ 1962 008a 13       		.uleb128 0x13
+ 1963 008b 00       		.byte	0
+ 1964 008c 00       		.byte	0
+ 1965 008d 0C       		.uleb128 0xc
+ 1966 008e 21       		.uleb128 0x21
+ 1967 008f 00       		.byte	0
+ 1968 0090 49       		.uleb128 0x49
+ 1969 0091 13       		.uleb128 0x13
+ 1970 0092 2F       		.uleb128 0x2f
+ 1971 0093 0B       		.uleb128 0xb
+ 1972 0094 00       		.byte	0
+ 1973 0095 00       		.byte	0
+ 1974 0096 0D       		.uleb128 0xd
+ 1975 0097 2E       		.uleb128 0x2e
+ 1976 0098 01       		.byte	0x1
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 41
+
+
+ 1977 0099 3F       		.uleb128 0x3f
+ 1978 009a 0C       		.uleb128 0xc
+ 1979 009b 03       		.uleb128 0x3
+ 1980 009c 0E       		.uleb128 0xe
+ 1981 009d 3A       		.uleb128 0x3a
+ 1982 009e 0B       		.uleb128 0xb
+ 1983 009f 3B       		.uleb128 0x3b
+ 1984 00a0 0B       		.uleb128 0xb
+ 1985 00a1 49       		.uleb128 0x49
+ 1986 00a2 13       		.uleb128 0x13
+ 1987 00a3 11       		.uleb128 0x11
+ 1988 00a4 01       		.uleb128 0x1
+ 1989 00a5 12       		.uleb128 0x12
+ 1990 00a6 01       		.uleb128 0x1
+ 1991 00a7 40       		.uleb128 0x40
+ 1992 00a8 06       		.uleb128 0x6
+ 1993 00a9 9742     		.uleb128 0x2117
+ 1994 00ab 0C       		.uleb128 0xc
+ 1995 00ac 01       		.uleb128 0x1
+ 1996 00ad 13       		.uleb128 0x13
+ 1997 00ae 00       		.byte	0
+ 1998 00af 00       		.byte	0
+ 1999 00b0 0E       		.uleb128 0xe
+ 2000 00b1 34       		.uleb128 0x34
+ 2001 00b2 00       		.byte	0
+ 2002 00b3 03       		.uleb128 0x3
+ 2003 00b4 0E       		.uleb128 0xe
+ 2004 00b5 3A       		.uleb128 0x3a
+ 2005 00b6 0B       		.uleb128 0xb
+ 2006 00b7 3B       		.uleb128 0x3b
+ 2007 00b8 0B       		.uleb128 0xb
+ 2008 00b9 49       		.uleb128 0x49
+ 2009 00ba 13       		.uleb128 0x13
+ 2010 00bb 02       		.uleb128 0x2
+ 2011 00bc 0A       		.uleb128 0xa
+ 2012 00bd 00       		.byte	0
+ 2013 00be 00       		.byte	0
+ 2014 00bf 0F       		.uleb128 0xf
+ 2015 00c0 34       		.uleb128 0x34
+ 2016 00c1 00       		.byte	0
+ 2017 00c2 03       		.uleb128 0x3
+ 2018 00c3 08       		.uleb128 0x8
+ 2019 00c4 3A       		.uleb128 0x3a
+ 2020 00c5 0B       		.uleb128 0xb
+ 2021 00c6 3B       		.uleb128 0x3b
+ 2022 00c7 0B       		.uleb128 0xb
+ 2023 00c8 49       		.uleb128 0x49
+ 2024 00c9 13       		.uleb128 0x13
+ 2025 00ca 02       		.uleb128 0x2
+ 2026 00cb 06       		.uleb128 0x6
+ 2027 00cc 00       		.byte	0
+ 2028 00cd 00       		.byte	0
+ 2029 00ce 10       		.uleb128 0x10
+ 2030 00cf 34       		.uleb128 0x34
+ 2031 00d0 00       		.byte	0
+ 2032 00d1 03       		.uleb128 0x3
+ 2033 00d2 08       		.uleb128 0x8
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 42
+
+
+ 2034 00d3 3A       		.uleb128 0x3a
+ 2035 00d4 0B       		.uleb128 0xb
+ 2036 00d5 3B       		.uleb128 0x3b
+ 2037 00d6 0B       		.uleb128 0xb
+ 2038 00d7 49       		.uleb128 0x49
+ 2039 00d8 13       		.uleb128 0x13
+ 2040 00d9 1C       		.uleb128 0x1c
+ 2041 00da 05       		.uleb128 0x5
+ 2042 00db 00       		.byte	0
+ 2043 00dc 00       		.byte	0
+ 2044 00dd 11       		.uleb128 0x11
+ 2045 00de 898201   		.uleb128 0x4109
+ 2046 00e1 00       		.byte	0
+ 2047 00e2 11       		.uleb128 0x11
+ 2048 00e3 01       		.uleb128 0x1
+ 2049 00e4 31       		.uleb128 0x31
+ 2050 00e5 13       		.uleb128 0x13
+ 2051 00e6 00       		.byte	0
+ 2052 00e7 00       		.byte	0
+ 2053 00e8 12       		.uleb128 0x12
+ 2054 00e9 898201   		.uleb128 0x4109
+ 2055 00ec 01       		.byte	0x1
+ 2056 00ed 11       		.uleb128 0x11
+ 2057 00ee 01       		.uleb128 0x1
+ 2058 00ef 31       		.uleb128 0x31
+ 2059 00f0 13       		.uleb128 0x13
+ 2060 00f1 01       		.uleb128 0x1
+ 2061 00f2 13       		.uleb128 0x13
+ 2062 00f3 00       		.byte	0
+ 2063 00f4 00       		.byte	0
+ 2064 00f5 13       		.uleb128 0x13
+ 2065 00f6 8A8201   		.uleb128 0x410a
+ 2066 00f9 00       		.byte	0
+ 2067 00fa 02       		.uleb128 0x2
+ 2068 00fb 0A       		.uleb128 0xa
+ 2069 00fc 9142     		.uleb128 0x2111
+ 2070 00fe 0A       		.uleb128 0xa
+ 2071 00ff 00       		.byte	0
+ 2072 0100 00       		.byte	0
+ 2073 0101 14       		.uleb128 0x14
+ 2074 0102 898201   		.uleb128 0x4109
+ 2075 0105 01       		.byte	0x1
+ 2076 0106 11       		.uleb128 0x11
+ 2077 0107 01       		.uleb128 0x1
+ 2078 0108 31       		.uleb128 0x31
+ 2079 0109 13       		.uleb128 0x13
+ 2080 010a 00       		.byte	0
+ 2081 010b 00       		.byte	0
+ 2082 010c 15       		.uleb128 0x15
+ 2083 010d 2E       		.uleb128 0x2e
+ 2084 010e 01       		.byte	0x1
+ 2085 010f 31       		.uleb128 0x31
+ 2086 0110 13       		.uleb128 0x13
+ 2087 0111 11       		.uleb128 0x11
+ 2088 0112 01       		.uleb128 0x1
+ 2089 0113 12       		.uleb128 0x12
+ 2090 0114 01       		.uleb128 0x1
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 43
+
+
+ 2091 0115 40       		.uleb128 0x40
+ 2092 0116 06       		.uleb128 0x6
+ 2093 0117 9742     		.uleb128 0x2117
+ 2094 0119 0C       		.uleb128 0xc
+ 2095 011a 01       		.uleb128 0x1
+ 2096 011b 13       		.uleb128 0x13
+ 2097 011c 00       		.byte	0
+ 2098 011d 00       		.byte	0
+ 2099 011e 16       		.uleb128 0x16
+ 2100 011f 05       		.uleb128 0x5
+ 2101 0120 00       		.byte	0
+ 2102 0121 31       		.uleb128 0x31
+ 2103 0122 13       		.uleb128 0x13
+ 2104 0123 02       		.uleb128 0x2
+ 2105 0124 06       		.uleb128 0x6
+ 2106 0125 00       		.byte	0
+ 2107 0126 00       		.byte	0
+ 2108 0127 17       		.uleb128 0x17
+ 2109 0128 34       		.uleb128 0x34
+ 2110 0129 00       		.byte	0
+ 2111 012a 31       		.uleb128 0x31
+ 2112 012b 13       		.uleb128 0x13
+ 2113 012c 00       		.byte	0
+ 2114 012d 00       		.byte	0
+ 2115 012e 18       		.uleb128 0x18
+ 2116 012f 34       		.uleb128 0x34
+ 2117 0130 00       		.byte	0
+ 2118 0131 31       		.uleb128 0x31
+ 2119 0132 13       		.uleb128 0x13
+ 2120 0133 02       		.uleb128 0x2
+ 2121 0134 06       		.uleb128 0x6
+ 2122 0135 00       		.byte	0
+ 2123 0136 00       		.byte	0
+ 2124 0137 19       		.uleb128 0x19
+ 2125 0138 34       		.uleb128 0x34
+ 2126 0139 00       		.byte	0
+ 2127 013a 31       		.uleb128 0x31
+ 2128 013b 13       		.uleb128 0x13
+ 2129 013c 02       		.uleb128 0x2
+ 2130 013d 0A       		.uleb128 0xa
+ 2131 013e 00       		.byte	0
+ 2132 013f 00       		.byte	0
+ 2133 0140 1A       		.uleb128 0x1a
+ 2134 0141 1D       		.uleb128 0x1d
+ 2135 0142 01       		.byte	0x1
+ 2136 0143 31       		.uleb128 0x31
+ 2137 0144 13       		.uleb128 0x13
+ 2138 0145 11       		.uleb128 0x11
+ 2139 0146 01       		.uleb128 0x1
+ 2140 0147 12       		.uleb128 0x12
+ 2141 0148 01       		.uleb128 0x1
+ 2142 0149 58       		.uleb128 0x58
+ 2143 014a 0B       		.uleb128 0xb
+ 2144 014b 59       		.uleb128 0x59
+ 2145 014c 0B       		.uleb128 0xb
+ 2146 014d 01       		.uleb128 0x1
+ 2147 014e 13       		.uleb128 0x13
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 44
+
+
+ 2148 014f 00       		.byte	0
+ 2149 0150 00       		.byte	0
+ 2150 0151 1B       		.uleb128 0x1b
+ 2151 0152 05       		.uleb128 0x5
+ 2152 0153 00       		.byte	0
+ 2153 0154 31       		.uleb128 0x31
+ 2154 0155 13       		.uleb128 0x13
+ 2155 0156 00       		.byte	0
+ 2156 0157 00       		.byte	0
+ 2157 0158 1C       		.uleb128 0x1c
+ 2158 0159 0B       		.uleb128 0xb
+ 2159 015a 01       		.byte	0x1
+ 2160 015b 11       		.uleb128 0x11
+ 2161 015c 01       		.uleb128 0x1
+ 2162 015d 12       		.uleb128 0x12
+ 2163 015e 01       		.uleb128 0x1
+ 2164 015f 00       		.byte	0
+ 2165 0160 00       		.byte	0
+ 2166 0161 1D       		.uleb128 0x1d
+ 2167 0162 2E       		.uleb128 0x2e
+ 2168 0163 01       		.byte	0x1
+ 2169 0164 3F       		.uleb128 0x3f
+ 2170 0165 0C       		.uleb128 0xc
+ 2171 0166 03       		.uleb128 0x3
+ 2172 0167 0E       		.uleb128 0xe
+ 2173 0168 3A       		.uleb128 0x3a
+ 2174 0169 0B       		.uleb128 0xb
+ 2175 016a 3B       		.uleb128 0x3b
+ 2176 016b 0B       		.uleb128 0xb
+ 2177 016c 27       		.uleb128 0x27
+ 2178 016d 0C       		.uleb128 0xc
+ 2179 016e 49       		.uleb128 0x49
+ 2180 016f 13       		.uleb128 0x13
+ 2181 0170 11       		.uleb128 0x11
+ 2182 0171 01       		.uleb128 0x1
+ 2183 0172 12       		.uleb128 0x12
+ 2184 0173 01       		.uleb128 0x1
+ 2185 0174 40       		.uleb128 0x40
+ 2186 0175 06       		.uleb128 0x6
+ 2187 0176 9742     		.uleb128 0x2117
+ 2188 0178 0C       		.uleb128 0xc
+ 2189 0179 01       		.uleb128 0x1
+ 2190 017a 13       		.uleb128 0x13
+ 2191 017b 00       		.byte	0
+ 2192 017c 00       		.byte	0
+ 2193 017d 1E       		.uleb128 0x1e
+ 2194 017e 05       		.uleb128 0x5
+ 2195 017f 00       		.byte	0
+ 2196 0180 03       		.uleb128 0x3
+ 2197 0181 0E       		.uleb128 0xe
+ 2198 0182 3A       		.uleb128 0x3a
+ 2199 0183 0B       		.uleb128 0xb
+ 2200 0184 3B       		.uleb128 0x3b
+ 2201 0185 0B       		.uleb128 0xb
+ 2202 0186 49       		.uleb128 0x49
+ 2203 0187 13       		.uleb128 0x13
+ 2204 0188 02       		.uleb128 0x2
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 45
+
+
+ 2205 0189 06       		.uleb128 0x6
+ 2206 018a 00       		.byte	0
+ 2207 018b 00       		.byte	0
+ 2208 018c 1F       		.uleb128 0x1f
+ 2209 018d 34       		.uleb128 0x34
+ 2210 018e 00       		.byte	0
+ 2211 018f 03       		.uleb128 0x3
+ 2212 0190 0E       		.uleb128 0xe
+ 2213 0191 3A       		.uleb128 0x3a
+ 2214 0192 0B       		.uleb128 0xb
+ 2215 0193 3B       		.uleb128 0x3b
+ 2216 0194 0B       		.uleb128 0xb
+ 2217 0195 49       		.uleb128 0x49
+ 2218 0196 13       		.uleb128 0x13
+ 2219 0197 02       		.uleb128 0x2
+ 2220 0198 06       		.uleb128 0x6
+ 2221 0199 00       		.byte	0
+ 2222 019a 00       		.byte	0
+ 2223 019b 20       		.uleb128 0x20
+ 2224 019c 2E       		.uleb128 0x2e
+ 2225 019d 01       		.byte	0x1
+ 2226 019e 3F       		.uleb128 0x3f
+ 2227 019f 0C       		.uleb128 0xc
+ 2228 01a0 03       		.uleb128 0x3
+ 2229 01a1 0E       		.uleb128 0xe
+ 2230 01a2 3A       		.uleb128 0x3a
+ 2231 01a3 0B       		.uleb128 0xb
+ 2232 01a4 3B       		.uleb128 0x3b
+ 2233 01a5 0B       		.uleb128 0xb
+ 2234 01a6 11       		.uleb128 0x11
+ 2235 01a7 01       		.uleb128 0x1
+ 2236 01a8 12       		.uleb128 0x12
+ 2237 01a9 01       		.uleb128 0x1
+ 2238 01aa 40       		.uleb128 0x40
+ 2239 01ab 06       		.uleb128 0x6
+ 2240 01ac 9742     		.uleb128 0x2117
+ 2241 01ae 0C       		.uleb128 0xc
+ 2242 01af 01       		.uleb128 0x1
+ 2243 01b0 13       		.uleb128 0x13
+ 2244 01b1 00       		.byte	0
+ 2245 01b2 00       		.byte	0
+ 2246 01b3 21       		.uleb128 0x21
+ 2247 01b4 2E       		.uleb128 0x2e
+ 2248 01b5 01       		.byte	0x1
+ 2249 01b6 3F       		.uleb128 0x3f
+ 2250 01b7 0C       		.uleb128 0xc
+ 2251 01b8 03       		.uleb128 0x3
+ 2252 01b9 0E       		.uleb128 0xe
+ 2253 01ba 3A       		.uleb128 0x3a
+ 2254 01bb 0B       		.uleb128 0xb
+ 2255 01bc 3B       		.uleb128 0x3b
+ 2256 01bd 0B       		.uleb128 0xb
+ 2257 01be 27       		.uleb128 0x27
+ 2258 01bf 0C       		.uleb128 0xc
+ 2259 01c0 11       		.uleb128 0x11
+ 2260 01c1 01       		.uleb128 0x1
+ 2261 01c2 12       		.uleb128 0x12
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 46
+
+
+ 2262 01c3 01       		.uleb128 0x1
+ 2263 01c4 40       		.uleb128 0x40
+ 2264 01c5 06       		.uleb128 0x6
+ 2265 01c6 9742     		.uleb128 0x2117
+ 2266 01c8 0C       		.uleb128 0xc
+ 2267 01c9 01       		.uleb128 0x1
+ 2268 01ca 13       		.uleb128 0x13
+ 2269 01cb 00       		.byte	0
+ 2270 01cc 00       		.byte	0
+ 2271 01cd 22       		.uleb128 0x22
+ 2272 01ce 05       		.uleb128 0x5
+ 2273 01cf 00       		.byte	0
+ 2274 01d0 03       		.uleb128 0x3
+ 2275 01d1 08       		.uleb128 0x8
+ 2276 01d2 3A       		.uleb128 0x3a
+ 2277 01d3 0B       		.uleb128 0xb
+ 2278 01d4 3B       		.uleb128 0x3b
+ 2279 01d5 0B       		.uleb128 0xb
+ 2280 01d6 49       		.uleb128 0x49
+ 2281 01d7 13       		.uleb128 0x13
+ 2282 01d8 02       		.uleb128 0x2
+ 2283 01d9 06       		.uleb128 0x6
+ 2284 01da 00       		.byte	0
+ 2285 01db 00       		.byte	0
+ 2286 01dc 23       		.uleb128 0x23
+ 2287 01dd 34       		.uleb128 0x34
+ 2288 01de 00       		.byte	0
+ 2289 01df 03       		.uleb128 0x3
+ 2290 01e0 0E       		.uleb128 0xe
+ 2291 01e1 3A       		.uleb128 0x3a
+ 2292 01e2 0B       		.uleb128 0xb
+ 2293 01e3 3B       		.uleb128 0x3b
+ 2294 01e4 0B       		.uleb128 0xb
+ 2295 01e5 49       		.uleb128 0x49
+ 2296 01e6 13       		.uleb128 0x13
+ 2297 01e7 3F       		.uleb128 0x3f
+ 2298 01e8 0C       		.uleb128 0xc
+ 2299 01e9 02       		.uleb128 0x2
+ 2300 01ea 0A       		.uleb128 0xa
+ 2301 01eb 00       		.byte	0
+ 2302 01ec 00       		.byte	0
+ 2303 01ed 24       		.uleb128 0x24
+ 2304 01ee 2E       		.uleb128 0x2e
+ 2305 01ef 00       		.byte	0
+ 2306 01f0 3F       		.uleb128 0x3f
+ 2307 01f1 0C       		.uleb128 0xc
+ 2308 01f2 03       		.uleb128 0x3
+ 2309 01f3 0E       		.uleb128 0xe
+ 2310 01f4 3A       		.uleb128 0x3a
+ 2311 01f5 0B       		.uleb128 0xb
+ 2312 01f6 3B       		.uleb128 0x3b
+ 2313 01f7 0B       		.uleb128 0xb
+ 2314 01f8 27       		.uleb128 0x27
+ 2315 01f9 0C       		.uleb128 0xc
+ 2316 01fa 3C       		.uleb128 0x3c
+ 2317 01fb 0C       		.uleb128 0xc
+ 2318 01fc 00       		.byte	0
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 47
+
+
+ 2319 01fd 00       		.byte	0
+ 2320 01fe 25       		.uleb128 0x25
+ 2321 01ff 2E       		.uleb128 0x2e
+ 2322 0200 01       		.byte	0x1
+ 2323 0201 3F       		.uleb128 0x3f
+ 2324 0202 0C       		.uleb128 0xc
+ 2325 0203 03       		.uleb128 0x3
+ 2326 0204 0E       		.uleb128 0xe
+ 2327 0205 3A       		.uleb128 0x3a
+ 2328 0206 0B       		.uleb128 0xb
+ 2329 0207 3B       		.uleb128 0x3b
+ 2330 0208 0B       		.uleb128 0xb
+ 2331 0209 27       		.uleb128 0x27
+ 2332 020a 0C       		.uleb128 0xc
+ 2333 020b 3C       		.uleb128 0x3c
+ 2334 020c 0C       		.uleb128 0xc
+ 2335 020d 01       		.uleb128 0x1
+ 2336 020e 13       		.uleb128 0x13
+ 2337 020f 00       		.byte	0
+ 2338 0210 00       		.byte	0
+ 2339 0211 26       		.uleb128 0x26
+ 2340 0212 05       		.uleb128 0x5
+ 2341 0213 00       		.byte	0
+ 2342 0214 49       		.uleb128 0x49
+ 2343 0215 13       		.uleb128 0x13
+ 2344 0216 00       		.byte	0
+ 2345 0217 00       		.byte	0
+ 2346 0218 27       		.uleb128 0x27
+ 2347 0219 2E       		.uleb128 0x2e
+ 2348 021a 01       		.byte	0x1
+ 2349 021b 3F       		.uleb128 0x3f
+ 2350 021c 0C       		.uleb128 0xc
+ 2351 021d 03       		.uleb128 0x3
+ 2352 021e 0E       		.uleb128 0xe
+ 2353 021f 3A       		.uleb128 0x3a
+ 2354 0220 0B       		.uleb128 0xb
+ 2355 0221 3B       		.uleb128 0x3b
+ 2356 0222 05       		.uleb128 0x5
+ 2357 0223 27       		.uleb128 0x27
+ 2358 0224 0C       		.uleb128 0xc
+ 2359 0225 3C       		.uleb128 0x3c
+ 2360 0226 0C       		.uleb128 0xc
+ 2361 0227 01       		.uleb128 0x1
+ 2362 0228 13       		.uleb128 0x13
+ 2363 0229 00       		.byte	0
+ 2364 022a 00       		.byte	0
+ 2365 022b 28       		.uleb128 0x28
+ 2366 022c 2E       		.uleb128 0x2e
+ 2367 022d 01       		.byte	0x1
+ 2368 022e 3F       		.uleb128 0x3f
+ 2369 022f 0C       		.uleb128 0xc
+ 2370 0230 03       		.uleb128 0x3
+ 2371 0231 0E       		.uleb128 0xe
+ 2372 0232 3A       		.uleb128 0x3a
+ 2373 0233 0B       		.uleb128 0xb
+ 2374 0234 3B       		.uleb128 0x3b
+ 2375 0235 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 48
+
+
+ 2376 0236 27       		.uleb128 0x27
+ 2377 0237 0C       		.uleb128 0xc
+ 2378 0238 49       		.uleb128 0x49
+ 2379 0239 13       		.uleb128 0x13
+ 2380 023a 3C       		.uleb128 0x3c
+ 2381 023b 0C       		.uleb128 0xc
+ 2382 023c 01       		.uleb128 0x1
+ 2383 023d 13       		.uleb128 0x13
+ 2384 023e 00       		.byte	0
+ 2385 023f 00       		.byte	0
+ 2386 0240 29       		.uleb128 0x29
+ 2387 0241 18       		.uleb128 0x18
+ 2388 0242 00       		.byte	0
+ 2389 0243 00       		.byte	0
+ 2390 0244 00       		.byte	0
+ 2391 0245 2A       		.uleb128 0x2a
+ 2392 0246 2E       		.uleb128 0x2e
+ 2393 0247 00       		.byte	0
+ 2394 0248 3F       		.uleb128 0x3f
+ 2395 0249 0C       		.uleb128 0xc
+ 2396 024a 03       		.uleb128 0x3
+ 2397 024b 0E       		.uleb128 0xe
+ 2398 024c 3A       		.uleb128 0x3a
+ 2399 024d 0B       		.uleb128 0xb
+ 2400 024e 3B       		.uleb128 0x3b
+ 2401 024f 0B       		.uleb128 0xb
+ 2402 0250 27       		.uleb128 0x27
+ 2403 0251 0C       		.uleb128 0xc
+ 2404 0252 49       		.uleb128 0x49
+ 2405 0253 13       		.uleb128 0x13
+ 2406 0254 3C       		.uleb128 0x3c
+ 2407 0255 0C       		.uleb128 0xc
+ 2408 0256 00       		.byte	0
+ 2409 0257 00       		.byte	0
+ 2410 0258 00       		.byte	0
+ 2411              		.section	.debug_loc,"",%progbits
+ 2412              	.Ldebug_loc0:
+ 2413              	.LLST0:
+ 2414 0000 00000000 		.4byte	.LFB33
+ 2415 0004 02000000 		.4byte	.LCFI0
+ 2416 0008 0200     		.2byte	0x2
+ 2417 000a 7D       		.byte	0x7d
+ 2418 000b 00       		.sleb128 0
+ 2419 000c 02000000 		.4byte	.LCFI0
+ 2420 0010 50000000 		.4byte	.LFE33
+ 2421 0014 0200     		.2byte	0x2
+ 2422 0016 7D       		.byte	0x7d
+ 2423 0017 10       		.sleb128 16
+ 2424 0018 00000000 		.4byte	0
+ 2425 001c 00000000 		.4byte	0
+ 2426              	.LLST1:
+ 2427 0020 00000000 		.4byte	.LVL0
+ 2428 0024 08000000 		.4byte	.LVL2
+ 2429 0028 0200     		.2byte	0x2
+ 2430 002a 36       		.byte	0x36
+ 2431 002b 9F       		.byte	0x9f
+ 2432 002c 00000000 		.4byte	0
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 49
+
+
+ 2433 0030 00000000 		.4byte	0
+ 2434              	.LLST2:
+ 2435 0034 00000000 		.4byte	.LVL0
+ 2436 0038 08000000 		.4byte	.LVL2
+ 2437 003c 0200     		.2byte	0x2
+ 2438 003e 37       		.byte	0x37
+ 2439 003f 9F       		.byte	0x9f
+ 2440 0040 00000000 		.4byte	0
+ 2441 0044 00000000 		.4byte	0
+ 2442              	.LLST3:
+ 2443 0048 00000000 		.4byte	.LVL0
+ 2444 004c 08000000 		.4byte	.LVL2
+ 2445 0050 0200     		.2byte	0x2
+ 2446 0052 38       		.byte	0x38
+ 2447 0053 9F       		.byte	0x9f
+ 2448 0054 00000000 		.4byte	0
+ 2449 0058 00000000 		.4byte	0
+ 2450              	.LLST4:
+ 2451 005c 00000000 		.4byte	.LVL0
+ 2452 0060 08000000 		.4byte	.LVL2
+ 2453 0064 0200     		.2byte	0x2
+ 2454 0066 39       		.byte	0x39
+ 2455 0067 9F       		.byte	0x9f
+ 2456 0068 08000000 		.4byte	.LVL2
+ 2457 006c 50000000 		.4byte	.LFE33
+ 2458 0070 0400     		.2byte	0x4
+ 2459 0072 0A       		.byte	0xa
+ 2460 0073 0102     		.2byte	0x201
+ 2461 0075 9F       		.byte	0x9f
+ 2462 0076 00000000 		.4byte	0
+ 2463 007a 00000000 		.4byte	0
+ 2464              	.LLST5:
+ 2465 007e 00000000 		.4byte	.LVL0
+ 2466 0082 08000000 		.4byte	.LVL2
+ 2467 0086 0200     		.2byte	0x2
+ 2468 0088 30       		.byte	0x30
+ 2469 0089 9F       		.byte	0x9f
+ 2470 008a 08000000 		.4byte	.LVL2
+ 2471 008e 50000000 		.4byte	.LFE33
+ 2472 0092 0400     		.2byte	0x4
+ 2473 0094 0A       		.byte	0xa
+ 2474 0095 0301     		.2byte	0x103
+ 2475 0097 9F       		.byte	0x9f
+ 2476 0098 00000000 		.4byte	0
+ 2477 009c 00000000 		.4byte	0
+ 2478              	.LLST6:
+ 2479 00a0 30000000 		.4byte	.LVL7
+ 2480 00a4 32000000 		.4byte	.LVL8
+ 2481 00a8 0100     		.2byte	0x1
+ 2482 00aa 50       		.byte	0x50
+ 2483 00ab 32000000 		.4byte	.LVL8
+ 2484 00af 35000000 		.4byte	.LVL9-1
+ 2485 00b3 0100     		.2byte	0x1
+ 2486 00b5 51       		.byte	0x51
+ 2487 00b6 00000000 		.4byte	0
+ 2488 00ba 00000000 		.4byte	0
+ 2489              	.LLST7:
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 50
+
+
+ 2490 00be 00000000 		.4byte	.LFB34
+ 2491 00c2 02000000 		.4byte	.LCFI1
+ 2492 00c6 0200     		.2byte	0x2
+ 2493 00c8 7D       		.byte	0x7d
+ 2494 00c9 00       		.sleb128 0
+ 2495 00ca 02000000 		.4byte	.LCFI1
+ 2496 00ce 04000000 		.4byte	.LCFI2
+ 2497 00d2 0200     		.2byte	0x2
+ 2498 00d4 7D       		.byte	0x7d
+ 2499 00d5 14       		.sleb128 20
+ 2500 00d6 04000000 		.4byte	.LCFI2
+ 2501 00da 70000000 		.4byte	.LFE34
+ 2502 00de 0200     		.2byte	0x2
+ 2503 00e0 7D       		.byte	0x7d
+ 2504 00e1 28       		.sleb128 40
+ 2505 00e2 00000000 		.4byte	0
+ 2506 00e6 00000000 		.4byte	0
+ 2507              	.LLST8:
+ 2508 00ea 00000000 		.4byte	.LVL10
+ 2509 00ee 0D000000 		.4byte	.LVL11-1
+ 2510 00f2 0100     		.2byte	0x1
+ 2511 00f4 50       		.byte	0x50
+ 2512 00f5 0D000000 		.4byte	.LVL11-1
+ 2513 00f9 70000000 		.4byte	.LFE34
+ 2514 00fd 0400     		.2byte	0x4
+ 2515 00ff F3       		.byte	0xf3
+ 2516 0100 01       		.uleb128 0x1
+ 2517 0101 50       		.byte	0x50
+ 2518 0102 9F       		.byte	0x9f
+ 2519 0103 00000000 		.4byte	0
+ 2520 0107 00000000 		.4byte	0
+ 2521              	.LLST9:
+ 2522 010b 00000000 		.4byte	.LVL10
+ 2523 010f 0D000000 		.4byte	.LVL11-1
+ 2524 0113 0100     		.2byte	0x1
+ 2525 0115 51       		.byte	0x51
+ 2526 0116 0D000000 		.4byte	.LVL11-1
+ 2527 011a 64000000 		.4byte	.LVL29
+ 2528 011e 0100     		.2byte	0x1
+ 2529 0120 56       		.byte	0x56
+ 2530 0121 64000000 		.4byte	.LVL29
+ 2531 0125 70000000 		.4byte	.LFE34
+ 2532 0129 0400     		.2byte	0x4
+ 2533 012b F3       		.byte	0xf3
+ 2534 012c 01       		.uleb128 0x1
+ 2535 012d 51       		.byte	0x51
+ 2536 012e 9F       		.byte	0x9f
+ 2537 012f 00000000 		.4byte	0
+ 2538 0133 00000000 		.4byte	0
+ 2539              	.LLST10:
+ 2540 0137 00000000 		.4byte	.LVL10
+ 2541 013b 0D000000 		.4byte	.LVL11-1
+ 2542 013f 0100     		.2byte	0x1
+ 2543 0141 52       		.byte	0x52
+ 2544 0142 0D000000 		.4byte	.LVL11-1
+ 2545 0146 70000000 		.4byte	.LFE34
+ 2546 014a 0400     		.2byte	0x4
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 51
+
+
+ 2547 014c F3       		.byte	0xf3
+ 2548 014d 01       		.uleb128 0x1
+ 2549 014e 52       		.byte	0x52
+ 2550 014f 9F       		.byte	0x9f
+ 2551 0150 00000000 		.4byte	0
+ 2552 0154 00000000 		.4byte	0
+ 2553              	.LLST11:
+ 2554 0158 18000000 		.4byte	.LVL13
+ 2555 015c 22000000 		.4byte	.LVL14
+ 2556 0160 0100     		.2byte	0x1
+ 2557 0162 50       		.byte	0x50
+ 2558 0163 22000000 		.4byte	.LVL14
+ 2559 0167 24000000 		.4byte	.LVL15
+ 2560 016b 0100     		.2byte	0x1
+ 2561 016d 52       		.byte	0x52
+ 2562 016e 24000000 		.4byte	.LVL15
+ 2563 0172 26000000 		.4byte	.LVL16
+ 2564 0176 0100     		.2byte	0x1
+ 2565 0178 50       		.byte	0x50
+ 2566 0179 26000000 		.4byte	.LVL16
+ 2567 017d 2C000000 		.4byte	.LVL18
+ 2568 0181 0100     		.2byte	0x1
+ 2569 0183 54       		.byte	0x54
+ 2570 0184 2C000000 		.4byte	.LVL18
+ 2571 0188 32000000 		.4byte	.LVL19
+ 2572 018c 0100     		.2byte	0x1
+ 2573 018e 50       		.byte	0x50
+ 2574 018f 50000000 		.4byte	.LVL25
+ 2575 0193 56000000 		.4byte	.LVL26
+ 2576 0197 0100     		.2byte	0x1
+ 2577 0199 50       		.byte	0x50
+ 2578 019a 00000000 		.4byte	0
+ 2579 019e 00000000 		.4byte	0
+ 2580              	.LLST12:
+ 2581 01a2 40000000 		.4byte	.LVL21
+ 2582 01a6 48000000 		.4byte	.LVL22
+ 2583 01aa 0100     		.2byte	0x1
+ 2584 01ac 50       		.byte	0x50
+ 2585 01ad 4E000000 		.4byte	.LVL24
+ 2586 01b1 50000000 		.4byte	.LVL25
+ 2587 01b5 0100     		.2byte	0x1
+ 2588 01b7 50       		.byte	0x50
+ 2589 01b8 00000000 		.4byte	0
+ 2590 01bc 00000000 		.4byte	0
+ 2591              	.LLST13:
+ 2592 01c0 00000000 		.4byte	.LFB35
+ 2593 01c4 02000000 		.4byte	.LCFI3
+ 2594 01c8 0200     		.2byte	0x2
+ 2595 01ca 7D       		.byte	0x7d
+ 2596 01cb 00       		.sleb128 0
+ 2597 01cc 02000000 		.4byte	.LCFI3
+ 2598 01d0 04000000 		.4byte	.LCFI4
+ 2599 01d4 0200     		.2byte	0x2
+ 2600 01d6 7D       		.byte	0x7d
+ 2601 01d7 14       		.sleb128 20
+ 2602 01d8 04000000 		.4byte	.LCFI4
+ 2603 01dc 60000000 		.4byte	.LFE35
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 52
+
+
+ 2604 01e0 0200     		.2byte	0x2
+ 2605 01e2 7D       		.byte	0x7d
+ 2606 01e3 28       		.sleb128 40
+ 2607 01e4 00000000 		.4byte	0
+ 2608 01e8 00000000 		.4byte	0
+ 2609              	.LLST14:
+ 2610 01ec 00000000 		.4byte	.LVL30
+ 2611 01f0 0D000000 		.4byte	.LVL31-1
+ 2612 01f4 0100     		.2byte	0x1
+ 2613 01f6 50       		.byte	0x50
+ 2614 01f7 0D000000 		.4byte	.LVL31-1
+ 2615 01fb 60000000 		.4byte	.LFE35
+ 2616 01ff 0400     		.2byte	0x4
+ 2617 0201 F3       		.byte	0xf3
+ 2618 0202 01       		.uleb128 0x1
+ 2619 0203 50       		.byte	0x50
+ 2620 0204 9F       		.byte	0x9f
+ 2621 0205 00000000 		.4byte	0
+ 2622 0209 00000000 		.4byte	0
+ 2623              	.LLST15:
+ 2624 020d 00000000 		.4byte	.LVL30
+ 2625 0211 0D000000 		.4byte	.LVL31-1
+ 2626 0215 0100     		.2byte	0x1
+ 2627 0217 51       		.byte	0x51
+ 2628 0218 0D000000 		.4byte	.LVL31-1
+ 2629 021c 56000000 		.4byte	.LVL46
+ 2630 0220 0100     		.2byte	0x1
+ 2631 0222 56       		.byte	0x56
+ 2632 0223 56000000 		.4byte	.LVL46
+ 2633 0227 60000000 		.4byte	.LFE35
+ 2634 022b 0400     		.2byte	0x4
+ 2635 022d F3       		.byte	0xf3
+ 2636 022e 01       		.uleb128 0x1
+ 2637 022f 51       		.byte	0x51
+ 2638 0230 9F       		.byte	0x9f
+ 2639 0231 00000000 		.4byte	0
+ 2640 0235 00000000 		.4byte	0
+ 2641              	.LLST16:
+ 2642 0239 00000000 		.4byte	.LVL30
+ 2643 023d 0D000000 		.4byte	.LVL31-1
+ 2644 0241 0100     		.2byte	0x1
+ 2645 0243 52       		.byte	0x52
+ 2646 0244 0D000000 		.4byte	.LVL31-1
+ 2647 0248 60000000 		.4byte	.LFE35
+ 2648 024c 0400     		.2byte	0x4
+ 2649 024e F3       		.byte	0xf3
+ 2650 024f 01       		.uleb128 0x1
+ 2651 0250 52       		.byte	0x52
+ 2652 0251 9F       		.byte	0x9f
+ 2653 0252 00000000 		.4byte	0
+ 2654 0256 00000000 		.4byte	0
+ 2655              	.LLST17:
+ 2656 025a 18000000 		.4byte	.LVL33
+ 2657 025e 22000000 		.4byte	.LVL34
+ 2658 0262 0100     		.2byte	0x1
+ 2659 0264 50       		.byte	0x50
+ 2660 0265 22000000 		.4byte	.LVL34
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 53
+
+
+ 2661 0269 25000000 		.4byte	.LVL35-1
+ 2662 026d 0100     		.2byte	0x1
+ 2663 026f 52       		.byte	0x52
+ 2664 0270 25000000 		.4byte	.LVL35-1
+ 2665 0274 2E000000 		.4byte	.LVL37
+ 2666 0278 0100     		.2byte	0x1
+ 2667 027a 54       		.byte	0x54
+ 2668 027b 2E000000 		.4byte	.LVL37
+ 2669 027f 30000000 		.4byte	.LVL38
+ 2670 0283 0100     		.2byte	0x1
+ 2671 0285 50       		.byte	0x50
+ 2672 0286 30000000 		.4byte	.LVL38
+ 2673 028a 36000000 		.4byte	.LVL40
+ 2674 028e 0100     		.2byte	0x1
+ 2675 0290 54       		.byte	0x54
+ 2676 0291 36000000 		.4byte	.LVL40
+ 2677 0295 3C000000 		.4byte	.LVL41
+ 2678 0299 0100     		.2byte	0x1
+ 2679 029b 50       		.byte	0x50
+ 2680 029c 3C000000 		.4byte	.LVL41
+ 2681 02a0 52000000 		.4byte	.LVL45
+ 2682 02a4 0100     		.2byte	0x1
+ 2683 02a6 54       		.byte	0x54
+ 2684 02a7 00000000 		.4byte	0
+ 2685 02ab 00000000 		.4byte	0
+ 2686              	.LLST18:
+ 2687 02af 00000000 		.4byte	.LFB36
+ 2688 02b3 02000000 		.4byte	.LCFI5
+ 2689 02b7 0200     		.2byte	0x2
+ 2690 02b9 7D       		.byte	0x7d
+ 2691 02ba 00       		.sleb128 0
+ 2692 02bb 02000000 		.4byte	.LCFI5
+ 2693 02bf B8000000 		.4byte	.LFE36
+ 2694 02c3 0200     		.2byte	0x2
+ 2695 02c5 7D       		.byte	0x7d
+ 2696 02c6 18       		.sleb128 24
+ 2697 02c7 00000000 		.4byte	0
+ 2698 02cb 00000000 		.4byte	0
+ 2699              	.LLST19:
+ 2700 02cf 00000000 		.4byte	.LFB37
+ 2701 02d3 02000000 		.4byte	.LCFI6
+ 2702 02d7 0200     		.2byte	0x2
+ 2703 02d9 7D       		.byte	0x7d
+ 2704 02da 00       		.sleb128 0
+ 2705 02db 02000000 		.4byte	.LCFI6
+ 2706 02df 5C000000 		.4byte	.LFE37
+ 2707 02e3 0200     		.2byte	0x2
+ 2708 02e5 7D       		.byte	0x7d
+ 2709 02e6 08       		.sleb128 8
+ 2710 02e7 00000000 		.4byte	0
+ 2711 02eb 00000000 		.4byte	0
+ 2712              	.LLST20:
+ 2713 02ef 00000000 		.4byte	.LVL74
+ 2714 02f3 04000000 		.4byte	.LVL75
+ 2715 02f7 0100     		.2byte	0x1
+ 2716 02f9 50       		.byte	0x50
+ 2717 02fa 04000000 		.4byte	.LVL75
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 54
+
+
+ 2718 02fe 06000000 		.4byte	.LVL76
+ 2719 0302 0600     		.2byte	0x6
+ 2720 0304 70       		.byte	0x70
+ 2721 0305 00       		.sleb128 0
+ 2722 0306 09       		.byte	0x9
+ 2723 0307 C0       		.byte	0xc0
+ 2724 0308 21       		.byte	0x21
+ 2725 0309 9F       		.byte	0x9f
+ 2726 030a 06000000 		.4byte	.LVL76
+ 2727 030e 5A000000 		.4byte	.LVL93
+ 2728 0312 0600     		.2byte	0x6
+ 2729 0314 74       		.byte	0x74
+ 2730 0315 00       		.sleb128 0
+ 2731 0316 09       		.byte	0x9
+ 2732 0317 C0       		.byte	0xc0
+ 2733 0318 21       		.byte	0x21
+ 2734 0319 9F       		.byte	0x9f
+ 2735 031a 00000000 		.4byte	0
+ 2736 031e 00000000 		.4byte	0
+ 2737              	.LLST21:
+ 2738 0322 00000000 		.4byte	.LVL74
+ 2739 0326 09000000 		.4byte	.LVL77-1
+ 2740 032a 0100     		.2byte	0x1
+ 2741 032c 51       		.byte	0x51
+ 2742 032d 09000000 		.4byte	.LVL77-1
+ 2743 0331 5A000000 		.4byte	.LVL92
+ 2744 0335 0400     		.2byte	0x4
+ 2745 0337 F3       		.byte	0xf3
+ 2746 0338 01       		.uleb128 0x1
+ 2747 0339 51       		.byte	0x51
+ 2748 033a 9F       		.byte	0x9f
+ 2749 033b 5A000000 		.4byte	.LVL92
+ 2750 033f 5C000000 		.4byte	.LFE37
+ 2751 0343 0600     		.2byte	0x6
+ 2752 0345 F2       		.byte	0xf2
+ 2753 0346 33070000 		.4byte	.Ldebug_info0+1843
+ 2754 034a 00       		.sleb128 0
+ 2755 034b 00000000 		.4byte	0
+ 2756 034f 00000000 		.4byte	0
+ 2757              		.section	.debug_aranges,"",%progbits
+ 2758 0000 3C000000 		.4byte	0x3c
+ 2759 0004 0200     		.2byte	0x2
+ 2760 0006 00000000 		.4byte	.Ldebug_info0
+ 2761 000a 04       		.byte	0x4
+ 2762 000b 00       		.byte	0
+ 2763 000c 0000     		.2byte	0
+ 2764 000e 0000     		.2byte	0
+ 2765 0010 00000000 		.4byte	.LFB33
+ 2766 0014 50000000 		.4byte	.LFE33-.LFB33
+ 2767 0018 00000000 		.4byte	.LFB34
+ 2768 001c 70000000 		.4byte	.LFE34-.LFB34
+ 2769 0020 00000000 		.4byte	.LFB35
+ 2770 0024 60000000 		.4byte	.LFE35-.LFB35
+ 2771 0028 00000000 		.4byte	.LFB36
+ 2772 002c B8000000 		.4byte	.LFE36-.LFB36
+ 2773 0030 00000000 		.4byte	.LFB37
+ 2774 0034 5C000000 		.4byte	.LFE37-.LFB37
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 55
+
+
+ 2775 0038 00000000 		.4byte	0
+ 2776 003c 00000000 		.4byte	0
+ 2777              		.section	.debug_ranges,"",%progbits
+ 2778              	.Ldebug_ranges0:
+ 2779 0000 00000000 		.4byte	.LFB33
+ 2780 0004 50000000 		.4byte	.LFE33
+ 2781 0008 00000000 		.4byte	.LFB34
+ 2782 000c 70000000 		.4byte	.LFE34
+ 2783 0010 00000000 		.4byte	.LFB35
+ 2784 0014 60000000 		.4byte	.LFE35
+ 2785 0018 00000000 		.4byte	.LFB36
+ 2786 001c B8000000 		.4byte	.LFE36
+ 2787 0020 00000000 		.4byte	.LFB37
+ 2788 0024 5C000000 		.4byte	.LFE37
+ 2789 0028 00000000 		.4byte	0
+ 2790 002c 00000000 		.4byte	0
+ 2791              		.section	.debug_line,"",%progbits
+ 2792              	.Ldebug_line0:
+ 2793 0000 21020000 		.section	.debug_str,"MS",%progbits,1
+ 2793      02003C01 
+ 2793      00000201 
+ 2793      FB0E0D00 
+ 2793      01010101 
+ 2794              	.LASF40:
+ 2795 0000 433A5C55 		.ascii	"C:\\Users\\Milo\\Documents\\PSoC Creator\\DPI_Deskt"
+ 2795      73657273 
+ 2795      5C4D696C 
+ 2795      6F5C446F 
+ 2795      63756D65 
+ 2796 002e 6F705F54 		.ascii	"op_Tester\\Desktop_Tool_Emulator.cydsn\000"
+ 2796      65737465 
+ 2796      725C4465 
+ 2796      736B746F 
+ 2796      705F546F 
+ 2797              	.LASF42:
+ 2798 0054 636F6E66 		.ascii	"configure\000"
+ 2798      69677572 
+ 2798      6500
+ 2799              	.LASF44:
+ 2800 005e 55415254 		.ascii	"UART_1_Start\000"
+ 2800      5F315F53 
+ 2800      74617274 
+ 2800      00
+ 2801              	.LASF20:
+ 2802 006b 73746174 		.ascii	"status\000"
+ 2802      757300
+ 2803              	.LASF26:
+ 2804 0072 55415254 		.ascii	"UART_1_UartPutString\000"
+ 2804      5F315F55 
+ 2804      61727450 
+ 2804      75745374 
+ 2804      72696E67 
+ 2805              	.LASF3:
+ 2806 0087 73686F72 		.ascii	"short unsigned int\000"
+ 2806      7420756E 
+ 2806      7369676E 
+ 2806      65642069 
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 56
+
+
+ 2806      6E7400
+ 2807              	.LASF35:
+ 2808 009a 50696E5F 		.ascii	"Pin_4_Write\000"
+ 2808      345F5772 
+ 2808      69746500 
+ 2809              	.LASF24:
+ 2810 00a6 7370695F 		.ascii	"spi_read\000"
+ 2810      72656164 
+ 2810      00
+ 2811              	.LASF19:
+ 2812 00af 62756666 		.ascii	"buff_size\000"
+ 2812      5F73697A 
+ 2812      6500
+ 2813              	.LASF17:
+ 2814 00b9 73756241 		.ascii	"subAddr\000"
+ 2814      64647200 
+ 2815              	.LASF12:
+ 2816 00c1 666C6F61 		.ascii	"float\000"
+ 2816      7400
+ 2817              	.LASF29:
+ 2818 00c7 55415254 		.ascii	"UART_1_SpiUartPutArray\000"
+ 2818      5F315F53 
+ 2818      70695561 
+ 2818      72745075 
+ 2818      74417272 
+ 2819              	.LASF1:
+ 2820 00de 756E7369 		.ascii	"unsigned char\000"
+ 2820      676E6564 
+ 2820      20636861 
+ 2820      7200
+ 2821              	.LASF14:
+ 2822 00ec 63686172 		.ascii	"char8\000"
+ 2822      3800
+ 2823              	.LASF11:
+ 2824 00f2 696E7431 		.ascii	"int16\000"
+ 2824      3600
+ 2825              	.LASF5:
+ 2826 00f8 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2826      20756E73 
+ 2826      69676E65 
+ 2826      6420696E 
+ 2826      7400
+ 2827              	.LASF32:
+ 2828 010a 4932435F 		.ascii	"I2C_1_I2CMasterClearStatus\000"
+ 2828      315F4932 
+ 2828      434D6173 
+ 2828      74657243 
+ 2828      6C656172 
+ 2829              	.LASF9:
+ 2830 0125 75696E74 		.ascii	"uint8\000"
+ 2830      3800
+ 2831              	.LASF21:
+ 2832 012b 61727261 		.ascii	"array\000"
+ 2832      7900
+ 2833              	.LASF27:
+ 2834 0131 6932635F 		.ascii	"i2c_write\000"
+ 2834      77726974 
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 57
+
+
+ 2834      6500
+ 2835              	.LASF13:
+ 2836 013b 646F7562 		.ascii	"double\000"
+ 2836      6C6500
+ 2837              	.LASF39:
+ 2838 0142 2E5C6D61 		.ascii	".\\main.c\000"
+ 2838      696E2E63 
+ 2838      00
+ 2839              	.LASF10:
+ 2840 014b 75696E74 		.ascii	"uint32\000"
+ 2840      333200
+ 2841              	.LASF23:
+ 2842 0152 6D61696E 		.ascii	"main\000"
+ 2842      00
+ 2843              	.LASF8:
+ 2844 0157 756E7369 		.ascii	"unsigned int\000"
+ 2844      676E6564 
+ 2844      20696E74 
+ 2844      00
+ 2845              	.LASF7:
+ 2846 0164 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2846      206C6F6E 
+ 2846      6720756E 
+ 2846      7369676E 
+ 2846      65642069 
+ 2847              	.LASF33:
+ 2848 017b 4932435F 		.ascii	"I2C_1_I2CMasterSendStart\000"
+ 2848      315F4932 
+ 2848      434D6173 
+ 2848      74657253 
+ 2848      656E6453 
+ 2849              	.LASF16:
+ 2850 0194 73697A65 		.ascii	"sizetype\000"
+ 2850      74797065 
+ 2850      00
+ 2851              	.LASF6:
+ 2852 019d 6C6F6E67 		.ascii	"long long int\000"
+ 2852      206C6F6E 
+ 2852      6720696E 
+ 2852      7400
+ 2853              	.LASF22:
+ 2854 01ab 61727261 		.ascii	"array2\000"
+ 2854      793200
+ 2855              	.LASF31:
+ 2856 01b2 4932435F 		.ascii	"I2C_1_I2CMasterSendStop\000"
+ 2856      315F4932 
+ 2856      434D6173 
+ 2856      74657253 
+ 2856      656E6453 
+ 2857              	.LASF34:
+ 2858 01ca 4932435F 		.ascii	"I2C_1_I2CMasterReadBuf\000"
+ 2858      315F4932 
+ 2858      434D6173 
+ 2858      74657252 
+ 2858      65616442 
+ 2859              	.LASF30:
+ 2860 01e1 4932435F 		.ascii	"I2C_1_I2CMasterWriteByte\000"
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 58
+
+
+ 2860      315F4932 
+ 2860      434D6173 
+ 2860      74657257 
+ 2860      72697465 
+ 2861              	.LASF37:
+ 2862 01fa 5350494D 		.ascii	"SPIM_1_ReadRxData\000"
+ 2862      5F315F52 
+ 2862      65616452 
+ 2862      78446174 
+ 2862      6100
+ 2863              	.LASF2:
+ 2864 020c 73686F72 		.ascii	"short int\000"
+ 2864      7420696E 
+ 2864      7400
+ 2865              	.LASF18:
+ 2866 0216 62756666 		.ascii	"buffer\000"
+ 2866      657200
+ 2867              	.LASF38:
+ 2868 021d 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 2868      4320342E 
+ 2868      372E3320 
+ 2868      32303133 
+ 2868      30333132 
+ 2869 0250 616E6368 		.ascii	"anch revision 196615]\000"
+ 2869      20726576 
+ 2869      6973696F 
+ 2869      6E203139 
+ 2869      36363135 
+ 2870              	.LASF41:
+ 2871 0266 6932635F 		.ascii	"i2c_read\000"
+ 2871      72656164 
+ 2871      00
+ 2872              	.LASF4:
+ 2873 026f 6C6F6E67 		.ascii	"long int\000"
+ 2873      20696E74 
+ 2873      00
+ 2874              	.LASF15:
+ 2875 0278 63686172 		.ascii	"char\000"
+ 2875      00
+ 2876              	.LASF43:
+ 2877 027d 41444452 		.ascii	"ADDRESS\000"
+ 2877      45535300 
+ 2878              	.LASF0:
+ 2879 0285 7369676E 		.ascii	"signed char\000"
+ 2879      65642063 
+ 2879      68617200 
+ 2880              	.LASF36:
+ 2881 0291 5350494D 		.ascii	"SPIM_1_WriteTxData\000"
+ 2881      5F315F57 
+ 2881      72697465 
+ 2881      54784461 
+ 2881      746100
+ 2882              	.LASF28:
+ 2883 02a4 73707269 		.ascii	"sprintf\000"
+ 2883      6E746600 
+ 2884              	.LASF25:
+ 2885 02ac 43794465 		.ascii	"CyDelay\000"
+ARM GAS  C:\Users\Milo\AppData\Local\Temp\cc85A6Bb.s 			page 59
+
+
+ 2885      6C617900 
+ 2886              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
